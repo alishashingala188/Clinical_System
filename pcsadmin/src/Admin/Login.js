@@ -1,105 +1,86 @@
-import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import LoginImages from '../images/back.jpg'
+import React from 'react'
+import '../App.css'
+import { TextField, Grid, MenuItem, InputLabel, Checkbox, FormControlLabel, FormGroup ,FormControl} from '@mui/material';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 
-const theme = createTheme();
-const commonStyle={
-    border:2,
-    borderColor:'text.primary',
-    width:'25rem',
+import User from '../images/user.png'
+import { height } from '@mui/system';
 
-};
-export default function Login() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+const Login = () => {
+  const [dept, setdept] = React.useState('');
+  const handleChange = (event: SelectChangeEvent) => {
+    setdept(event.target.value);
   };
-
   return (
-    <div>  
-     <img src={LoginImages} width="1150" height="500" />
-          <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="sx">
-     
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: -60,
-           marginLeft:80,
-            alignItems: 'center',
-            
-          }}
-        >
-             
-          <Avatar sx={{ m: 1, ml : 20,bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5" sx={{ ml : 18}} >
-           Sign In
-          </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3,...commonStyle }}>
-            <Grid container spacing={2}>
-              
-             
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                  
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
-              </Grid>
-            </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Sign Up
-            </Button>
-            
-          </Box>
-        </Box>
-      
-      </Container>
-    </ThemeProvider>
+    <div>
+      <main class="d-flex w-100">
+        <div class="container d-flex flex-column">
+          <div class="row vh-100">
+            <div class="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100">
+              <div class="d-table-cell align-middle">
+
+                <div class="text-center mt-4">
+                  <h1 class="h2">Welcome back</h1>
+                  <p class="lead">
+                    Sign in to your account to continue
+                  </p>
+                </div>
+
+                <div class="card">
+                  <div class="card-body">
+                    <div class="m-sm-4">
+                      <div class="text-center" >
+                        <img src={User} alt="Charles Hall" class="img-fluid rounded-circle" width="132" height="132" />
+                        <br />
+                      </div>
+                      <form action="inslogin.php" method="post" name="adminlogin">
+                        <div>
+                          <Grid mt={3} mb={3}>
+                            <TextField id="username" label="Username" variant="outlined" fullWidth />
+                          </Grid>
+
+                          <Grid mt={3} mb={3}>
+                            <TextField id="password" label="Password" variant="outlined" fullWidth />
+                          </Grid>
+                        </div>
+                        <div class="mb-3">
+                          <FormControl fullWidth>
+                            <InputLabel id="demo-simple-select-label">--select--</InputLabel>
+
+                            <Select  labelId="demo-simple-select-label"
+          id="demo-simple-select" fullWidth onChange={handleChange} label="--select--" value={dept} >
+                              
+                              <MenuItem value={10}>Admin</MenuItem>
+                              <MenuItem value={20}>Doctor</MenuItem>
+                              <MenuItem value={30}>Medical</MenuItem>
+                              <MenuItem value={40}>Receptionist</MenuItem>
+                            </Select>
+                            </FormControl>
+                            <small>
+                              <a href="index.html">Forgot password?</a>
+                            </small>
+                            <FormGroup>
+                              <FormControlLabel control={<Checkbox defaultChecked />} label=" Remember me next time" />
+                            </FormGroup>
+                        </div>
+
+                        <div class="text-center mt-3">
+                          <button type="submit" class="btn btn-lg btn-primary" style={{ width: 200, height: 50, borderRadius: 5 }}>Sign in</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+
     </div>
-  );
+  )
 }
+
+export default Login
