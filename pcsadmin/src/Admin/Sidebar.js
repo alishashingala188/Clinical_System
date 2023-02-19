@@ -1,14 +1,23 @@
 import React from 'react'
-import Admin from '../images/user.png'
 import AddDoctor from './AddDoctor'
-import Dashboard from './Dashboard'
+import {Link} from 'react-router-dom'
+import DashboardCustomizeOutlinedIcon from '@mui/icons-material/DashboardCustomizeOutlined';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import LocalHospitalOutlinedIcon from '@mui/icons-material/LocalHospitalOutlined';
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import MedicalInformationOutlinedIcon from '@mui/icons-material/MedicalInformationOutlined';
+import VaccinesRoundedIcon from '@mui/icons-material/VaccinesRounded';
+import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
+import CreditScoreOutlinedIcon from '@mui/icons-material/CreditScoreOutlined';
+import PasswordOutlinedIcon from '@mui/icons-material/PasswordOutlined';
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 const Sidebar = () => {
     return (
         <>
             <nav id="sidebar" class="sidebar js-sidebar">
                 <div class="sidebar-content js-simplebar">
                     <a class="sidebar-brand" href="index1.php">
-                    <img  src={Admin} alt="images" width={130} style={{marginLeft:25,marginBottom:-20}}/>
+				<span class="align-middle">ADMIN DASHBORD</span>
                     </a>
 
                     <ul class="sidebar-nav">
@@ -17,48 +26,48 @@ const Sidebar = () => {
                         </li>
 
                         <li class="sidebar-item active">
-                            <a class="sidebar-link" to={<Dashboard/>}>
-                                <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
-                            </a>
+                            <Link to="/" class="sidebar-link" >
+                            <DashboardCustomizeOutlinedIcon className="align-middle"  fontSize='small' /> <span class="align-middle">Dashboard</span>
+                            </Link>
                         </li>
 
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="profile.php">
-                                <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
-                            </a>
+                            <Link class="sidebar-link" to="/Profile">
+                          <AccountCircleOutlinedIcon  className="align-middle" /><span class="align-middle">Profile</span>
+                            </Link>
                         </li>
 
 
 
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href={AddDoctor}>
-                                <i class="align-middle" data-feather="thumbs-up"></i> <span class="align-middle">Add Clinic</span>
-                            </a>
+                            <Link class="sidebar-link" to="/AddClinic">
+                            <LocalHospitalOutlinedIcon  className="align-middle" /><span class="align-middle">Add Clinic</span>
+                            </Link>
                         </li>
 
 
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="adddoctor.php">
-                                <i class="align-middle" data-feather="heart"></i> <span class="align-middle">Add Doctor</span>
-                            </a>
+                            <Link class="sidebar-link" to="/AddDoctor">
+                            <FavoriteBorderOutlinedIcon  className="align-middle" /> <span class="align-middle">Add Doctor</span>
+                            </Link>
                         </li>
 
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="addmedical.php">
-                                <i class="align-middle" data-feather="edit-3"></i> <span class="align-middle">Add Medical</span>
-                            </a>
+                            <Link class="sidebar-link" to="/AddMedical">
+                            <MedicalInformationOutlinedIcon  className="align-middle" /> <span class="align-middle">Add Medical</span>
+                            </Link>
                         </li>
 
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="addmedicine.php">
-                                <i class="align-middle" data-feather="shopping-bag"></i> <span class="align-middle">Add Medicine</span>
-                            </a>
+                            <Link class="sidebar-link" to="/AddMedicine">
+                            <VaccinesRoundedIcon  className="align-middle" /> <span class="align-middle">Add Medicine</span>
+                            </Link>
                         </li>
 
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="addreceptionist.php">
-                                <i class="align-middle" data-feather="edit-3"></i> <span class="align-middle">Create Receptionist</span>
-                            </a>
+                            <Link class="sidebar-link" to="/AddReceptionist">
+                            <BorderColorOutlinedIcon  className="align-middle" /> <span class="align-middle">Create Receptionist</span>
+                            </Link>
                         </li>
 
                         <li class="sidebar-header">
@@ -66,33 +75,33 @@ const Sidebar = () => {
                         </li>
 
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="viewmedicine.php">
-                                <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">View Medicine</span>
-                            </a>
+                            <Link class="sidebar-link" to="/ViewMedicine">
+                            <CreditScoreOutlinedIcon  className="align-middle" /> <span class="align-middle">View Medicine</span>
+                            </Link>
                         </li>
 
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="viewreceptionist.php">
-                                <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">View Receptionist</span>
-                            </a>
+                            <Link class="sidebar-link" to="/ViewReceptionist">
+                            <CreditScoreOutlinedIcon  className="align-middle" /> <span class="align-middle">View Receptionist</span>
+                            </Link>
                         </li>
 
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="viewdoctor.php">
-                                <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">View Doctor</span>
-                            </a>
+                            <Link class="sidebar-link" to="/ViewDoctor">
+                            <CreditScoreOutlinedIcon  className="align-middle" /> <span class="align-middle">View Doctor</span>
+                            </Link>
                         </li>
 
                         <li class="sidebar-item ">
-                            <a class="sidebar-link" href="changepwd.php">
-                                <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Change Password</span>
-                            </a>
+                            <Link class="sidebar-link" to="/Changepwd">
+                            <PasswordOutlinedIcon  className="align-middle" /><span class="align-middle">Change Password</span>
+                            </Link>
                         </li>
 
                         <li class="sidebar-item ">
-                            <a class="sidebar-link" href="alogout.php">
-                                <i class="align-middle" data-feather="log-out"></i> <span class="align-middle">Logout</span>
-                            </a>
+                            <Link class="sidebar-link" to="/Alogout">
+                            <LogoutOutlinedIcon  className="align-middle" /> <span class="align-middle">Logout</span>
+                            </Link>
                         </li>
                     </ul>
                 </div>

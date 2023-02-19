@@ -1,11 +1,17 @@
 import React from 'react'
 import Sidebar from './Sidebar'
 import './css/app.css'
+import Footer from './Footer'
 import Nav from './Nav'
-import Img from '../images/icons/icon-48x48.png'
+import AddDoctor from './AddDoctor'
+import LocalHotelOutlinedIcon from '@mui/icons-material/LocalHotelOutlined';
+import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined';
+import CurrencyExchangeOutlinedIcon from '@mui/icons-material/CurrencyExchangeOutlined';
+import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 const Dashboard = () => {
     return (
         <>
+       
      <div class="wrapper">
         <Sidebar />
             <div class="wrapper">
@@ -30,7 +36,7 @@ const Dashboard = () => {
 
                                                             <div class="col-auto">
                                                                 <div class="stat text-primary">
-                                                                    <i class="align-middle" data-feather="truck"></i>
+                                                                    <LocalHotelOutlinedIcon class="align-middle" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -53,7 +59,7 @@ const Dashboard = () => {
 
                                                             <div class="col-auto">
                                                                 <div class="stat text-primary">
-                                                                    <i class="align-middle" data-feather="users"></i>
+                                                                    <PersonAddAltOutlinedIcon class="align-middle" data-feather="users"/>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -76,7 +82,7 @@ const Dashboard = () => {
 
                                                             <div class="col-auto">
                                                                 <div class="stat text-primary">
-                                                                    <i class="align-middle" data-feather="dollar-sign"></i>
+                                                                    <CurrencyExchangeOutlinedIcon class="align-middle" data-feather="dollar-sign"/>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -97,7 +103,7 @@ const Dashboard = () => {
 
                                                             <div class="col-auto">
                                                                 <div class="stat text-primary">
-                                                                    <i class="align-middle" data-feather="shopping-cart"></i>
+                                                                    <AddShoppingCartOutlinedIcon class="align-middle" data-feather="shopping-cart"/>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -130,9 +136,11 @@ const Dashboard = () => {
                             </div>
                         </div>
                     </main>
+                    <Footer />
                 </div>
             </div>
 </div>
+
         </>
     )
 }

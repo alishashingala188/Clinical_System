@@ -12234,7 +12234,7 @@ screen and (-ms-high-contrast:active) {
 a.sidebar-link {
     background: #004fb0;
     border-left: 3px solid transparent;
-    color: white;
+    color: rgba(255, 255, 255, .75);
     cursor: pointer;
     display: block;
     font-weight: 400;
