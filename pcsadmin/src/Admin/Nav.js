@@ -1,5 +1,8 @@
 import React from 'react'
 import Avtar1 from  '../images/avatars/avatar-2.jpg'
+import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
+import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
+import {Link} from 'react-router-dom'
 const Nav = () => {
   return (
     <>
@@ -11,12 +14,12 @@ const Nav = () => {
     <div class="navbar-collapse collapse">
         <ul class="navbar-nav navbar-align">
             <li class="nav-item dropdown">
-                <a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown" data-bs-toggle="dropdown">
+                <Link class="nav-icon dropdown-toggle" to="#" id="alertsDropdown" data-bs-toggle="dropdown">
                     <div class="position-relative">
-                        <i class="align-middle" data-feather="bell"></i>
+                        <NotificationsNoneOutlinedIcon class="align-middle"  />
                         <span class="indicator">4</span>
                     </div>
-                </a>
+                </Link>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0" aria-labelledby="alertsDropdown">
                     <div class="dropdown-menu-header">
                         4 New Notifications
@@ -78,7 +81,7 @@ const Nav = () => {
             <li class="nav-item dropdown">
                 <a class="nav-icon dropdown-toggle" href="#" id="messagesDropdown" data-bs-toggle="dropdown">
                     <div class="position-relative">
-                        <i class="align-middle" data-feather="message-square"></i>
+                        <EmailOutlinedIcon class="align-middle" />
                         <span class="indicator">6</span>
                     
                     </div>

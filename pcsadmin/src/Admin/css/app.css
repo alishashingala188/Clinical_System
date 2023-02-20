@@ -583,7 +583,7 @@ progress {
 .container-md,
 .container-sm,
 .container-xl {
-    margin-left: auto;
+    margin-left: 120px;
     margin-right: auto;
     padding-left: var(--bs-gutter-x, .75rem);
     padding-right: var(--bs-gutter-x, .75rem);
@@ -2072,7 +2072,7 @@ progress {
 .form-control:focus {
     background-color: #fff;
     border-color: #9dbeee;
-    box-shadow: 0 0 0 .2rem rgba(59, 125, 221, .25);
+    box-shadow: 0 0 0 .1rem rgba(59, 125, 221, .25);
     color: #495057;
     outline: 0
 }
@@ -2164,7 +2164,7 @@ progress {
     border-width: 1px 0;
     color: #495057;
     display: block;
-    line-height: 1.5;
+    line-height: 2;
     margin-bottom: 0;
     padding: .3rem 0;
     width: 100%
@@ -4742,12 +4742,14 @@ fieldset:disabled .btn {
     display: flex;
     flex-direction: column;
     min-width: 0;
-    position: relative
+    position: relative;
+    
 }
 
 .card>hr {
     margin-left: 0;
     margin-right: 0
+    
 }
 
 .card>.list-group {
@@ -4774,7 +4776,9 @@ fieldset:disabled .btn {
 
 .card-body {
     flex: 1 1 auto;
-    padding: 1.25rem
+    padding: 1.25rem;
+   
+    
 }
 
 .card-title {
@@ -4802,7 +4806,9 @@ fieldset:disabled .btn {
     background-color: #fff;
     border-bottom: 0 solid transparent;
     margin-bottom: 0;
-    padding: 1rem 1.25rem
+    padding: 1rem 1.25rem;
+    width: 400px;
+
 }
 
 .card-header:first-child {
@@ -11854,7 +11860,8 @@ fieldset:disabled .btn {
     flex: 1;
     max-width: 100vw;
     padding: 1.5rem 1.5rem .75rem;
-    width: 100vw
+    width: 100vw;
+    margin-left: -150px;
 }
 
 @media (min-width:768px) {
@@ -12044,7 +12051,8 @@ a.list-group-item {
     min-width: 0;
     overflow: hidden;
     transition: margin-left .35s ease-in-out, left .35s ease-in-out, margin-right .35s ease-in-out, right .35s ease-in-out;
-    width: 100%
+    width: 100%;
+    
 }
 
 .navbar {
@@ -12418,7 +12426,9 @@ a {
     align-items: stretch;
     background: #222e3c;
     display: flex;
-    width: 100%
+    width: 100%;
+    margin-left: -100;
+
 }
 
 .cursor-grab {
