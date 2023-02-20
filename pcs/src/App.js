@@ -1,13 +1,10 @@
 import React from 'react'
 import Login from './Login'
-import Main from './Main'
 const App = () => {
   return (
     <>
-   
-    <Main/>
+    <Login/>
     </>
   )
 }
-
-export default App
+export default App;
