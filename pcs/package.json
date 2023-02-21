@@ -10,18 +10,9 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-<<<<<<< HEAD
     "bootstrap": "^5.2.3",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.2",
-=======
-    "antd": "^5.2.2",
-    "bootstrap": "^5.2.3",
-    "chart.js": "^4.2.1",
-    "react": "^18.2.0",
-    "react-chartjs-2": "^5.2.0",
-    "react-color": "^2.19.3",
->>>>>>> 8a3d401ed079f670f4360691ff1fb91f7d6be6cb
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.1",
     "react-scripts": "5.0.1",
