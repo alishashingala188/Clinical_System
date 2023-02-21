@@ -123,6 +123,16 @@ const Dashboard = () => {
                                                                 class="mdi mdi-arrow-bottom-right"></i> 5.25% </span>
                                                             <span class="text-muted">Since last week</span>
                                                         </div>
+
+
+
+
+
+
+
+
+
+                                                        
                                                     </div>
                                                 </div>
                                             </div>

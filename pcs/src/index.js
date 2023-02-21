@@ -12,3 +12,7 @@ root.render(
     </BrowserRouter>
   </React.StrictMode>
 );
+<<<<<<< HEAD
+=======
+
+>>>>>>> fe3ee28494b7757b8e82ade12a4087e9de5594c6
