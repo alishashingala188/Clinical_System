@@ -3,7 +3,8 @@ import { Grid,Paper, Avatar, TextField, Button, Typography,Link } from '@mui/mat
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import background from './images/25.jpg';
+import background from './images/blog1.jpg';
+
 
 const Login=()=>{
 
