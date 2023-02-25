@@ -25,10 +25,7 @@ import team1 from "./images/team/1.jpg"
  import FacebookIcon from '@mui/icons-material/Facebook';
  import TwitterIcon from '@mui/icons-material/Twitter';
  import TelegramIcon from '@mui/icons-material/Telegram';
- 
-
-import { width } from '@mui/system';
-import { SignalCellularConnectedNoInternet3Bar } from '@mui/icons-material';
+ import {Link} from 'react-router-dom'
 export const Main = () => {
 
     
@@ -49,6 +46,7 @@ export const Main = () => {
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#home-section">Home</a>
             </li>
+
             <li class="nav-item">
               <a class="nav-link" href="#about-section">About</a>
             </li>
@@ -56,29 +54,23 @@ export const Main = () => {
             <li class="nav-item">
               <a class="nav-link " href="#services-section">Services</a>
             </li>
+
                <li class="nav-item">
               <a class="nav-link " href="#reviews-section">Reviews</a>
             </li>
+
                 <li class="nav-item">
               <a class="nav-link " href="#team-section">Our Doctors</a>
             </li>
               
                 <li class="nav-item">
-              <a class="nav-link " href="#blog-section">Blog</a>
+              <a class="nav-link" href="#blog-section">Blog</a>
             </li>
-              
-             <li class="nav-item">
-              <a class="nav-link " href="#booking-section">Sign up</a>
-            </li> 
+
             <li class="nav-item">
-              <a class="nav-link " href="#booking-section">Sign In</a>
-            </li> 
-              
-              
-              
-              
-          </ul>
-         
+              <a class="nav-link " href="/signup"> Sign Up </a>
+            </li>               
+          </ul>   
         </div>
       </div>
     </nav>
@@ -87,25 +79,27 @@ export const Main = () => {
     
         
         
-        
+       
     
         <section class="hero-banner" id="home-section">
+       
              <div class="container">
-                 <div class="row">
+                <div class="row">
+                
                       <div class="col-md-12">
                           <div class="banner-text-wrap">
                                <h1 class="text-white">We Provide Best Medical Services</h1>
                               <p class="text-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</p>
-                              <a href="#" style={{background:"white",color:"black",textDecoration:"none",width:'900',height:'30px'}}>Book Appointment</a>
-                          </div>
+                             
+                             
+                            
+             <button  style={{backgroundColor:'white',width:150,height:50,borderRadius:10,fontSize:20,marginLeft:20}}>Sign In</button>
+                                     </div>
                      </div>
                  </div>
             </div>
         </section>
    
-        
-        
-    
         <section class="features-section">
               <div class="container">
                  <div class="row gx-0">

@@ -1,9 +1,17 @@
 import React from 'react'
-import Login from './Login'
+import Main from './Main'
+import Form from './Form'
+import { BrowserRouter as Router,Routes,Route } from 'react-router-dom'
 const App = () => {
   return (
     <div>
-        <Login/>
+      <Router>
+        <Routes>
+          <Route path='/' element={<Main />} />
+          <Route path='/signup' element={<Form />} />
+        </Routes>
+      </Router>
+    
     </div>
   )
 }

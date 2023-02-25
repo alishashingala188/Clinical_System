@@ -2,15 +2,15 @@ import React from 'react'
 import '../App.css'
 import { TextField, Grid, MenuItem, InputLabel, Checkbox, FormControlLabel, FormGroup ,FormControl} from '@mui/material';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-
 import User from '../images/user.png'
 import { height } from '@mui/system';
 
 const Login = () => {
-  const [dept, setdept] = React.useState('');
-  const handleChange = (event: SelectChangeEvent) => {
-    setdept(event.target.value);
-  };
+ 
+
+  function changePage(){
+     Response.redirect('Dashboard.js')
+  }
   return (
     <div>
       <main class="d-flex w-100">
@@ -30,55 +30,47 @@ const Login = () => {
                   <div class="card-body">
                     <div class="m-sm-4">
                       <div class="text-center" >
-                        <img src={User} alt="Charles Hall" class="img-fluid rounded-circle" width="132" height="132" />
+                        <img src={User} alt="Charles Hall"  class="img-fluid rounded-circle" width="132" height="132" style={{marginBottom:20}} />
                         <br />
                       </div>
-                      <form action="inslogin.php" method="post" name="adminlogin">
-                        <div>
-                          <Grid mt={3} mb={3}>
-                            <TextField id="username" label="Username" variant="outlined" fullWidth />
-                          </Grid>
+                      <form>
+                      <div class="mb-3">
+											<input class="form-control form-control-lg" type="text" name="txtuname" placeholder="Enter your Username" style={{marginBottom:20}}/>
+										</div>
+										<div class="mb-3">
+											<input class="form-control form-control-lg" type="password" name="txtpwd" placeholder="Enter your password" style={{marginBottom:20}} />
 
-                          <Grid mt={3} mb={3}>
-                            <TextField id="password" label="Password" variant="outlined" fullWidth />
-                          </Grid>
-                        </div>
-                        <div class="mb-3">
-                          <FormControl fullWidth>
-                            <InputLabel id="demo-simple-select-label">--select--</InputLabel>
+										</div>
+										<div class="mb-3">
+											<select class="form-control form-control-lg" name="selrole" style={{marginBottom:10}}>
+												<option>Admin</option>
+												<option>Doctor</option>
+											</select>
+											<small>
+												<a href="index.html">Forgot password?</a>
+											</small>
+										</div>
+										<div>
+											<label class="form-check">
+												<input class="form-check-input" type="checkbox" value="remember-me" name="remember-me" checked />
+												<span class="form-check-label">
+													Remember me next time
+												</span>
+											</label>
+										</div>
+										<div class="text-center mt-3">
+											<button type="submit" class="btn btn-lg btn-primary" style={{width:200,height:40}}>Sign in</button>
+										</div>
 
-                            <Select  labelId="demo-simple-select-label"
-          id="demo-simple-select" fullWidth onChange={handleChange} label="--select--" value={dept} >
-                              
-                              <MenuItem value={10}>Admin</MenuItem>
-                              <MenuItem value={20}>Doctor</MenuItem>
-                              <MenuItem value={30}>Medical</MenuItem>
-                              <MenuItem value={40}>Receptionist</MenuItem>
-                            </Select>
-                            </FormControl>
-                            <small>
-                              <a href="index.html">Forgot password?</a>
-                            </small>
-                            <FormGroup>
-                              <FormControlLabel control={<Checkbox defaultChecked />} label=" Remember me next time" />
-                            </FormGroup>
-                        </div>
-
-                        <div class="text-center mt-3">
-                          <button type="submit" class="btn btn-lg btn-primary" style={{ width: 200, height: 50, borderRadius: 5 }}>Sign in</button>
-                        </div>
                       </form>
                     </div>
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
         </div>
       </main>
-
-
     </div>
   )
 }

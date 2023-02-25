@@ -95,9 +95,6 @@ const Dashboard = () => {
                                                             </div>
                                                         </div>
                                                         <h1 class="mt-1 mb-3">
-
-
-
                                                         </h1>
                                                         <div class="mb-0">
 
@@ -122,17 +119,7 @@ const Dashboard = () => {
                                                             <span class="text-success"> <i
                                                                 class="mdi mdi-arrow-bottom-right"></i> 5.25% </span>
                                                             <span class="text-muted">Since last week</span>
-                                                        </div>
-
-
-
-
-
-
-
-
-
-                                                        
+                                                        </div>                   
                                                     </div>
                                                 </div>
                                             </div>

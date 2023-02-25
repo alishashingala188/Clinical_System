@@ -11,13 +11,15 @@ import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
 import CreditScoreOutlinedIcon from '@mui/icons-material/CreditScoreOutlined';
 import PasswordOutlinedIcon from '@mui/icons-material/PasswordOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import User from '../images/user.png'
 const Sidebar = () => {
     return (
         <>
             <nav id="sidebar" class="sidebar js-sidebar">
                 <div class="sidebar-content js-simplebar">
                     <a class="sidebar-brand" href="index1.php">
-				<span class="align-middle">ADMIN DASHBORD</span>
+                      
+				<span class="align-middle"><img src={User} width='120' height='120' style={{marginLeft:30,marginBottom:-10}} />  </span>
                     </a>
 
                     <ul class="sidebar-nav">
@@ -38,14 +40,6 @@ const Sidebar = () => {
                         </li>
 
 
-
-                        <li class="sidebar-item">
-                            <Link class="sidebar-link" to="/AddClinic">
-                            <LocalHospitalOutlinedIcon  className="align-middle" /><span class="align-middle">Add Clinic</span>
-                            </Link>
-                        </li>
-
-
                         <li class="sidebar-item">
                             <Link class="sidebar-link" to="/AddDoctor">
                             <FavoriteBorderOutlinedIcon  className="align-middle" /> <span class="align-middle">Add Doctor</span>
@@ -53,20 +47,16 @@ const Sidebar = () => {
                         </li>
 
                         <li class="sidebar-item">
-                            <Link class="sidebar-link" to="/AddMedical">
-                            <MedicalInformationOutlinedIcon  className="align-middle" /> <span class="align-middle">Add Medical</span>
+                            <Link class="sidebar-link" to="/ViewDoctor">
+                            <MedicalInformationOutlinedIcon  className="align-middle" /> <span class="align-middle">View Doctor</span>
                             </Link>
                         </li>
 
-                        <li class="sidebar-item">
-                            <Link class="sidebar-link" to="/AddMedicine">
-                            <VaccinesRoundedIcon  className="align-middle" /> <span class="align-middle">Add Medicine</span>
-                            </Link>
-                        </li>
+                      
 
                         <li class="sidebar-item">
-                            <Link class="sidebar-link" to="/AddReceptionist">
-                            <BorderColorOutlinedIcon  className="align-middle" /> <span class="align-middle">Create Receptionist</span>
+                            <Link class="sidebar-link" to="/Chart">
+                            <BorderColorOutlinedIcon  className="align-middle" /> <span class="align-middle">Chart</span>
                             </Link>
                         </li>
 
@@ -75,22 +65,18 @@ const Sidebar = () => {
                         </li>
 
                         <li class="sidebar-item">
-                            <Link class="sidebar-link" to="/ViewMedicine">
-                            <CreditScoreOutlinedIcon  className="align-middle" /> <span class="align-middle">View Medicine</span>
+                            <Link class="sidebar-link" to="/ViewPatient">
+                            <VaccinesRoundedIcon  className="align-middle" /> <span class="align-middle">View Patient</span>
                             </Link>
                         </li>
 
                         <li class="sidebar-item">
-                            <Link class="sidebar-link" to="/ViewReceptionist">
-                            <CreditScoreOutlinedIcon  className="align-middle" /> <span class="align-middle">View Receptionist</span>
+                            <Link class="sidebar-link" to="/ViewAppointment">
+                            <CreditScoreOutlinedIcon  className="align-middle" /> <span class="align-middle">View Appointment</span>
                             </Link>
                         </li>
 
-                        <li class="sidebar-item">
-                            <Link class="sidebar-link" to="/ViewDoctor">
-                            <CreditScoreOutlinedIcon  className="align-middle" /> <span class="align-middle">View Doctor</span>
-                            </Link>
-                        </li>
+                       
 
                         <li class="sidebar-item ">
                             <Link class="sidebar-link" to="/Changepwd">
