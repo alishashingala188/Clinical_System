@@ -6,7 +6,7 @@
   font-family: 'Poppins',sans-serif;
 }
 .back{
-  background-image: url('images/1.avif');
+  background-color:#71b7e6;
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -18,7 +18,7 @@
   padding: 25px 30px;
   border-radius: 5px;
   box-shadow: 0 5px 10px rgba(0,0,0,0.15);
-  margin-left: 270px;
+  margin-left: 350px;
 }
 .container1 .title{
   font-size: 25px;

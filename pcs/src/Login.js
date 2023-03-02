@@ -8,7 +8,7 @@ import background from './images/blog1.jpg';
 
 const Login=()=>{
 
-    const paperStyle={padding :20,height:'70vh',width:280, margin:"20px auto"}
+    const paperStyle={padding :20,height:'75vh',width:400, margin:"20px auto"}
     const avatarStyle={backgroundColor:'#1bbd7e'}
     const btnstyle={margin:'8px 0'}
     const main={backgroundImage:`url(${background})`, backgroundPosition: 'center',
@@ -21,7 +21,7 @@ backgroundColor:'#03A9F4'}
     return(
         <div >
         <Grid  >
-            <Paper elevation={10} style={paperStyle}   >
+            <Paper elevation={20} style={paperStyle}   >
                 <Grid align='center'>
                      <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
                     <h2>Sign In</h2>

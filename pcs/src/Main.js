@@ -68,8 +68,12 @@ export const Main = () => {
             </li>
 
             <li class="nav-item">
-              <a class="nav-link " href="/signup"> Sign Up </a>
-            </li>               
+              <Link class="nav-link " to="/signup"> Sign Up </Link>
+            </li>     
+
+            <li class="nav-item">
+              <Link class="nav-link " to="/signin">Sign In </Link>
+            </li>          
           </ul>   
         </div>
       </div>
