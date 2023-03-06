@@ -1,14 +1,15 @@
 module.exports={
+    //connection 
 
-    HOST :"localhost",
-    USER :"root",
+    HOST : "localhost",
+    USER : "root",
     PASSWORD :"",
-    DB:"paperless",
+    DB : "paperless",
     dialect :"mysql",
     pool:{
-        max:5,
+        mix :5,
         min:0,
-        aquire:30000,
-        idel:10000
+        acquire :30000,
+        idel : 10000
     }
 }

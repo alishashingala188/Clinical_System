@@ -1,17 +1,34 @@
-import React, { useState } from 'react'
+import React,{useState} from 'react'
 import '../App.css'
 import User from '../images/user.png'
-import Axios from 'axios'
-const Login = () => {
- 
-const [uname,setUname] = useState("");
-const [pwd,setPwd]=useState("");
-const [role,setRole]=useState("");
+import axios from 'axios'
+import { useNavigate } from "react-router-dom";
 
-const handleSubmit=()=>{
-   
-}
-  
+const Login = () => {
+const [email,setEmail] = useState("");
+const [password,setPassword]=useState("");
+
+let Navigate = useNavigate();
+
+const onLogin = async () => {
+  const credentials = {
+    email,
+    password
+  };
+console.log(credentials);
+  await axios.post("http://localhost:5000/api/doctor/dlogin", credentials)
+    .then((res) => {
+      if (res.data.type === "admin") {
+        Navigate("/dashboard");
+        
+      } else if (res.data.type === "doctor") {
+        Navigate("/ViewDoctor");
+      }
+    })
+    .catch((error) => {
+      alert(error.response.data.message);
+    });
+};
   return (
     <div>
       <main class="d-flex w-100">
@@ -36,20 +53,18 @@ const handleSubmit=()=>{
                       </div>
                       <form>
                       <div class="mb-3">
-											<input class="form-control form-control-lg" type="text" name="uname" placeholder="Enter your Username" style={{marginBottom:20}}
-                      onChange={(e)=>setUname(e.target.value)} />
+											<input class="form-control form-control-lg" type="email" name="email" placeholder="Enter your Email Id" style={{marginBottom:20}}
+                      onChange={(e)=>setEmail(e.target.value)}
+                       />
 										</div>
 										<div class="mb-3">
-											<input class="form-control form-control-lg" type="password" name="pwd" placeholder="Enter your password" style={{marginBottom:20}} 
-                        onChange={(e)=>setPwd(e.target.value)} />
+											<input class="form-control form-control-lg" type="password" name="password" placeholder="Enter your password" style={{marginBottom:20}} 
+                        onChange={(e)=>setPassword(e.target.value)} 
+                        />
 
 										</div>
 										<div class="mb-3">
-											<select class="form-control form-control-lg" name="role" style={{marginBottom:10}}>
-                      onChange={(e)=>setRole(e.target.value)} 
-												<option>Admin</option>
-												<option>Doctor</option>
-											</select>
+											
 											<small>
 												<a href="index.html">Forgot password?</a>
 											</small>
@@ -63,7 +78,7 @@ const handleSubmit=()=>{
 											</label>
 										</div>
 										<div class="text-center mt-3">
-											<button class="btn btn-lg btn-primary" style={{width:200,height:40}}  onClick={handleSubmit}>Sign in</button>
+											<button class="btn btn-lg btn-primary" style={{width:200,height:40}}  type="button" onClick={onLogin}>Sign in</button>
 										</div>
 
                       </form>

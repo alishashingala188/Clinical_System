@@ -13,10 +13,20 @@ app.use(cors(corOptions));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
-//Router
+//Router in admin
 
-const router = require("./routes/AdminRoute");
-app.use("/api/admin", router);
+const arouter = require("./routes/AdminRoute");
+app.use("/api/admin", arouter);
+
+//Router in doctor
+
+const drouter = require("./routes/DoctorRoute");
+app.use("/api/doctor", drouter);
+
+//Router in Patient
+
+const prouter = require("./routes/PatientRoute");
+app.use("/api/user", prouter);
 
 // const router =require('./routes/ProductRoute.js');
 // app.use('/api/products',router)

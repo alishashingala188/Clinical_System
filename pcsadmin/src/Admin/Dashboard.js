@@ -3,7 +3,6 @@ import Sidebar from './Sidebar'
 import './css/app.css'
 import Footer from './Footer'
 import Nav from './Nav'
-import AddDoctor from './AddDoctor'
 import LocalHotelOutlinedIcon from '@mui/icons-material/LocalHotelOutlined';
 import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined';
 import CurrencyExchangeOutlinedIcon from '@mui/icons-material/CurrencyExchangeOutlined';

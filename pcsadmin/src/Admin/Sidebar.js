@@ -1,9 +1,7 @@
 import React from 'react'
-import AddDoctor from './AddDoctor'
 import {Link} from 'react-router-dom'
 import DashboardCustomizeOutlinedIcon from '@mui/icons-material/DashboardCustomizeOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import LocalHospitalOutlinedIcon from '@mui/icons-material/LocalHospitalOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import MedicalInformationOutlinedIcon from '@mui/icons-material/MedicalInformationOutlined';
 import VaccinesRoundedIcon from '@mui/icons-material/VaccinesRounded';
@@ -19,7 +17,7 @@ const Sidebar = () => {
                 <div class="sidebar-content js-simplebar">
                     <a class="sidebar-brand" href="index1.php">
                       
-				<span class="align-middle"><img src={User} width='120' height='120' style={{marginLeft:30,marginBottom:-10}} />  </span>
+				<span class="align-middle"><img src={User} width='120' height='120' alt='user' style={{marginLeft:30,marginBottom:-10}} />  </span>
                     </a>
 
                     <ul class="sidebar-nav">

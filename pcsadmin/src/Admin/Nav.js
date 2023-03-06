@@ -6,10 +6,10 @@ import {Link} from 'react-router-dom'
 const Nav = () => {
   return (
     <>
-<nav class="navbar navbar-expand navbar-light navbar-bg">
-    <a class="sidebar-toggle js-sidebar-toggle">
+<nav class="navbar navbar-expand navbar-light navbar-bg" href="#">
+    <p class="sidebar-toggle js-sidebar-toggle">
         <i class="hamburger align-self-center"></i>
-    </a>
+    </p>
 
     <div class="navbar-collapse collapse">
         <ul class="navbar-nav navbar-align">
@@ -25,7 +25,7 @@ const Nav = () => {
                         4 New Notifications
                     </div>
                     <div class="list-group">
-                        <a href="#" class="list-group-item">
+                        <a href="" class="list-group-item">
                             <div class="row g-0 align-items-center">
                                 <div class="col-2">
                                     <i class="text-danger" data-feather="alert-circle"></i>

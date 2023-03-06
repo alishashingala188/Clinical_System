@@ -3,18 +3,67 @@ const express = require("express");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 //const Todo = require("../models/todosModel");
-const db = require("../models/AdminModule");
-const Admin = require("../models/AdminModule.js");
+const db = require("../models/UserModal.js");
+const Admin = require("../models/UserModal.js");
+//const CryptoJS = require("crypto-js");
+
+// 1 login 
+
+// const loginAdmin = async (req, res, next) => {
+//   try {
+//     const validateSchema = Joi.object().keys({
+//       email: Joi.string().required().email(),
+//       password: Joi.string().required(),
+//     });
+
+//     const validate = validateSchema.validate(req.body);
+//     if (validate.error) {
+//       return res.status(412).json({
+//         status: 412,
+//         message: validate.error.details[0].message,
+//       });
+//     }
+//     const user = await Admin.findOne({ where: { email: req.body.email } });
+//     if (!user) {
+//       return res.status(404).json({
+//         status: 404,
+//         message: "User not found",
+//       });
+//     }
+
+//     const isPasswordValid = await bcrypt.compare(
+//       req.body.password,
+//       user.password
+//     );
+//     if (!isPasswordValid) {
+//       return res.status(412).json({
+//         status: 412,
+//         message: "Invalid password",
+//       });
+//     }
+
+   
+//     next();
+//   } catch (error) {
+//     return res.status(412).json({
+//       status: 412,
+//       message: error.message,
+    
+//     });
+//   }
+// };
+
 // register admin 
 
 const addAdmin =async(req,res)=>{
     try {
         const validateSchema = Joi.object().keys({
-            first_name: Joi.string().required(),
-            last_name: Joi.string().required(),
+            name: Joi.string().required(),
             username: Joi.string().required(),
-            address: Joi.string().required(),
-            contact_no: Joi.string().length(10).required(),
+            contact_no: Joi.string().length(10)
+            .regex(/^[0-9]+$/).required(),
+            email:Joi.string().email().required(),
+            type: Joi.string().required(),
             password: Joi.string()
               .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/)
               .required()
@@ -30,7 +79,7 @@ const addAdmin =async(req,res)=>{
               message: validate.error.details[0].message,
             });
           }
-          const admin = await Admin.findOne({ where: { username: req.body.username } });
+          const admin = await Admin.findOne({ where: { email: req.body.email } });
           // findOne;
           if (admin) {
             return res.status(412).json({
@@ -52,7 +101,7 @@ const addAdmin =async(req,res)=>{
             const data = await Admin.create(req.body);
             return res.status(200).json({
               status: 200,
-              message: "User registered successfully",
+              message: "Admin registered successfully",
               data: data,
             });
           });
@@ -78,9 +127,8 @@ const addAdmin =async(req,res)=>{
             });
           }
           const validateSchema = Joi.object().keys({
-            first_name: Joi.string().required(),
-            last_name: Joi.string().required(),
-            address: Joi.string().required(),
+            name: Joi.string().required(),
+            username: Joi.string().required(),
             contact_no: Joi.string().length(10).required(),
           });
           const validate = validateSchema.validate(req.body);
@@ -94,7 +142,6 @@ const addAdmin =async(req,res)=>{
           const result = await Admin.update(
             req.body,
             { where: { id: aId } },
-            // { returning: true }
           );
       
           if (result[0] === 0) {
@@ -131,7 +178,7 @@ const addAdmin =async(req,res)=>{
   
       return res.status(200).json({
         status: 200,
-        message: "User deleted successfully!",
+        message: "Admin deleted successfully!",
       });
     } catch (error) {
       return res.status(412).json({
@@ -140,7 +187,6 @@ const addAdmin =async(req,res)=>{
       });
     }
   }
-  
 
   //4.getUser(singleUser)
 async function getAdminById(req, res) {
@@ -164,12 +210,23 @@ async function getAdminById(req, res) {
       });
     }
   }
+
+  // 5. dispay all admin list 
+
+const getAllAdmin=async(req,res)=>{
+  let admin=await Admin.findAll({
+   where:{type:'admin'}
+});
+res.status(200).send(admin)
+}
   
       module.exports={
+      
         addAdmin,
         updateAdmin,
         deleteAdmin,
-        getAdminById
+        getAdminById,
+        getAllAdmin
       }
       
     
