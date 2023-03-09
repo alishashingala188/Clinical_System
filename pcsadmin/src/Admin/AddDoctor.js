@@ -41,7 +41,6 @@ const AddDoctor = ({ history }) => {
 
     })
   }
-
   return (
     <>
       <div class="wrapper">

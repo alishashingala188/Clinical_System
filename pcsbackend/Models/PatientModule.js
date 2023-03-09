@@ -31,7 +31,7 @@ const Patient = db.define(
             allowNull: false
         },
         contact_no: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false,
         },
         age: {

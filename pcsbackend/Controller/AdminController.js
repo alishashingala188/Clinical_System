@@ -23,7 +23,7 @@ const Admin = require("../models/UserModal.js");
 //         message: validate.error.details[0].message,
 //       });
 //     }
-//     const user = await Admin.findOne({ where: { email: req.body.email } });
+//     const admin = await Admin.findOne({ where: { email: req.body.email } });
 //     if (!user) {
 //       return res.status(404).json({
 //         status: 404,
@@ -219,14 +219,77 @@ const getAllAdmin=async(req,res)=>{
 });
 res.status(200).send(admin)
 }
-  
+
+ // change password 
+
+async function changePassword(req, res) {
+  try {
+    const validateSchema = Joi.object().keys({
+      oldpassword:Joi.string().required(),
+      password: Joi.string().required(),
+      confirmpassword: Joi.string().required(),
+    });
+    const validate = validateSchema.validate(req.body);
+    if (validate.error) {
+      return res.status(412).json({
+        status: 412,
+        message: validate.error.details[0].message,
+      });
+    }
+    if (req.body.password !== req.body.confirmpassword) {
+      return res.status(412).json({
+        status: 412,
+        message: "Passwords do not match",
+      });
+    }
+    const admin = await Admin.findOne({ where: { id: req.params.id } });
+    if (!admin) {
+      return res.status(404).json({
+        status: 404,
+        message: "User not found",
+      });
+    }
+    const isMatch = await bcrypt.compare(req.body.oldpassword, admin.password);
+    if (!isMatch) {
+      return res.status(412).json({
+        status: 412,
+        message: "Old password is not correct",
+      });
+    }
+    const password = await bcrypt.hash(req.body.password,10);
+    const result = await Admin.update(
+      {
+        password,
+      },
+      { where: { id: req.params.id } }
+    );
+    if (!result) {
+      return res.status(412).json({
+        status: 412,
+        message: "Unable to update password",
+      });
+    }
+    return res.status(200).json({
+      status: 200,
+      message: "Password changed successfully",
+    });
+  } catch (error) {
+    return res.status(412).json({
+      status: 412,
+      message: error.message,
+    });
+  }
+}
+
+
+
       module.exports={
-      
         addAdmin,
         updateAdmin,
         deleteAdmin,
         getAdminById,
-        getAllAdmin
+        getAllAdmin,
+        changePassword
       }
       
     

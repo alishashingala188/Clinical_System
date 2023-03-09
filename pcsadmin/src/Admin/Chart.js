@@ -10,6 +10,9 @@ import {
 } from 'chart.js';
 import { faker } from '@faker-js/faker'
 import { Line } from 'react-chartjs-2';
+import Sidebar from './Sidebar'
+import Nav from './Nav'
+import Footer from './Footer'
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -51,11 +54,10 @@ export const data = {
         },
     ],
 };
-
 const Chart = () => {
     return (
-      <>
-         <div class="wrapper">
+        <>
+            <div class="wrapper">
                 <Sidebar />
                 <div class="wrapper">
                     <div class="main">
@@ -63,14 +65,19 @@ const Chart = () => {
                         <main class="content">
                             <div class="container-fluid p-0">
 
-
-                            </div>
+                                <div class="card-body py-3 ">
+                                    <div class="chart chart-sm">
+                                        <Line options={options} data={data} />
+                                    </div>
+                                    </div>
+                                </div>
                         </main>
+                        <Footer/>
                     </div>
                 </div>
             </div>
-</>
-                )
-  }
+        </>
+    )
+}
 
-                export default Chart;
+export default Chart;

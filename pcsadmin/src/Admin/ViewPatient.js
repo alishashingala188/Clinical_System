@@ -3,16 +3,29 @@ import axios from 'axios';
 import Sidebar from './Sidebar'
 import Nav from './Nav'
 import Footer from './Footer'
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { Link } from 'react-router-dom';
 const ViewPatient = () => {
   const [patients, setPatient] = useState([]);
+  const [mess, setMess]=useState([]);
   useEffect(() => {
     getAllPatient();
+    handleDelete();
   }, []);
 
   const getAllPatient = async () => {
     const { data } = await axios.get('http://localhost:5000/api/user/');
    console.log(data);
    setPatient(data)
+  }
+  
+  const handleDelete=async(id)=>{
+    console.log(id);
+    const deleteData = await axios.delete(`http://localhost:5000/api/user/${id}`);
+    console.log(deleteData);
+    setMess(deleteData)
+
   }
   return (
     <>
@@ -51,7 +64,11 @@ const ViewPatient = () => {
                           <td> {p.age} </td>
                           <td> {p.sec_question} </td>
                           <td>  {p.answer}</td> 
-                          <td></td>
+                          <td> <td>
+                            <Link to={`/pedit/${p.id}`}>
+                              <EditIcon color='success' />Edit</Link>
+                              <button className='btn btn-dangr' onClick={()=>handleDelete(p.id)}> <DeleteIcon color='error' />Delete</button>
+                         </td></td>
                         </tr>
                       })
                     }

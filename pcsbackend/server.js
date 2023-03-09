@@ -1,4 +1,5 @@
 const express = require('express');
+const session =require('express-session');
 const cors = require('cors');
 const app = express();
 require("dotenv").config();
@@ -28,9 +29,15 @@ app.use("/api/doctor", drouter);
 const prouter = require("./routes/PatientRoute");
 app.use("/api/user", prouter);
 
-// const router =require('./routes/ProductRoute.js');
-// app.use('/api/products',router)
-
+app.use(
+    session({
+        name:'session_id',
+        secret:'my_secret',
+        cookie:{
+            maxAge:30*864000000,
+        }
+    })
+);
 //Test  api
 
 app.get('/',(req,res)=>{

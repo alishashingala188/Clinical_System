@@ -6,6 +6,7 @@ const Doctor = require('../Models/UserModal.js')
 //Login in doctor
 
 const loginDoctor = async (req, res, next) => {
+
   try {
     const validateSchema = Joi.object().keys({
       email: Joi.string().required().email(),
@@ -20,30 +21,32 @@ const loginDoctor = async (req, res, next) => {
       
       });
     }
-    const user = await Doctor.findOne({ where: { email: req.body.email } });
-    if (!user) {
-      return res.status(404).json({
-        status: 404,
-        message: "User not found",
-       
-      });
-    }
-    res.json(user);
+    const user = await Doctor.findOne({ where: { email: req.body.email}  });
     const isPasswordValid = await bcrypt.compare(
       req.body.password,
-      user.password
-    );
-    if (!isPasswordValid) {
-      return res.status(412).json({
-        status: 412,
-        message: "Invalid password",
-      });
+       user.password,
+			
+     );
+     if (!isPasswordValid) {
+       return res.status(412).json({
+         status: 412,
+         message: "Invalid password",
+       });
+     }
+    if (user) {
+      return res.status(200).json({
+        status: 200,
+        message: "Login Successful",
+        data:{
+          user
+        }
+        })
     }
     next();
   } catch (error) {
     return res.status(412).json({
       status: 412,
-      message: error.message,
+      message: "not Login..",
     
     });
   }
@@ -112,9 +115,9 @@ const addDoctor = async (req, res) => {
 // 2 update doctor
 
 const updateDoctor = async (req, res) => {
-  const dId = req.query.id ? req.query.id : req.params.id;
+  const id = req.query.id ? req.query.id : req.params.id;
   try {
-    const doctor = await Doctor.findOne({ where: { id: dId } });
+    const doctor = await Doctor.findOne({ where: { id: id } });
     if (!doctor) {
       res.status(412).json({
         status: 412,
@@ -126,6 +129,7 @@ const updateDoctor = async (req, res) => {
       username: Joi.string().required(),
       address: Joi.string().required(),
       clinic_name:Joi.string().required(),
+     
     });
 
     const validate = validateSchema.validate(req.body);
@@ -137,17 +141,23 @@ const updateDoctor = async (req, res) => {
     };
     const result = Doctor.update(
       req.body,
-      { where: { id: dId } }
+      { where: { id: id } }
     );
+   
     if (result[0] === 0) {
       return res.status(412).json({
         status: 412,
         message: "User not updated",
+       
       });
     }
+   
     return res.status(200).json({
       status: 200,
-      message: "Doctor updated",
+      message: "Doctor updated",  
+      data: {
+        user: result,
+      },
     });
   } catch (error) {
     return res.status(412).json({
@@ -161,21 +171,23 @@ const updateDoctor = async (req, res) => {
 // 3 delete Doctor 
 
 const deleteDoctor = async(req,res)=>{
-  const dId = req.query.id ? req.query.id : req.params.id;
+  const id = req.query.id ? req.query.id : req.params.id;
   try{
-     const doctor=await Doctor.findOne({where:{ id : dId }});
+     const doctor=await Doctor.findOne({where:{ id : id }});
      if(!doctor){
        return res.status(412).json({
         status:412,
         message:"User not Found !"
       });
      }
-     const result = Doctor.destroy({where : { id : dId }});
+     const result = Doctor.destroy({where : { id : id }});
      return res.status(200).json({
           status:200,
           message:"Doctor deleted successfully...!!",
+          data:{
+            result:result
+          }
         }); 
-
   }catch(error)
     {
     return res.status(412).json({
@@ -191,7 +203,7 @@ async function getDoctorById(req, res) {
   try {
     const id = req.params.id;
     const result = await Doctor.findOne({
-      where: { id },
+      where: { id:id },
      
     });
     return res.status(200).json({

@@ -10,6 +10,8 @@ import ViewDoctor from './Admin/ViewDoctor'
  import Alogout from './Admin/Alogout'
  import Login from './Admin/Login'
  import ViewAppointment from './Admin/ViewAppointment'
+ import Dedit from './Admin/Dedit';
+ import Pedit from './Admin/Pedit'
 const App = () => {
   return (
     <>
@@ -24,6 +26,8 @@ const App = () => {
             <Route path='/ViewPatient'  element={<ViewPatient/>}/>
             <Route path='/ViewAppointment'  element={<ViewAppointment/>} />
             <Route path='/Changepwd'  element={<Changepwd/>} />
+            <Route path='/dedit/:id'  element={<Dedit/>} />
+            <Route path='/pedit/:id'  element={<Pedit/>} />
             <Route path='/Alogout'   element={<Alogout/>}/>
        </Routes> 
        </Router>

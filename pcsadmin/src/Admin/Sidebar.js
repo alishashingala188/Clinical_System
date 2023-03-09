@@ -26,7 +26,7 @@ const Sidebar = () => {
                         </li>
 
                         <li class="sidebar-item active">
-                            <Link to="/" class="sidebar-link" >
+                            <Link to="/dashboard" class="sidebar-link" >
                             <DashboardCustomizeOutlinedIcon className="align-middle"  fontSize='small' /> <span class="align-middle">Dashboard</span>
                             </Link>
                         </li>
@@ -83,7 +83,7 @@ const Sidebar = () => {
                         </li>
 
                         <li class="sidebar-item ">
-                            <Link class="sidebar-link" to="/Alogout">
+                            <Link class="sidebar-link" to="/">
                             <LogoutOutlinedIcon  className="align-middle" /> <span class="align-middle">Logout</span>
                             </Link>
                         </li>
