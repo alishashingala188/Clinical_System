@@ -1,89 +1,111 @@
-import App from './App'
+import React, { useEffect, useState } from 'react'
 import './Signup.css'
-function Form() {
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+const Form = () => {
+  const [full_name, setFull_name] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [contact_no, setContact_no] = useState("");
+  const [address, setAddress] = useState("");
+  const [email, setEmail] = useState("");
+  const [age,setAge]=useState("");
+  const [sec_question,setSec_question]=useState("");
+  const [answer,setAnswer]=useState("");
+    
+
+  const Navigate = useNavigate()
+
+  const addpatienthandler = async (e) => {
+    e.preventDefault();
+    const data = {
+      full_name: full_name,
+      username: username,
+      password: password,
+      contact_no: contact_no,
+      address: address,
+      email: email,
+      age:age,
+      sec_question:sec_question,
+      answer:answer
+   
+    }
+    console.log(data);
+    await axios.post('http://localhost:5000/api/user/addPatient', data).then(() => {
+      alert("Record Inserted successfully.....")
+      Navigate('/signin')
+    })
+  }
   return (
     <div  className='back'>
    <div class="container1">
     <div class="title" style={{marginLeft:200}}>Registration</div>
     <div class="content1">
-      <form action="#">
+      <form  onSubmit={addpatienthandler}>
         <div class="user-details">
           <div class="input-box">
             <span class="details">Full Name</span>
-            <input type="text" placeholder="Enter your name" required/>
+            <input type="text" placeholder="Enter your name" required name='full_name'
+            onChange={(e)=>setFull_name(e.target.value)}/>
           </div>
           <div class="input-box">
             <span class="details">Username</span>
-            <input type="text" placeholder="Enter your username" required/>
+            <input type="text" placeholder="Enter your username" name='username' required
+             onChange={(e)=>setUsername(e.target.value)}/>
           </div>
           <div class="input-box">
             <span class="details">Email id</span>
-            <input type="text" placeholder="Enter your Email id" require/>
+            <input type="email" placeholder="Enter your Email id" name='email' require
+             onChange={(e)=>setEmail(e.target.value)}/>
           </div>
           <div class="input-box">
             <span class="details">Phone Number</span>
-            <input type="text" placeholder="Enter your number" required/>
+            <input type="text" placeholder="Enter your number" name='contact_no' required 
+             onChange={(e)=>setContact_no(e.target.value)}/>
           </div>
           <div class="input-box">
             <span class="details">Password</span>
-            <input type="password" placeholder="Enter your password" required/>
+            <input type="password" placeholder="Enter your password"  name='password' required
+             onChange={(e)=>setPassword(e.target.value)}/>
           </div>
           <div class="input-box">
-            <span class="details">Confirm Password</span>
-            <input type="password" placeholder="Confirm your password" required/>
+            <span class="details">address</span>
+            <input type="text" placeholder="Enter your adreess" name='address' required
+             onChange={(e)=>setAddress(e.target.value)}/>
           </div>
           <div class="input-box">
-            <span class="details">adreess</span>
-            <input type="password" placeholder="Enter your adreess" style={{width:650}} required/>
+            <span class="details">age</span>
+            <input type="text" placeholder="Enter your adreess" name='age' required
+             onChange={(e)=>setAge(e.target.value)}/>
           </div>
-        </div>
-        
-
-        <div class="gender-details">
-          <input type="radio" name="gender" id="dot-1"/>
-          <input type="radio" name="gender" id="dot-2"/>
-          <input type="radio" name="gender" id="dot-3"/>
-          <span class="gender-title">Gender</span>
-          <div class="category">
-            <label for="dot-1">
-            <span class="dot one"></span>
-            <span class="gender">Male</span>
-          </label>
-          <label for="dot-2"  style={{marginRight:260}}>
-            <span class="dot two"></span>
-            <span class="gender">Female</span>
-          </label>
-        
+          <div class="input-box">
+            <span class="details">security Question</span>
+            <select name="sec_question" style={{height:40,border:" 1px solid #ccc",borderRadius: '5px',width:"300px"}}
+             onChange={(e)=>setSec_question(e.target.value)}>
+              <option>-- select --</option>
+              <option>What is your favorite color ?</option>
+              <option>What is your favorite acter ?</option>
+              <option>What is your favorite birds ?</option>
+            </select>
+             </div>
+          <div class="input-box">
+            <span class="details">answer</span>
+            <input type="text" placeholder="Enter your answer"  name='answer' required
+             onChange={(e)=>setAnswer(e.target.value)}/>
           </div>
-        </div>
+          <div>
 
-        <div class="gender-details">
-          <input type="radio" name="Yes" id="dot-4"/>
-          <input type="radio" name="Yes" id="dot-5"/>
-                    <span class="gender-title">Is the patient Younger 18?</span>
-          <div class="category">
-            <label for="dot-4"  >
-            <span class="dot four"></span>
-            <span class="Yes">Yes</span>
-          </label>
-          <label for="dot-5" style={{marginRight:300}}>
-            <span class="dot five"></span>
-            <span class="Yes">No</span>
-          </label>
-         
           </div>
-        </div>
-
         <div class="button">
           <input type="submit" value="Register"/>
         </div>
+        </div>
       </form>
+      </div>
     </div>
-   </div>
    </div>
   );
 }
-
 export default Form;
 
  

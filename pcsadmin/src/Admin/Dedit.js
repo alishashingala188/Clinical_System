@@ -26,6 +26,8 @@ const Dedit = () => {
         }
         getdoctor();
     }, [id]);
+
+    
     const handlesubmit=async(e)=>{
         e.preventDefault();
         const credential={

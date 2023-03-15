@@ -26,7 +26,7 @@ const Sidebar = () => {
                         </li>
 
                         <li class="sidebar-item active">
-                            <Link to="/dashboard" class="sidebar-link" >
+                            <Link to="/dashboard/:id" class="sidebar-link" >
                             <DashboardCustomizeOutlinedIcon className="align-middle"  fontSize='small' /> <span class="align-middle">Dashboard</span>
                             </Link>
                         </li>

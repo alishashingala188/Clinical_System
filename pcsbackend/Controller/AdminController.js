@@ -213,12 +213,13 @@ async function getAdminById(req, res) {
 
   // 5. dispay all admin list 
 
-const getAllAdmin=async(req,res)=>{
-  let admin=await Admin.findAll({
-   where:{type:'admin'}
-});
-res.status(200).send(admin)
-}
+  const getAllAdmin = async(req,res)=>{
+    let admin = await Admin.findAll(
+      { where: { type: 'admin' } },
+    );
+    res.status(200).send(admin)
+    }
+
 
  // change password 
 

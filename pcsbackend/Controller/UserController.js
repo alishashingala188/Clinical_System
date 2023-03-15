@@ -68,6 +68,8 @@ const addDoctor = async (req, res) => {
       gender: Joi.string().required(),
       education: Joi.string().required(),
       type: Joi.string().required(),
+      time:Joi.string().required(),
+      available_day:Joi.string().required(),
       password: Joi.string()
         .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/)
         .required()

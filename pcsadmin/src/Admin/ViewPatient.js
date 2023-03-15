@@ -12,7 +12,7 @@ const ViewPatient = () => {
   useEffect(() => {
     getAllPatient();
     handleDelete();
-  }, []);
+  },[]);
 
   const getAllPatient = async () => {
     const { data } = await axios.get('http://localhost:5000/api/user/');
@@ -38,7 +38,7 @@ const ViewPatient = () => {
               <div class="container-fluid p-0">
               <h1>View Doctor</h1>
               <br/>
-                <table cellPadding="10" cellSpacing="300px" border="2px solid" style={{borderColor:"#3b7ddd"}} >
+                <table cellPadding="5" cellSpacing="200px" border="2px solid" style={{borderColor:"#3b7ddd"}} >
                 
                   <thead border="2px solid blue">
                     <tr style={{backgroundColor:"#3b7ddd",fontSize:"20",fontWeight:"bold",color:"white",textAlign:"center"}} color="primary">
@@ -54,20 +54,20 @@ const ViewPatient = () => {
                   </thead>
                   <tbody>
                     {
-                      patients.map(p => {
+                      patients.map(patient => {
                         //console.log(doctor);
                        return  <tr style={{marginBottom:"20px"}}>
-                        <td> {p.full_name} </td>
-                          <td> {p.username}  </td>
-                          <td> {p.address}</td>
-                          <td>{p.contact_no}  </td>
-                          <td> {p.age} </td>
-                          <td> {p.sec_question} </td>
-                          <td>  {p.answer}</td> 
+                        <td> {patient.full_name} </td>
+                          <td> {patient.username}  </td>
+                          <td> {patient.address}</td>
+                          <td>{patient.contact_no}  </td>
+                          <td> {patient.age} </td>
+                          <td> {patient.sec_question} </td>
+                          <td>  {patient.answer}</td> 
                           <td> <td>
-                            <Link to={`/pedit/${p.id}`}>
+                            <Link to={`/pedit/${patient.id}`}>
                               <EditIcon color='success' />Edit</Link>
-                              <button className='btn btn-dangr' onClick={()=>handleDelete(p.id)}> <DeleteIcon color='error' />Delete</button>
+                              <button className='btn btn-dangr' onClick={()=>handleDelete(patient.id)}> <DeleteIcon color='error' />Delete</button>
                          </td></td>
                         </tr>
                       })

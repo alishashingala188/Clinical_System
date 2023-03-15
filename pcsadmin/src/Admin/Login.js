@@ -14,17 +14,19 @@ const Login = () => {
       email: email,
       password: password
     };
+    try {
     const { data } = await axios.post("http://localhost:5000/api/doctor/dlogin", credentials)
     //  console.log(data);
-    try {
+    
       if (data.data.user.type === "admin") {
+        // console.log(id);
         alert("Login Successfully...")
-        Navigate("/dashboard");
+        Navigate(`/dashboard`);
 
       }
       else if (data.data.user.type === "doctor") {
         alert("Login Successfully...")
-        Navigate("/ViewDoctor");
+        Navigate("/ddashboard");
       }
     }catch(error){
       alert("username and password are wrong..")

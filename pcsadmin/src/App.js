@@ -12,6 +12,8 @@ import ViewDoctor from './Admin/ViewDoctor'
  import ViewAppointment from './Admin/ViewAppointment'
  import Dedit from './Admin/Dedit';
  import Pedit from './Admin/Pedit'
+ import Ddashboard from './Admin/Ddashboard'
+import Dviewpatient from './Admin/DviewPatient'
 const App = () => {
   return (
     <>
@@ -19,11 +21,13 @@ const App = () => {
       <Routes>
             <Route path='/'  element={<Login />}  />
             <Route path='/dashboard'  element={<Dashboard />}  />
+            <Route path='/ddashboard'  element={<Ddashboard />}  />
             <Route path='/Profile'  element={<Profile/>}/>
             <Route path='/AddDoctor'  element={<AddDoctor/>} />
             <Route path='/ViewDoctor'  element={<ViewDoctor/>}/>
             <Route path='/Chart'  element={<Chart/>} />
             <Route path='/ViewPatient'  element={<ViewPatient/>}/>
+            <Route path='/dviewPatient'  element={<Dviewpatient/>}/>
             <Route path='/ViewAppointment'  element={<ViewAppointment/>} />
             <Route path='/Changepwd'  element={<Changepwd/>} />
             <Route path='/dedit/:id'  element={<Dedit/>} />

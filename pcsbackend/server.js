@@ -29,15 +29,21 @@ app.use("/api/doctor", drouter);
 const prouter = require("./routes/PatientRoute");
 app.use("/api/user", prouter);
 
-app.use(
-    session({
-        name:'session_id',
-        secret:'my_secret',
-        cookie:{
-            maxAge:30*864000000,
-        }
-    })
-);
+
+//Router in Appointment
+
+const router = require("./routes/aroute");
+app.use("/api/", router);
+
+// app.use(
+//     session({
+//         name:'session_id',
+//         secret:'my_secret',
+//         cookie:{
+//             maxAge:30*864000000,
+//         }
+//     })
+// );
 //Test  api
 
 app.get('/',(req,res)=>{

@@ -35,8 +35,8 @@ export const Main = () => {
         <div class="container">
           <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
-              <a class="navbar-brand" href="#">
-                <img src={Logo} alt="logo" />
+              <a class="navbar-brand1" href="#">
+                <img src={Logo} alt="logo"/>
               </a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -44,35 +44,35 @@ export const Main = () => {
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#home-section">Home</a>
+                    <a class="nav-link1 active" aria-current="page" href="#home-section">Home</a>
                   </li>
 
                   <li class="nav-item">
-                    <a class="nav-link" href="#about-section">About</a>
+                    <a class="nav-link1" href="#about-section">About</a>
                   </li>
 
                   <li class="nav-item">
-                    <a class="nav-link " href="#services-section">Services</a>
+                    <a class="nav-link1" href="#services-section">Services</a>
                   </li>
 
                   <li class="nav-item">
-                    <a class="nav-link " href="#reviews-section">Reviews</a>
+                    <a class="nav-link1" href="#reviews-section">Reviews</a>
                   </li>
 
                   <li class="nav-item">
-                    <a class="nav-link " href="#team-section">Our Doctors</a>
+                    <a class="nav-link1" href="#team-section">Our Doctors</a>
                   </li>
 
                   <li class="nav-item">
-                    <a class="nav-link" href="#blog-section">Blog</a>
+                    <a class="nav-link1" href="#blog-section">Blog</a>
                   </li>
 
                   <li class="nav-item">
-                    <Link class="nav-link " to="/signup"> Sign Up </Link>
+                    <Link class="nav-link1" to="/signup"> Sign Up </Link>
                   </li>
 
                   <li class="nav-item">
-                    <Link class="nav-link " to="/signin">Sign In </Link>
+                    <Link class="nav-link1" to="/signin">Sign In </Link>
                   </li>
                 </ul>
               </div>
@@ -83,9 +83,7 @@ export const Main = () => {
 
 
 
-
-
-      <section class="hero-banner" id="home-section">
+      <section class="hero-banner1" id="home-section">
 
         <div class="container">
           <div class="row">

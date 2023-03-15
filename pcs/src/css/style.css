@@ -55,7 +55,7 @@ header {
     width: 100%;
     z-index: 1;
 }
-header .navbar-expand-lg .navbar-nav .nav-link {
+header .navbar-expand-lg .navbar-nav .nav-link1 {
     color: #FFF;
     font-size: 16px;
     font-weight: 600;
@@ -63,25 +63,26 @@ header .navbar-expand-lg .navbar-nav .nav-link {
     padding: 10px 24px;
 }
 
-.navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .show>.nav-link {
+.navbar-light .navbar-nav .nav-link1.active, .navbar-light .navbar-nav .show>.nav-link1 {
     color: #FFF;
 }
-.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+.navbar-light .navbar-nav .nav-link1:focus, .navbar-light .navbar-nav .nav-link1:hover {
     color: #FFF;
+    text-decoration: none;
 }
 
 
 
 /*Hero Banner*/
 
-.hero-banner{
+.hero-banner1{
 	background: url("../images/banner-bg.jpg") no-repeat;
 	background-size: cover;
 	padding: 200px 0px;
 	min-height: 500px;
 	position: relative;
 }
-.hero-banner:before {
+.hero-banner1:before {
     content: "";
     position: absolute;
     width: 100%;
@@ -385,7 +386,7 @@ ul.footer-menu li a {
 
 @media (min-width:992px) and (max-width:1400px){
     
-    header .navbar-expand-lg .navbar-nav .nav-link {
+    header .navbar-expand-lg .navbar-nav .nav-link1 {
     padding: 10px 11px;
     font-size: 14px;
 }
@@ -423,7 +424,7 @@ ul.footer-menu li a {
 .team-box {
     margin-bottom: 40px;
 }
-.hero-banner {
+.hero-banner1 {
     padding: 137px 0px;
     min-height: auto;
 }

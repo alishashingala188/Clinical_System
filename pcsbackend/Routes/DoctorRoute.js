@@ -14,7 +14,7 @@ drouter.post("/dlogin", doctorController.loginDoctor, (req, res) => {
       message: "Login Successful",
       data:{
         user
-      }
+      } 
       })
 })
 module.exports = drouter;

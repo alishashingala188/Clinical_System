@@ -38,8 +38,7 @@ const ViewDoctor = () => {
               <div class="container-fluid p-0">
                 <h1>View Doctor</h1>
                 <br />
-                <table cellPadding="10" cellSpacing="300px" border="2px solid" style={{ borderColor: "#3b7ddd" }} >
-
+                <table cellPadding="5" cellSpacing="200px" border="2px solid" style={{ borderColor: "#3b7ddd" }} >
                   <thead border="2px solid blue">
                     <tr style={{ backgroundColor: "#3b7ddd", fontSize: "20", fontWeight: "bold", color: "white", textAlign: "center" }} color="primary">
                       <th>DoctorName</th>
