@@ -14,34 +14,34 @@ const Changepwd = () => {
     }
     return (
         <>
-            <div class="wrapper">
+            <div className="wrapper">
                 <Sidebar />
-                <div class="wrapper">
-                    <div class="main">
+                <div className="wrapper">
+                    <div className="main">
                         <Nav />
-                        <main class="content">
-                            <div class="container-fluid p-0">
+                        <main className="content">
+                            <div className="container-fluid p-0">
 
-                                <h1 class="h3 mb-3">Change Password</h1>
+                                <h1 className="h3 mb-3">Change Password</h1>
 
-                                <div class="row">
-                                    <div class="col-12">
+                                <div className="row">
+                                    <div className="col-12">
                                         <form method="post" name="Changepassword">
-                                            <div class="row">
+                                            <div className="row">
 
-                                                <div class="col-12 col-lg-6">
-                                                    <div class="card">
+                                                <div className="col-12 col-lg-6">
+                                                    <div className="card">
 
-                                                        <div class="card-body">
-                                                            <input type="password" class="form-control" name="oldpassword"
+                                                        <div className="card-body">
+                                                            <input type="password" className="form-control" name="oldpassword"
                                                                 placeholder="old Password" onChange={(e) => setOldpassword(e.target.value)} />
                                                         </div>
                                                     </div>
 
-                                                    <div class="card">
+                                                    <div className="card">
 
-                                                        <div class="card-body">
-                                                            <input class="form-control" id="txtnpass" name="password"
+                                                        <div className="card-body">
+                                                            <input className="form-control" id="txtnpass" name="password"
                                                                 type="password" onChange={(e) => setPassword(e.target.value)}
                                                                 placeholder="password" required />
                                                         </div>
@@ -49,19 +49,19 @@ const Changepwd = () => {
 
 
 
-                                                    <div class="card">
+                                                    <div className="card">
 
-                                                        <div class="card-body">
-                                                            <input class="form-control" id="txtcnpass" name="confirmpassword"
+                                                        <div className="card-body">
+                                                            <input className="form-control" id="txtcnpass" name="confirmpassword"
                                                                 type="password" onChange={(e) => setConfirmPassword(e.target.value)}
                                                                 placeholder="confirm Password" required />
 
                                                         </div>
                                                     </div>
 
-                                                    <div class="text-center mt-3">
+                                                    <div className="text-center mt-3">
 
-                                                        <button type="button" class="btn btn-lg btn-primary" onClick={changepassword}>Change
+                                                        <button type="button" className="btn btn-lg btn-primary" onClick={changepassword}>Change
                                                             Password</button>
                                                     </div>
                                                 </div>

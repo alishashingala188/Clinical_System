@@ -17,10 +17,10 @@ const Patient = db.define(
             type: DataTypes.STRING,
             allowNull: false
         },
-        email:{
+        email: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique:true
+            unique: true
         },
         password: {
             type: DataTypes.STRING,
@@ -46,15 +46,27 @@ const Patient = db.define(
             type: DataTypes.STRING,
             allowNull: false,
         },
+
+        notifcation: {
+            type: DataTypes.STRING,
+            
+        },
+        seennotification: {
+            type: DataTypes.STRING,
+        
+        },
+    },
+    {
+        paranoid: true,
     },
     {
         tableName: "patient"
     }
-    );
+);
 
-    (async () => {
-        await db.sync({ force: false });
-        console.log('sync here');
-    });
+(async () => {
+    await db.sync({ force: false });
+    console.log('sync here');
+});
 
 module.exports = Patient;

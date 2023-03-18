@@ -10,7 +10,9 @@ import Doctor from './Doctor';
 import Aform from './Aform';
 import Contact from './Contact'
 import Feedback from './Feedback'
+import Rdashboard from './Rdashboard'
 import { BrowserRouter as Router,Routes,Route } from 'react-router-dom'
+import InvoiceForm from './Invoiceform'
 const App = () => {
   return (
     <div>
@@ -27,7 +29,8 @@ const App = () => {
           <Route path='/aform' element={<Aform/>}/>
           <Route path='/contact' element={<Contact/>}/>
           <Route path='/feedback' element={<Feedback/>}/>
-
+          <Route path='/Rdashboard' element={<Rdashboard/>}/>
+          <Route path='/invoiceForm' element={<InvoiceForm/>}/>
         </Routes>
       </Router>
     

@@ -8,9 +8,35 @@ const Aform = () => {
   const [patients, setPatient] = useState([]);
   const [doctors, setDoctor] = useState([]);
 
+
+  const [did, setDid] = useState(0);
+  const [uid, setUid] = useState(0);
+  const [a_reason, setA_reason] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  
+
+  const addApoointmenthandler = async (e) => {
+    e.preventDefault();
+    const data = {
+      did:did,
+      uid:uid,
+      a_reason:a_reason,
+      date:date,
+      time:time,
+      contact_no:767677677,
+      status:"pending"
+    }
+    console.log(data);
+    await axios.post('http://localhost:5000/api/addTodo', data).then(() => {
+      alert("Record Inserted successfully.....")
+      
+    })
+  }
   useEffect(() => {
     getAllPatient();
     getAllDoctor();
+   
   }, []);
 
   const getAllPatient = async () => {
@@ -33,18 +59,18 @@ const Aform = () => {
             <div class="container-fluid p-0"></div>
             <div class="formbold-main-wrapper">
               <div class="formbold-form-wrapper">
-                <form >
-                  <h1>Appointment Form</h1>
-
+                <form  onSubmit={addApoointmenthandler}>
+                  <h1>Appointment Form</h1><br></br>
                   <div class="flex flex-wrap formbold--mx-3">
                     <div class="w-full sm:w-half formbold-px-3">
                       <div class="formbold-mb-5 w-full">
-                        <label for="date" class="formbold-form-label"> Doctor ID </label>
-                        <select name='pid' style={{ width: 250, height: 45, border: '1px gray', borderRadius: 5 }}>
+                        <label for="date" class="formbold-form-label"> Doctor Name </label>
+                        <select name='did' style={{ width: 250, height: 45, border: '1px gray', borderRadius: 5 }}
+                        onChange={(e)=>setDid(e.target.value)}>
                           {
                             doctors.map(d => {
                               console.log(d);
-                              return <option>{d.name}</option>
+                              return <option value={d.id}>{d.name}</option>
                             })
                           }
                         </select>
@@ -53,15 +79,14 @@ const Aform = () => {
                     <div class="w-full sm:w-half formbold-px-3">
 
                       <div class="formbold-mb-5">
-                        <label for="time" class="formbold-form-label"> patient ID </label>
-                        <select name='pid' style={{ width: 250, height: 45, border: '1px gray', borderRadius: 5 }}>
+                        <label for="time" class="formbold-form-label"> patient Name </label>
+                        <select name='uid' style={{ width: 250, height: 45, border: '1px gray', borderRadius: 5 }}
+                         onChange={(e)=>setUid(e.target.value)}>
 
                           {
                             patients.map(p => {
                               console.log(p);
-                              return <option>{p.full_name} {p.id}</option>
-
-                            })
+                              return<option value={p.id}>{p.full_name}</option>                            })
                           }
                         </select>
                       </div>
@@ -72,9 +97,10 @@ const Aform = () => {
                     <textarea
                       rows={3}
                       cols={80}
-                      name="areason"
-                      id="id"
+                      name="a_reason"
+                      id="appointment"
                       class="formbold-form-input"
+                      onChange={(e)=>setA_reason(e.target.value)}
                     ></textarea>
                   </div>
                   <div class="flex flex-wrap formbold--mx-3">
@@ -86,6 +112,7 @@ const Aform = () => {
                           name="date"
                           id="date"
                           class="formbold-form-input"
+                          onChange={(e)=>setDate(e.target.value)}
                         />
                       </div>
                     </div>
@@ -97,6 +124,7 @@ const Aform = () => {
                           name="time"
                           id="time"
                           class="formbold-form-input"
+                          onChange={(e)=>setTime(e.target.value)}
                         />
                       </div>
                     </div>

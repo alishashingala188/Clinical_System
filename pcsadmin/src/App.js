@@ -10,10 +10,13 @@ import ViewDoctor from './Admin/ViewDoctor'
  import Alogout from './Admin/Alogout'
  import Login from './Admin/Login'
  import ViewAppointment from './Admin/ViewAppointment'
+ import DviewAppointment from './Admin/dviewAppointment'
  import Dedit from './Admin/Dedit';
  import Pedit from './Admin/Pedit'
  import Ddashboard from './Admin/Ddashboard'
+ import Calender from './Admin/Calendar'
 import Dviewpatient from './Admin/DviewPatient'
+import Receptionist from './Admin/Addreceptionist'
 const App = () => {
   return (
     <>
@@ -28,11 +31,17 @@ const App = () => {
             <Route path='/Chart'  element={<Chart/>} />
             <Route path='/ViewPatient'  element={<ViewPatient/>}/>
             <Route path='/dviewPatient'  element={<Dviewpatient/>}/>
-            <Route path='/ViewAppointment'  element={<ViewAppointment/>} />
+            <Route path='/calander'  element={<Calender/>} />
             <Route path='/Changepwd'  element={<Changepwd/>} />
             <Route path='/dedit/:id'  element={<Dedit/>} />
             <Route path='/pedit/:id'  element={<Pedit/>} />
             <Route path='/Alogout'   element={<Alogout/>}/>
+            <Route path='/viewappointment'   element={<ViewAppointment/>}/>
+            <Route path='/dviewappointment'   element={<DviewAppointment/>}/>
+            <Route path='/addReceptionist'   element={<Receptionist/>}/>
+
+
+
        </Routes> 
        </Router>
     </>

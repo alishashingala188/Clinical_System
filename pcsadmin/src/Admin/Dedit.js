@@ -14,7 +14,6 @@ const Dedit = () => {
 
     const { id } = useParams();
     let Navigate = useNavigate();
-
     useEffect(() => {
         const getdoctor = async () => {
             const {data} = await axios.get(`http://localhost:5000/api/doctor/${id}`);
@@ -25,9 +24,7 @@ const Dedit = () => {
             setClinic_name(data.data.user.clinic_name);
         }
         getdoctor();
-    }, [id]);
-
-    
+    }, [id]); 
     const handlesubmit=async(e)=>{
         e.preventDefault();
         const credential={
@@ -37,56 +34,58 @@ const Dedit = () => {
             clinic_name:clinic_name
         }
         console.log(credential);
-     const user=await axios.put(`http://localhost:5000/api/doctor/${id}`,credential);
-     console.log(user);
-Navigate('/ViewDoctor')
+     const user=await axios.put(`http://localhost:5000/api/doctor/${id}`,credential)
+    
+        console.log(user);
+         Navigate('/ViewDoctor')
+  
     }
     return (
         <>
-            <div class="wrapper">
+            <div className="wrapper">
                 <Sidebar />
-                <div class="wrapper">
-                    <div class="main">
+                <div className="wrapper">
+                    <div className="main">
                         <Nav />
-                        <main class="content">
-                            <div class="container-fluid p-0">
-                                <div class="mb-3">
-                                    <h1 class="h3 d-inline align-middle">Add Doctor</h1>
+                        <main className="content">
+                            <div className="container-fluid p-0">
+                                <div className="mb-3">
+                                    <h1 className="h3 d-inline align-middle">Add Doctor</h1>
                                 </div>
                                 <form onSubmit={handlesubmit}>
-                                    <div class="row">
-                                        <div class="col-12 col-lg-6">
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <input type="text" class="form-control" name="name"
+                                    <div className="row">
+                                        <div className="col-12 col-lg-6">
+                                            <div className="card">
+                                                <div className="card-body">
+                                                    <input type="text" className="form-control" name="name"
                                                         value={name} onChange={((e) => setName(e.target.value))} />
                                                 </div>
                                             </div>
-                                            <div class="card">
+                                            <div className="card">
 
-                                                <div class="card-body">
-                                                    <input type="text" class="form-control" placeholder="Enter Username" name="username"
+                                                <div className="card-body">
+                                                    <input type="text" className="form-control" placeholder="Enter Username" name="username"
                                                         value={username} onChange={((e) => setUsername(e.target.value))} />
                                                 </div>
                                             </div>
-                                            <div class="card">
+                                            <div className="card">
 
-                                                <div class="card-body">
-                                                    <textarea rows="4" cols="50" class="form-control" placeholder="Address" name="address"
+                                                <div className="card-body">
+                                                    <textarea rows="4" cols="50" className="form-control" placeholder="Address" name="address"
                                                         value={address} onChange={((e) => setAddress(e.target.value))}></textarea>
                                                 </div>
                                             </div>
 
-                                            <div class="card">
+                                            <div className="card">
 
-                                                <div class="card-body">
-                                                    <input type="text" class="form-control" placeholder="Clinic name" name="clinic_name"
+                                                <div className="card-body">
+                                                    <input type="text" className="form-control" placeholder="Clinic name" name="clinic_name"
                                                         value={clinic_name} onChange={((e) => setClinic_name(e.target.value))} />
                                                 </div>
                                             </div>
 
-                                            <div class="card">
-                                                <button class="btn btn-primary" type='submit'>Update Doctor</button>
+                                            <div className="card">
+                                                <button className="btn btn-primary" type='submit'>Update Doctor</button>
                                             </div>
 
                                         </div>

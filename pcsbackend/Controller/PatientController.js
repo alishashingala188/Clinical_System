@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 //const Todo = require("../models/todosModel");
 const db = require("../models/AdminModule");
 const Patient = require("../models/PatientModule.js");
-
+const {getUserToken}=require('../Config/authenicate');
 //login 
 const loginPatient = async (req, res, next) => {
 
@@ -24,6 +24,9 @@ const loginPatient = async (req, res, next) => {
       });
     }
     const user = await Patient.findOne({ where: { email: req.body.email}  });
+    const token=await getUserToken(user)
+    user.token=token
+    console.log(user.token);
     const isPasswordValid = await bcrypt.compare(
       req.body.password,
        user.password,
@@ -41,10 +44,11 @@ const loginPatient = async (req, res, next) => {
         message: "Login Successful",
         data:{
           user
+,token
         }
         })
     }
-    next();
+   
   } catch (error) {
     return res.status(412).json({
       status: 412,
@@ -119,7 +123,6 @@ const addPatient = async (req, res) => {
 }
 
 //update admin
-
 async function updatePatient(req, res) {
   let id = req.query.id ? req.query.id : req.params.id;
   console.log("aId", id);
@@ -135,7 +138,7 @@ async function updatePatient(req, res) {
       full_name: Joi.string().required(),
       address: Joi.string().required(),
       contact_no: Joi.string().length(10).required(),
-      sec_question: Joi.string().required()
+     
     });
     const validate = validateSchema.validate(req.body);
     if (validate.error) {
@@ -243,13 +246,51 @@ const getAllPatient = async (req, res) => {
 //     res.status(200).send({ success: false, msg:error.message });
 //   }
 // }
+
+//notification all 
+
+const notification =async(req,res)=>{
+  try {
+    
+  } catch (error) {
+    console.log(error);
+    
+    
+  }
+
+}
+const getAllNotificationController = async (req, res) => {
+  try {
+    const user = await Patient.findOne({ _id: req.body.id });
+    const seennotification = user.seennotification;
+    const notifcation = user.notifcation;
+    seennotification.push(...notifcation);
+    user.notifcation = [];
+    user.seennotification = notifcation;
+    const updatedUser = await user.save();
+    res.status(200).send({
+      success: true,
+      message: "all notification marked as read",
+      data: updatedUser,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      message: "Error in notification",
+      success: false,
+      error,
+    });
+  }
+};
+
 module.exports = {
-  loginPatient,
+   loginPatient,
   addPatient,
   updatePatient,
   deletePatient,
   getPatientById,
   getAllPatient,
+  getAllNotificationController
 
 }
 

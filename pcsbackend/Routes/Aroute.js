@@ -1,11 +1,11 @@
-const uController = require("../controller/AController");
+const aController = require("../controller/AController");
 const router = require("express").Router();
 
-router.post("/addTodo", uController.addTodo);
+router.post("/addTodo", aController.addA);
 // router.get("/getAllTodos", todoController.getAllTodos);
 
-router.get("/:id", uController.getATodo);
-router.put("/:id", uController.updateTodo);
-router.delete("/:id", uController.deleteTodo);
-
+router.get("/", aController.getA);
+router.put("/:id", aController.updateA);
+router.put('/edit/:id',aController.editStatus);
+router.delete("/:id", aController.deleteA);
 module.exports = router;

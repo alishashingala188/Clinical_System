@@ -1,28 +1,39 @@
-
-const Appointment = require('../Models/AppointmentModal')
+const { Joi } = require("express-validation");
+const Appointments = require('../Models/AppointmentModal')
 const User =require('../Models/UserModal');
 const Patient =require('../Models/PatientModule');
 const {
   validationResult
 } = require('express-validator');
 
-//1.add a todo
-const addTodo = async (req, res) => {
-  let info = req.body;
-  const todo = await Appointment.create(info);
+//1.add a Appointments
+
+const addA = async (req, res) => {
+  const todo = await Appointments.create({
+    did:req.body.did,
+    uid:req.body.uid,
+    contact_no:req.body.contact_no,
+    date:req.body.date,
+    time:req.body.time,
+    a_reason:req.body.a_reason,
+    status:req.body.status  
+  });
   res.status(200).send(todo);
   console.log(todo);
 };
 
-
-const getATodo = async (req, res) => {
-  const todo = await Appointment.findOne({ where: { id: req.params.id } });
+// get all apoointment
+const getA = async (req, res) => {
+  const todo = await Appointments.findAll(
+ {uid : Patient.full_name},
+ {did : User.name});
   res.status(200).send(todo);
 };
-
-const updateTodo = async (req, res) => {
-  const todo = await Appointment.update(req.body, {
+//update a appointment`1
+const updateA = async (req, res) => {
+  const todo = await Appointments.update(req.body, {
     where: { id: req.params.id },
+
   });
 
   res.status(200).json({
@@ -30,16 +41,42 @@ const updateTodo = async (req, res) => {
   });
 };
 
-const deleteTodo = async (req, res) => {
-  await Appointment.destroy({ where: { id: req.params.id } });
+//delete a appointment
+const deleteA = async (req, res) => {
+  await Appointments.destroy({ where: { id: req.params.id } });
   res.status(200).json({
+
     message:"Deleted Successfully"
   });
 };
+
+
+const editStatus = async (req, res) => {
+  let Id = req.query.id ? req.query.id : req.params.id;
+  console.log("aId", Id);
+  let status = "confirm"
+  console.log("status", status);
+    const result = await Appointments.update(
+     {where: {status:status}},
+      {where: { id: Id } }
+    );
+
+    if (result[0] === 0) {
+      return res.status(412).json({
+        status: 412,
+        message: "User not updated",
+      });
+    }
+    return res.status(200).json({
+      status: 200,
+      message: "User updated",
+    });
+
+};
 module.exports = {
-  addTodo,
-  // getAllTodos,
-  getATodo,
-  updateTodo,
-  deleteTodo,
+  addA,
+  getA,
+  updateA,
+  deleteA,
+  editStatus
 };

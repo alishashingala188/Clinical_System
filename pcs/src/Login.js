@@ -28,16 +28,17 @@ const Login = () => {
       email: email,
       password: password
     };
-    try {
+   
     const { data } = await axios.post("http://localhost:5000/api/user/login", credentials)
-    console.log(data);
-    Navigate('/dashboard')
-    }catch(error){
+       .then(async(res)=>{
+         await localStorage.setItem("token", res.data.data.token);
+         alert("Login In..")
+          Navigate('/dashboard')
+        }).catch((err)=>{
       alert("username and password are wrong..")
- 
-  };
-
-  } 
+        })
+    }
+  
     return(
         <div >
         <Grid  >

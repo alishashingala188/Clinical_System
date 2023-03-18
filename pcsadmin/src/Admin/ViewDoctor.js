@@ -29,13 +29,13 @@ const ViewDoctor = () => {
   }
   return (
     <>
-      <div class="wrapper">
+      <div className="wrapper">
         <Sidebar />
-        <div class="wrapper">
-          <div class="main">
+        <div className="wrapper">
+          <div className="main">
             <Nav />
-            <main class="content">
-              <div class="container-fluid p-0">
+            <main className="content">
+              <div className="container-fluid p-0">
                 <h1>View Doctor</h1>
                 <br />
                 <table cellPadding="5" cellSpacing="200px" border="2px solid" style={{ borderColor: "#3b7ddd" }} >
@@ -66,7 +66,7 @@ const ViewDoctor = () => {
                           <td>
                             <Link to={`/dedit/${d.id}`}>
                               <EditIcon color='success' />Edit</Link>
-                              <button className='btn btn-dangr' onClick={()=>handleDelete(d.id)}> <DeleteIcon color='error' />Delete</button>
+                              <button classNameName='btn btn-dangr' style={{border:"none"}} onClick={()=>handleDelete(d.id)}> <DeleteIcon color='error' />Delete</button>
                          </td>
                         </tr>
                       })

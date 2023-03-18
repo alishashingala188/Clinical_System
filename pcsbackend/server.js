@@ -35,6 +35,13 @@ app.use("/api/user", prouter);
 const router = require("./routes/aroute");
 app.use("/api/", router);
 
+
+
+//Router in receptionist
+
+const rrouter = require("./routes/ReceptionistRoute");
+app.use("/api/rece/", rrouter);
+
 // app.use(
 //     session({
 //         name:'session_id',
@@ -46,9 +53,9 @@ app.use("/api/", router);
 // );
 //Test  api
 
-app.get('/',(req,res)=>{
-    res.json({message :'hello nikita'})
-})
+// app.get('/',(req,res)=>{
+//     res.json({message :'hello nikita'})
+// })
 
 //port 
 

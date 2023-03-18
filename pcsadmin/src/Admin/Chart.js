@@ -57,16 +57,16 @@ export const data = {
 const Chart = () => {
     return (
         <>
-            <div class="wrapper">
+            <div className="wrapper">
                 <Sidebar />
-                <div class="wrapper">
-                    <div class="main">
+                <div className="wrapper">
+                    <div className="main">
                         <Nav />
-                        <main class="content">
-                            <div class="container-fluid p-0">
+                        <main className="content">
+                            <div className="container-fluid p-0">
 
-                                <div class="card-body py-3 ">
-                                    <div class="chart chart-sm">
+                                <div className="card-body py-3 ">
+                                    <div className="chart chart-sm">
                                         <Line options={options} data={data} />
                                     </div>
                                     </div>

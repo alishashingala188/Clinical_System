@@ -29,13 +29,13 @@ const ViewPatient = () => {
   }
   return (
     <>
-      <div class="wrapper">
+      <div className="wrapper">
         <Sidebar />
-        <div class="wrapper">
-          <div class="main">
+        <div className="wrapper">
+          <div className="main">
             <Nav />
-            <main class="content">
-              <div class="container-fluid p-0">
+            <main className="content">
+              <div className="container-fluid p-0">
               <h1>View Doctor</h1>
               <br/>
                 <table cellPadding="10" cellSpacing="300px" border="2px solid" style={{borderColor:"#3b7ddd"}} >
@@ -67,7 +67,7 @@ const ViewPatient = () => {
                           <td> <td>
                             <Link to={`/pedit/${p.id}`}>
                               <EditIcon color='success' />Edit</Link>
-                              <button className='btn btn-dangr' onClick={()=>handleDelete(p.id)}> <DeleteIcon color='error' />Delete</button>
+                              <button classNameName='btn btn-dangr' onClick={()=>handleDelete(p.id)}> <DeleteIcon color='error' />Delete</button>
                          </td></td>
                         </tr>
                       })

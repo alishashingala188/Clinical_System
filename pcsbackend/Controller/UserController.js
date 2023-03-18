@@ -1,7 +1,9 @@
 const { Joi } = require('express-validation');
 const bcrypt = require('bcrypt');
 const Doctor = require('../Models/UserModal.js')
-
+const { getUserToken } = require('../Config/authenicate');
+const { where } = require('sequelize');
+const Appointment = require('../Models/AppointmentModal');
 
 //Login in doctor
 
@@ -18,36 +20,40 @@ const loginDoctor = async (req, res, next) => {
       return res.status(412).json({
         status: 412,
         message: validate.error.details[0].message,
-      
+
       });
     }
-    const user = await Doctor.findOne({ where: { email: req.body.email}  });
+    const user = await Doctor.findOne({ where: { email: req.body.email } });
+    const token = await getUserToken(user)
+    user.token = token
+    console.log(user.token);
     const isPasswordValid = await bcrypt.compare(
       req.body.password,
-       user.password,
-			
-     );
-     if (!isPasswordValid) {
-       return res.status(412).json({
-         status: 412,
-         message: "Invalid password",
-       });
-     }
+      user.password,
+
+    );
+    if (!isPasswordValid) {
+      return res.status(412).json({
+        status: 412,
+        message: "Invalid password",
+      });
+    }
     if (user) {
       return res.status(200).json({
         status: 200,
         message: "Login Successful",
-        data:{
-          user
+        data: {
+          user,
+          token
         }
-        })
+      })
     }
     next();
   } catch (error) {
     return res.status(412).json({
       status: 412,
       message: "not Login..",
-    
+
     });
   }
 };
@@ -64,12 +70,12 @@ const addDoctor = async (req, res) => {
       contact_no: Joi.string().required(),
       speciality: Joi.string().required(),
       email: Joi.string().email().required(),
-      clinic_name:Joi.string().required(),
+      clinic_name: Joi.string().required(),
       gender: Joi.string().required(),
       education: Joi.string().required(),
       type: Joi.string().required(),
-      time:Joi.string().required(),
-      available_day:Joi.string().required(),
+      time: Joi.string().required(),
+      available_day: Joi.string().required(),
       password: Joi.string()
         .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/)
         .required()
@@ -130,8 +136,8 @@ const updateDoctor = async (req, res) => {
       name: Joi.string().required(),
       username: Joi.string().required(),
       address: Joi.string().required(),
-      clinic_name:Joi.string().required(),
-     
+      clinic_name: Joi.string().required(),
+
     });
 
     const validate = validateSchema.validate(req.body);
@@ -145,20 +151,19 @@ const updateDoctor = async (req, res) => {
       req.body,
       { where: { id: id } }
     );
-   
+
     if (result[0] === 0) {
       return res.status(412).json({
         status: 412,
         message: "User not updated",
-       
+
       });
     }
-   
     return res.status(200).json({
       status: 200,
-      message: "Doctor updated",  
+      message: "Doctor updated",
       data: {
-        user: result,
+        result
       },
     });
   } catch (error) {
@@ -172,26 +177,22 @@ const updateDoctor = async (req, res) => {
 
 // 3 delete Doctor 
 
-const deleteDoctor = async(req,res)=>{
+const deleteDoctor = async (req, res) => {
   const id = req.query.id ? req.query.id : req.params.id;
-  try{
-     const doctor=await Doctor.findOne({where:{ id : id }});
-     if(!doctor){
-       return res.status(412).json({
-        status:412,
-        message:"User not Found !"
+  try {
+    const doctor = await Doctor.findOne({ where: { id: id } });
+    if (!doctor) {
+      return res.status(412).json({
+        status: 412,
+        message: "User not Found !"
       });
-     }
-     const result = Doctor.destroy({where : { id : id }});
-     return res.status(200).json({
-          status:200,
-          message:"Doctor deleted successfully...!!",
-          data:{
-            result:result
-          }
-        }); 
-  }catch(error)
-    {
+    }
+    await Doctor.destroy({ where: { id: id } });
+    return res.status(200).json({
+      status: 200,
+      message: "User deleted successfully!",
+    });
+  } catch (error) {
     return res.status(412).json({
       status: 412,
       message: error.message,
@@ -205,8 +206,7 @@ async function getDoctorById(req, res) {
   try {
     const id = req.params.id;
     const result = await Doctor.findOne({
-      where: { id:id },
-     
+      where: { id: id },
     });
     return res.status(200).json({
       status: 200,
@@ -225,19 +225,43 @@ async function getDoctorById(req, res) {
 
 // 5. dispay all doctor list 
 
-const getAllDoctor = async(req,res)=>{
-let doctor = await Doctor.findAll(
-  { where: { type: 'doctor' } },
-);
-res.status(200).send(doctor)
+const getAllDoctor = async (req, res) => {
+  let doctor = await Doctor.findAll(
+    { where: { type: 'doctor' } },
+  );
+  res.status(200).send(doctor)
 }
 
+
+const getAppointment = async (req, res) => {
+  
+  try {
+    let doctor = await Appointment.findAll({ where: { did: req.user.id } });
+    if (!doctor) {
+      return res.status(400).json({
+        message: "error fetching appointment"
+      })
+    }
+    res.status(200).json({
+      data: doctor
+    })
+  } catch (error) {
+    res.status(400).json({
+      message: error.message
+    })
+  }
+
+}
+
+
+
 module.exports = {
-   loginDoctor,
+  loginDoctor,
   addDoctor,
   updateDoctor,
   deleteDoctor,
   getDoctorById,
-  getAllDoctor
+  getAllDoctor,
+  getAppointment
 
 }

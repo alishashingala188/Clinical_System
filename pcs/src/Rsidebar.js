@@ -5,11 +5,11 @@ import DashboardCustomizeOutlinedIcon from '@mui/icons-material/DashboardCustomi
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
-import PaymentIcon from '@mui/icons-material/Payment';
+// import PaymentIcon from '@mui/icons-material/Payment';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
-import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
-import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
-const Sidebar = () => {
+// import ContactPhoneIcon from '@mui/icons-material/ContactPhone';\
+// import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
+const Rsidebar = () => {
     return (
         <>
             <nav id="sidebar" class="sidebar js-sidebar">
@@ -31,42 +31,41 @@ const Sidebar = () => {
                         </li>
 
                         <li class="sidebar-item">
-                            <Link class="sidebar-link" to="/Profile">
-                          <AccountCircleOutlinedIcon  className="align-middle" /><span class="align-middle">Profile</span>
+                            <Link class="sidebar-link" to="/Rprofile">
+                          <AccountCircleOutlinedIcon  className="align-middle" /><span class="align-middle">Rprofile</span>
                             </Link>
                         </li>
 
 
                         <li class="sidebar-item">
-                            <Link class="sidebar-link" to="/Doctor">
-                            <FavoriteBorderOutlinedIcon  className="align-middle" /> <span class="align-middle"> Doctor</span>
+                            <Link class="sidebar-link" to="/ViewPatient">
+                            <FavoriteBorderOutlinedIcon  className="align-middle" /> <span class="align-middle"> View Patient </span>
                             </Link>
                         </li>
 
                         <li class="sidebar-item">
-                            <Link class="sidebar-link" to="/Appointment">
-                            <BorderColorOutlinedIcon 
-                              className="align-middle" /> <span class="align-middle">Appointment</span>
+                            <Link class="sidebar-link" to="/invoiceform">
+                            <BorderColorOutlinedIcon className="align-middle" /> <span class="align-middle">Invoiceform</span>
                             </Link>
                         </li>
 
                       
 
-                        <li class="sidebar-item">
+                        {/* <li class="sidebar-item">
                             <Link class="sidebar-link" to="/Feedback">
                             <ThumbUpAltIcon  className="align-middle" /> <span class="align-middle">Feedback</span>
                             </Link>
-                        </li>
+                        </li> */}
 
                         {/* <li class="sidebar-header">
                             { Report }
                         </li> */}
-
+{/* 
                         <li class="sidebar-item">
                             <Link class="sidebar-link" to="/Contact">
                             <ContactPhoneIcon  className="align-middle" /> <span class="align-middle">Contact</span>
                             </Link>
-                        </li>
+                        </li> */}
 
                         {/* <li class="sidebar-item">
                             <Link class="sidebar-link" to="/ViewAppointment">
@@ -75,12 +74,12 @@ const Sidebar = () => {
                         </li> */}
 
                        
-
+{/* 
                         <li class="sidebar-item ">
                             <Link class="sidebar-link" to="/Payment">
                             <PaymentIcon  className="align-middle" /><span class="align-middle">Payment</span>
                             </Link>
-                        </li>
+                        </li> */}
 
                         <li class="sidebar-item ">
                             <Link class="sidebar-link" to="/Logout">
@@ -94,4 +93,4 @@ const Sidebar = () => {
     )
 }
 
-export default Sidebar
+export default Rsidebar

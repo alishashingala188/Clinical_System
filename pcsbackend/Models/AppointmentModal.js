@@ -1,9 +1,9 @@
 const { DataTypes } = require("sequelize");
 const db = require("./Config.js");
 const Users= require('../Models/UserModal')
-const Patient= require('../Models/PatientModule')
+const Patients= require('../Models/PatientModule')
 
-const Appointment = db.define(
+const Appointments = db.define(
     "appointment",
     {
         id: {
@@ -25,7 +25,7 @@ const Appointment = db.define(
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-              model: Patient,
+              model: Patients,
               key: "id",
             },
             onUpdate: "CASCADE",
@@ -44,7 +44,7 @@ const Appointment = db.define(
         status:{
             type:DataTypes.STRING
         }, 
-          a_reason:{
+        a_reason:{
             type:DataTypes.STRING
         }
     },
@@ -56,27 +56,27 @@ const Appointment = db.define(
     }
     );
     
-Users.hasMany(Appointment, {
+Users.hasMany(Appointments, {
     foreignKey: "did",
     sourceKey: "id",
-    as: "appointment",
+    as: "appointments",
   });
-  Appointment.belongsTo(Users, {
+  Appointments.belongsTo(Users, {
     foreignKey: "did",
     targetKey: "id",
     as: "users",
   });
  
-  Patient.hasMany(Appointment, {
+  Patients.hasMany(Appointments, {
     foreignKey: "uid",
     sourceKey: "id",
-    as: "appointment",
+    as: "appointments",
   });
 
-  Appointment.belongsTo(Patient, {
+  Appointments.belongsTo(Patients, {
     foreignKey: "uid",
     targetKey: "id",
-    as: "patient",
+    as: "patients",
   });
 
   
@@ -85,4 +85,4 @@ Users.hasMany(Appointment, {
         console.log('sync here');
     });
 
-module.exports = Appointment;
+module.exports = Appointments;
