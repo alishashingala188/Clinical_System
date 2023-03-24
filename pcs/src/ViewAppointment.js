@@ -45,7 +45,7 @@ const ViewDoctor = () => {
                 <table cellPadding="5" cellSpacing="200px" border="2px solid" style={{ borderColor: "#3b7ddd" }} >
                   <thead border="2px solid blue">
                     <tr style={{ backgroundColor: "#3b7ddd", fontSize: "20", fontWeight: "bold", color: "white", textAlign: "center" }} color="primary">
-                      <th>doctor id</th>
+                      <th>doctor name</th>
                       <th>contact_no</th>
                       <th>Date</th>
                       <th>Time</th>
@@ -60,7 +60,7 @@ const ViewDoctor = () => {
                         ? appointments.map(d => {
                           // console.log(d)
                           return <tr style={{ marginBottom: "20px" }}>
-                            <td> {d.did} </td>
+                            <td> {d.users.name} </td>
                             <td>{d.contact_no}  </td>
                             <td> {d.date} </td>
                             <td> {d.time} </td>

@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react'
 import React from 'react'
 import './Info.css'
 import image from './14.jpg'
-import Sidebar from './Sidebar'
-import Nav from './Nav'
-import Footer from './Footer'
+import Sidebar from './Rsidebar'
+import Nav from './Rnav'
+import Footer from './Rfooter'
 import axios from 'axios'
 import { Link } from 'react-router-dom';
 const Dprofile = () => {
@@ -45,11 +45,14 @@ const Dprofile = () => {
                   </div>
                 </div>  
                 <div className='lower-container'>
-                <h1>{patient.full_name}</h1>
+               
                   <div className='filed-container'>
                
-                          <table cellPadding="10" cellSpacing="30" style={{ textAlign: "center", marginLeft: 400, fontWeight: "bold" ,marginTop:'-70px'}}>
-                           
+                          <table cellPadding="10" cellSpacing="30" style={{ textAlign: "center", marginLeft: 400, fontWeight: "bold" ,marginTop:'-20px'}}>
+                          <tr>
+                              <td>Name :: </td>
+                              <td>{patient.name}</td>
+                            </tr>
                             <tr>
                               <td>Email :: </td>
                               <td>{patient.email}</td>
@@ -62,21 +65,6 @@ const Dprofile = () => {
                               <td>Contact No :: </td>
                               <td>{patient.contact_no}</td>
                             </tr>
-                            <tr>
-                              <td>education :: </td>
-                              <td>{patient.education}</td>
-                            </tr>
-                            <tr>
-                              <td>Speciality :: </td>
-                              <td>{patient.speciality}</td>
-                            </tr>
-                            {/* <tr>
-                            <td></td>
-                            <td>
-                              <Link to={`/Changepwd/${patient.id}`} className='btn btn-info'>
-                                <EditIcon color='' />Change password</Link>
-                            </td>
-                          </tr> */}
                           </table>
                   </div>
                   <Link />

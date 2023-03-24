@@ -48,7 +48,7 @@ const Dprofile = () => {
                 <h1>{patient.full_name}</h1>
                   <div className='filed-container'>
                
-                          <table cellPadding="10" cellSpacing="30" style={{ textAlign: "center", marginLeft: 400, fontWeight: "bold" ,marginTop:'-70px'}}>
+                          <table cellPadding="10" cellSpacing="30" style={{ textAlign: "center", marginLeft: 400, fontWeight: "bold" ,marginTop:'-50px'}}>
                            
                             <tr>
                               <td>Email :: </td>
@@ -63,12 +63,12 @@ const Dprofile = () => {
                               <td>{patient.contact_no}</td>
                             </tr>
                             <tr>
-                              <td>education :: </td>
-                              <td>{patient.education}</td>
+                              <td>Address :: </td>
+                              <td>{patient.address}</td>
                             </tr>
                             <tr>
-                              <td>Speciality :: </td>
-                              <td>{patient.speciality}</td>
+                              <td>Age :: </td>
+                              <td>{patient.age}</td>
                             </tr>
                             {/* <tr>
                             <td></td>

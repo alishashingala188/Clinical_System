@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { Joi } = require("express-validation");
-const User = require("../models/UserModal");
+const User = require("../models/Receptionist");
 const _ = require("lodash");
 require("dotenv").config();
 //Generating JWT token

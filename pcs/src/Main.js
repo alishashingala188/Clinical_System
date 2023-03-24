@@ -82,9 +82,6 @@ export const Main = () => {
           </nav>
         </div>
       </header>
-
-
-
       <section class="hero-banner1" id="home-section">
 
         <div class="container">
@@ -94,7 +91,7 @@ export const Main = () => {
               <div class="banner-text-wrap">
                 <h1 class="text-white">We Provide Best Medical Services</h1>
                 <p class="text-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</p>
-                <button style={{ backgroundColor: 'white', width: 150, height: 50, borderRadius: 10, fontSize: 20, marginLeft: 20 }}>Sign In</button>
+                <button style={{ backgroundColor: 'white', width: 250, height: 50, borderRadius: 10, fontSize: 20, marginLeft: 20,color:"black" }}><Link style={{color:"black"}} to='/signin'><b>Book Appointment</b></Link></button>
               </div>
             </div>
           </div>

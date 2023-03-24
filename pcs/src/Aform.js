@@ -76,7 +76,6 @@ const Aform = () => {
                       </div>
                     </div>
                     <div class="w-full sm:w-half formbold-px-3">
-
                       <div class="formbold-mb-5">
                         <label for="time" class="formbold-form-label"> patient Name </label>
                         <select name='uid' style={{ width: 250, height: 45, border: '1px gray', borderRadius: 5 }}

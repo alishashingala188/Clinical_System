@@ -7,6 +7,7 @@ const db = require("../models/AdminModule");
 const Patient = require("../models/PatientModule.js");
 const {getUserToken}=require('../Config/authenicate');
 const Appointment=require('../Models/AppointmentModal')
+const Users=require('../Models/UserModal') 
 //login 
 
 const loginPatient = async (req, res, next) => {
@@ -49,7 +50,6 @@ const loginPatient = async (req, res, next) => {
         }
         })
     }
-   
   } catch (error) {
     return res.status(412).json({
       status: 412,
@@ -278,11 +278,15 @@ const getAllNotificationController = async (req, res) => {
   }
 };
 
-
-
 const getAppointment = async (req, res) => {
   try {
-    let doctor = await Appointment.findAll({ where: { uid: req.user.id } });
+    let doctor = await Appointment.findAll({where:{uid:req.user.id},
+      include:[{
+        model:Users,
+        as:"users",
+        attributes:['name','username']
+      }]
+    });
     if (!doctor) {
       return res.status(400).json({
         message: "error fetching appointment"
@@ -296,11 +300,10 @@ const getAppointment = async (req, res) => {
       message: error.message
     })
   }
-
 }
 
 module.exports = {
-   loginPatient,
+  loginPatient,
   addPatient,
   updatePatient,
   deletePatient,

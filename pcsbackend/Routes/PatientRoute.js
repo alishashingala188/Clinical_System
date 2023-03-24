@@ -1,6 +1,6 @@
-const { loginUser } = require('../Config/authenicate');
-const { verifyUserToken } = require('../Config/authenicate');
-const { getUserToken } = require('../Config/authenicate');
+const { loginUser } = require('../Config/auth');
+const { verifyUserToken } = require('../Config/auth');
+const { getUserToken } = require('../Config/auth');
 
 const patientController =require('../Controller/PatientController');
 const prouter = require("express").Router();

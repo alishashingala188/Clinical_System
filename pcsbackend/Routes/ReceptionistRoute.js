@@ -1,7 +1,7 @@
 const receptionstController =require('../Controller/ReceptionistController');
 const rrouter = require("express").Router();
-const { loginUser } = require('../Config/authenicate');
-const { verifyUserToken } = require('../Config/authenicate');
+const { loginUser } = require('../Config/rauth');
+const { verifyUserToken } = require('../Config/rauth');
 
 //doctor Route
 

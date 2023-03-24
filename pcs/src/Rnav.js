@@ -1,9 +1,35 @@
-import React from 'react'
+import {useState,useEffect} from 'react'
 // import Avatar1 from  './images/avatars/avatar-2.jpg'
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
-import {Link} from 'react-router-dom'
+import {Link,useNavigate} from 'react-router-dom'
+import axios from 'axios'
 const Rnav = () => {
+    const navigate = useNavigate()
+    useEffect(() => {
+        if (!localStorage.getItem('token')) {
+            navigate('/')
+        }
+    })
+
+    const [admin, setAdmin] = useState([]);
+    useEffect(() => {
+        getAllAdmin();
+    }, []);
+    console.log("", admin);
+    const getAllAdmin = async (req) => {
+        const data = await axios.get(`http://localhost:5000/api/rece/profile`,
+            {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': ' Bearer ' + localStorage.getItem("token")
+                }
+            }).then((res) => {
+                setAdmin(res.data.data.user)
+                console.log(res.data.data.user)
+            })
+    }
   return (
     <>
 <nav class="navbar navbar-expand navbar-light navbar-bg">
@@ -160,8 +186,8 @@ const Rnav = () => {
                 </a>
 
                 <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                    <img src="img/avatars/user.png" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> 
-					<span class="text-dark"></span>
+
+					<b>{admin.name}</b>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
                     <a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1"
