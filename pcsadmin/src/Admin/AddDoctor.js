@@ -1,10 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState ,useEffect} from 'react'
 import Sidebar from './Sidebar'
 import Nav from './Nav'
 import Footer from './Footer'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 const AddDoctor = ({ history }) => {
+  const navigate = useNavigate()
+    useEffect(() => {
+        if (!localStorage.getItem('token')) {
+            navigate('/')
+        }
+    })
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");

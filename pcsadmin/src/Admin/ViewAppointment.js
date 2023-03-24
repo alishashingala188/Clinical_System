@@ -4,7 +4,14 @@ import Sidebar from './Sidebar'
 import Nav from './Nav'
 import Footer from './Footer'
 import './table.css'
+import { useNavigate } from 'react-router-dom'
 const ViewDoctor = () => {
+  const navigate = useNavigate()
+    useEffect(() => {
+        if (!localStorage.getItem('token')) {
+            navigate('/')
+        }
+    })
   const [appointment, setAppointment] = useState([]);
   useEffect(() => {
     getAllAppoitment();

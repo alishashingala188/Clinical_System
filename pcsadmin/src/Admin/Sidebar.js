@@ -1,4 +1,4 @@
-import React from 'react'   
+import {useEffect} from 'react'   
 import { Link ,useNavigate} from 'react-router-dom'
 import { message } from "antd";
 import DashboardCustomizeOutlinedIcon from '@mui/icons-material/DashboardCustomizeOutlined';
@@ -12,6 +12,11 @@ import PasswordOutlinedIcon from '@mui/icons-material/PasswordOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import User from '../images/user.png'
 const Sidebar = () => {
+    useEffect(() => {
+        if (!localStorage.getItem('token')) {
+            navigate('/')
+        }
+    })
     const navigate = useNavigate();
     const handleLogout = () => {
         localStorage.clear();

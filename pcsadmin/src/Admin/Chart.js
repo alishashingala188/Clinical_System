@@ -13,6 +13,8 @@ import { Line } from 'react-chartjs-2';
 import Sidebar from './Sidebar'
 import Nav from './Nav'
 import Footer from './Footer'
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -55,6 +57,12 @@ export const data = {
     ],
 };
 const Chart = () => {
+    const navigate = useNavigate()
+    useEffect(() => {
+        if (!localStorage.getItem('token')) {
+            navigate('/')
+        }
+    })
     return (
         <>
             <div className="wrapper">

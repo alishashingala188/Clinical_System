@@ -7,6 +7,12 @@ import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 
 const Dedit = () => {
+    const navigate = useNavigate()
+    useEffect(() => {
+        if (!localStorage.getItem('token')) {
+            navigate('/')
+        }
+    })
     const [full_name, setFullname] = useState("");
     const [address, setAddress] = useState("");
     const [contact_no, setContact_no] = useState("");

@@ -18,7 +18,6 @@ async function getUserToken(user) {
     return error.message;
   }
 }
-
 //User Login MiddleWare
 
 const loginUser = async (req, res, next) => {

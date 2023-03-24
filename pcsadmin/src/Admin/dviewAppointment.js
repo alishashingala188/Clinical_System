@@ -6,8 +6,14 @@ import Footer from './Dfooter'
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CheckIcon from '@mui/icons-material/Check';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 const ViewDoctor = () => {
+  const navigate = useNavigate()
+    useEffect(() => {
+        if (!localStorage.getItem('token')) {
+            navigate('/')
+        }
+    })
   const [appointments, setAppointments] = useState([]);
   const [edit, setEdit] = useState([]);
   const [mess, setMess] = useState([]);

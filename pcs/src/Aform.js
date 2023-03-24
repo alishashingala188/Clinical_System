@@ -30,7 +30,6 @@ const Aform = () => {
     console.log(data);
     await axios.post('http://localhost:5000/api/addTodo', data).then(() => {
       alert("Record Inserted successfully.....")
-      
     })
   }
   useEffect(() => {

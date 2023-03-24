@@ -49,20 +49,18 @@ export default function SignIn() {
            <div class="wrapper">
                <div class="main">
                        <Nav />
-   
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs" style={{marginTop:"-20px"}}>
         <CssBaseline />
         <Box
           sx={{
             marginTop: 8,
-            marginLeft:-20,
+            marginLeft:-10,
             marginRight:10,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-          }}
-        >
+          }}>
           {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}> */}
             {/* <LockOutlinedIcon />
           </Avatar> */}

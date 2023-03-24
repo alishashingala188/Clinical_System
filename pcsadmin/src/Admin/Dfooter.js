@@ -1,6 +1,12 @@
-import React from 'react'
-
+import {useEffect} from 'react'
+import { useNavigate } from 'react-router-dom'
 const Dfooter = () => {
+    const navigate = useNavigate()
+    useEffect(() => {
+        if (!localStorage.getItem('token')) {
+            navigate('/')
+        }
+    })
   return (
     <>
      <footer className="footer">

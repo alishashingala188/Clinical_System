@@ -11,7 +11,7 @@ import axios from 'axios'
 import { TimePicker } from "antd";
 import FullCalendar from '@fullcalendar/react' // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
-
+import { useNavigate } from "react-router-dom";
 
 const locales = {
     "en-US": require("date-fns/locale/en-US"),
@@ -37,6 +37,12 @@ const events = [{
 }]
 
 function Calander() {
+    const navigate = useNavigate()
+    useEffect(() => {
+        if (!localStorage.getItem('token')) {
+            navigate('/')
+        }
+    })
     const [allEvents, setAllEvents] = useState(events);
     const [newEvent, setNewEvent] = useState({ a_reason: "", date: "", time: "" });
 

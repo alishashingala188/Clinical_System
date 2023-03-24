@@ -1,6 +1,8 @@
 const { DataTypes } = require('sequelize');
 const db = require('./Config.js');
 const patients = require('../Models/PatientModule')
+const users = require('../Models/UserModal')
+
 const Bills = db.define(
     "bill", {
     id: {
@@ -18,10 +20,15 @@ const Bills = db.define(
         onUpdate: "CASCADE",
         onDelete: "CASCADE",
     },
-    contact_no: {
-        type: DataTypes.STRING,
+    did: {
+        type: DataTypes.INTEGER,
         allowNull: false,
-        limit: 9
+        references: {
+            model: users,
+            key: "id",
+        },
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
     },
     email: {
         type: DataTypes.STRING,
@@ -33,29 +40,33 @@ const Bills = db.define(
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    item_name: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    item_description: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    item_qty: {
+    room_cost: {
         type: DataTypes.INTEGER,
-        
+        allowNull: false
     },
-    price: {
+    medician_cost: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    doctor_charge: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    extra_charge: {
+        type: DataTypes.INTEGER,
+
+    },
+    discount: {
         type: DataTypes.INTEGER
-      
+
     },
     totle: {
         type: DataTypes.INTEGER
-       
+
     },
     date: {
         type: DataTypes.DATE
-       
+
     }
 },
     {
@@ -75,6 +86,18 @@ Bills.belongsTo(patients, {
     foreignKey: "uid",
     targetKey: "id",
     as: "patients",
+});
+
+users.hasMany(Bills, {
+    foreignKey: "did",
+    sourceKey: "id",
+    as: "bills",
+});
+
+Bills.belongsTo(users, {
+    foreignKey: "did",
+    targetKey: "id",
+    as: "users",
 });
 
 

@@ -206,7 +206,6 @@ async function getPatientById(req, res) {
     const id = req.params.id;
     const result = await Patient.findOne({
       where: { id },
-
     });
     return res.status(200).json({
       status: 200,

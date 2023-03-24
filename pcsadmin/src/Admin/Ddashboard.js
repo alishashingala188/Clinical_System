@@ -1,8 +1,9 @@
-import React from 'react'
+import {useEffect,React }from 'react'
 import Dsidebar from './Dsidebar'
 import './css/app.css'
 import Dfooter from './Dfooter'
 import Dnav from './Dnav'
+import { useNavigate } from 'react-router-dom'
 // import AddDoctor from './AddDoctor'
 import LocalHotelOutlinedIcon from '@mui/icons-material/LocalHotelOutlined';
 import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined';
@@ -63,6 +64,12 @@ ChartJS.register(
   };
   
 const Ddashboard = () => {
+    const navigate = useNavigate()
+    useEffect(() => {
+        if (!localStorage.getItem('token')) {
+            navigate('/')
+        }
+    })
  return (
   <>
  

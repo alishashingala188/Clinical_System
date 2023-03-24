@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Sidebar from './Sidebar'
 import './css/app.css'
 import Footer from './Footer'
@@ -20,6 +20,7 @@ import {
 } from 'chart.js';
 import { faker } from '@faker-js/faker'
 import { Line } from 'react-chartjs-2';
+import { useNavigate } from 'react-router-dom'
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -61,12 +62,14 @@ export const data = {
         },
     ],
 };
-
-
-
 const Dashboard = () => {
     const [patient, setPatient] = useState([]);
-
+    const navigate = useNavigate()
+    useEffect(() => {
+        if (!localStorage.getItem('token')) {
+            navigate('/')
+        }
+    },[])
     useEffect(() => {
         getAllAdmin();
     }, []);
@@ -75,7 +78,7 @@ const Dashboard = () => {
         const { data } = await axios.get('http://localhost:5000/api/user/');
         console.log(data);
         // const resData = await data.json();
-        setPatient(data);       
+        setPatient(data);
     }
     return (
         <>
@@ -99,12 +102,12 @@ const Dashboard = () => {
                                                             <div className="row">
                                                                 <div className="col mt-0">
                                                                     <h5 className="card-title">Patients</h5>
-                                                                   
-                                                                        {
-                                                                          data.count
-                                                                           
-                                                                        } 
-                                                                   
+
+                                                                    {
+                                                                        data.count
+
+                                                                    }
+
                                                                 </div>
 
                                                                 <div className="col-auto">

@@ -23,8 +23,7 @@ const Sidebar = () => {
             <nav id="sidebar" class="sidebar js-sidebar">
                 <div class="sidebar-content js-simplebar">
                     <a class="sidebar-brand" href="index1.php">
-
-                        <span class="align-middle">  </span>
+                        <span class="align-middle"> Patient dashboard </span>
                     </a>
 
                     <ul class="sidebar-nav">
@@ -33,7 +32,7 @@ const Sidebar = () => {
                         </li>
 
                         <li class="sidebar-item active">
-                            <Link to="/" class="sidebar-link" >
+                            <Link to="/dashboard" class="sidebar-link" >
                                 <DashboardCustomizeOutlinedIcon className="align-middle" fontSize='small' /> <span class="align-middle">Dashboard</span>
                             </Link>
                         </li>

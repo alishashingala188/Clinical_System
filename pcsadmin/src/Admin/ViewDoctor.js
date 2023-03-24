@@ -5,8 +5,14 @@ import Nav from './Nav'
 import Footer from './Footer'
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 const ViewDoctor = () => {
+  const navigate = useNavigate()
+    useEffect(() => {
+        if (!localStorage.getItem('token')) {
+            navigate('/')
+        }
+    },[])
   const [doctors, setDoctor] = useState([]);
   const [mess, setMess]=useState([]);
   useEffect(() => {

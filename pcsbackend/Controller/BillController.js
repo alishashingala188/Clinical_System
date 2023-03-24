@@ -6,15 +6,15 @@ const Patient =require('../Models/PatientModule');
 const addBill = async (req, res) => {
   const todo = await Bill.create({
     uid:req.body.uid,
-    contact_no:req.body.contact_no,
+    did:req.body.did,
     date:req.body.date,
-    patient_name:req.body.patient_name,
+    room_cost:req.body.room_cost,
     email:req.body.email,
     invoice_no:req.body.invoice_no, 
-    item_name:req.body.item_name, 
-    item_description:req.body.item_description ,
-    item_qty:req.body.item_qty ,
-    price:req.body.price ,
+    medician_cost:req.body.medician_cost, 
+    doctor_charge:req.body.doctor_charge ,
+    extra_charge:req.body.extra_charge ,
+    discount:req.body.discount ,
     totle:req.body.totle  
   });
   res.status(200).send(todo);

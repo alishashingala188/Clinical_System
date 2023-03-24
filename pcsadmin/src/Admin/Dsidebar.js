@@ -1,4 +1,4 @@
-import React from 'react'
+import {useEffect} from 'react'
 // import AddDoctor from './AddDoctor'
 import { Link ,useNavigate} from 'react-router-dom'
 import DashboardCustomizeOutlinedIcon from '@mui/icons-material/DashboardCustomizeOutlined';
@@ -11,7 +11,13 @@ import AirlineSeatFlatIcon from '@mui/icons-material/AirlineSeatFlat';
 import { message } from "antd";
 
 const Dsidebar = () => {
-    const navigate = useNavigate();
+    const navigate = useNavigate()
+    useEffect(() => {
+        if (!localStorage.getItem('token')) {
+            navigate('/')
+        }
+    })
+    
     const handleLogout = () => {
         localStorage.clear();
         message.success("Logout Successfully");

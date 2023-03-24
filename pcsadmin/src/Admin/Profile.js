@@ -6,8 +6,14 @@ import Sidebar from './Sidebar'
 import Nav from './Nav'
 import Footer from './Footer'
 import axios from 'axios'
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 const Profile = () => {
+  const navigate = useNavigate()
+    useEffect(() => {
+        if (!localStorage.getItem('token')) {
+            navigate('/')
+        }
+    })
   const [admin, setAdmin] = useState([]);
   useEffect(() => {
     getAllAdmin();

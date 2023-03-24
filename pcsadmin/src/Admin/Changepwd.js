@@ -1,11 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect} from 'react'
 import Sidebar from './Sidebar'
 import Nav from './Nav'
 import Footer from './Footer'
 import axios from 'axios'
-import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { message } from 'antd'
 const Changepwd = () => {
+    const navigate = useNavigate()
+    useEffect(() => {
+        if (!localStorage.getItem('token')) {
+            navigate('/')
+        }
+    })
     const [oldpassword, setOldpassword] = useState("");
     const [password, setPassword] = useState("");
     const [confirmpassword, setConfirmPassword] = useState("");

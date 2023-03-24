@@ -6,8 +6,14 @@ import Sidebar from './Dsidebar'
 import Nav from './Dnav'
 import Footer from './Dfooter'
 import axios from 'axios'
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 const Dprofile = () => {
+  const navigate = useNavigate()
+    useEffect(() => {
+        if (!localStorage.getItem('token')) {
+            navigate('/')
+        }
+    })
   const [doctor, setDoctor] = useState([]);
   useEffect(() => {
     getAllAdmin();

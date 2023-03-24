@@ -1,10 +1,36 @@
-import React from 'react'
+import {useEffect,useState} from 'react'
 // import Avatar1 from  './images/avatars/avatar-2.jpg'
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
+import axios  from 'axios'
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
-import {Link} from 'react-router-dom'
+import {Link,useNavigate} from 'react-router-dom'
 const Dnav = () => {
+    const navigate = useNavigate()
+    useEffect(() => {
+        if (!localStorage.getItem('token')) {
+            navigate('/')
+        }
+    })
+    const [doctor, setDoctor] = useState([]);
+    useEffect(() => {
+        getAllAdmin();
+    }, []);
+    console.log("", doctor);
+    const getAllAdmin = async (req) => {
+        const data = await axios.get(`http://localhost:5000/api/doctor/profile`,
+            {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': ' Bearer ' + localStorage.getItem("token")
+                }
+            }).then((res) => {
+                setDoctor(res.data.data.user)
+                console.log(res.data.data.user)
+            })
+    }
   return (
+
     <>
 <nav className="navbar navbar-expand navbar-light navbar-bg">
     <a className="sidebar-toggle js-sidebar-toggle">
@@ -111,8 +137,7 @@ const Dnav = () => {
                         <a href="#" className="list-group-item">
                             <div className="row g-0 align-items-center">
                                 <div className="col-2">
-                                    {/* <img src={Avtar1} className="avatar img-fluid rounded-circle"
-                                        alt="William Harris" /> */}
+                                    
                                 </div>
                                 <div className="col-10 ps-2">
                                     <div className="text-dark">William Harris</div>
@@ -158,23 +183,11 @@ const Dnav = () => {
                 <a className="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
                     <i className="align-middle" data-feather="settings"></i>
                 </a>
-
                 <a className="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                    <img src="img/avatars/user.png" className="avatar img-fluid rounded me-1" alt="Charles Hall" /> 
+                   <b>{doctor.name}</b>
 					<span className="text-dark"></span>
                 </a>
-                <div className="dropdown-menu dropdown-menu-end">
-                    <a className="dropdown-item" href="pages-profile.html"><i className="align-middle me-1"
-                            data-feather="user"></i> Profile</a>
-                    <a className="dropdown-item" href="#"><i className="align-middle me-1" data-feather="pie-chart"></i>
-                        Analytics</a>
-                    <div className="dropdown-divider"></div>
-                    <a className="dropdown-item" href="#"><i className="align-middle me-1" data-feather="settings"></i>
-                        Settings</a>
-                    
-                    <div className="dropdown-divider"></div>
-                    <a className="dropdown-item" href="alogout.php">Log out</a>
-                </div>
+               
             </li>
         </ul>
     </div>
@@ -182,5 +195,4 @@ const Dnav = () => {
     </>
   )
 }
-
 export default Dnav
