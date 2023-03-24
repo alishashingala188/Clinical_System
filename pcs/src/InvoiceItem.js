@@ -5,16 +5,7 @@ import Button from 'react-bootstrap/Button';
 import { BiTrash } from "react-icons/bi";
 import EditableField from './EditableField';
 
-class InvoiceItem extends React.Component {
-  render() {
-    var onItemizedItemEdit = this.props.onItemizedItemEdit;
-    var currency = this.props.currency;
-    var rowDel = this.props.onRowDel;
-    var itemTable = this.props.items.map(function(item) {
-      return (
-        <ItemRow onItemizedItemEdit={onItemizedItemEdit} item={item} onDelEvent={rowDel.bind(this)} key={item.id} currency={currency}/>
-      )
-    });
+const InvoiceItem=()=> {
     return (
       <div>
         <Table>
@@ -27,21 +18,17 @@ class InvoiceItem extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {itemTable}
+          
           </tbody>
         </Table>
-        <Button className="fw-bold" onClick={this.props.onRowAdd}>Add Item</Button>
+        <Button className="fw-bold">Add Item</Button>
       </div>
     );
 
   }
 
-}
-class ItemRow extends React.Component {
-  onDelEvent() {
-    this.props.onDelEvent(this.props.item);
-  }
-  render() {
+const ItemRow=()=>{
+  
     return (
       <tr>
         <td style={{width: '100%'}}>
@@ -98,7 +85,5 @@ class ItemRow extends React.Component {
     );
 
   }
-
-}
 
 export default InvoiceItem;

@@ -3,13 +3,27 @@ import Sidebar from './Sidebar'
 import Nav from './Nav'
 import Footer from './Footer'
 import axios from 'axios'
+import { useParams } from 'react-router-dom';
+import { message } from 'antd'
 const Changepwd = () => {
     const [oldpassword, setOldpassword] = useState("");
     const [password, setPassword] = useState("");
     const [confirmpassword, setConfirmPassword] = useState("");
-
+    const token = localStorage.getItem("token")
     const changepassword = async () => {
-        const { result } = await axios.put('http://localhost:5000/api/admin/cpassword/');
+        const credential={
+            oldpassword:oldpassword,
+            password:password,
+            confirmpassword:confirmpassword
+        }
+        console.log(credential);
+        const { result } = await axios.put(`http://localhost:5000/api/admin/change-password`,credential, {
+            method: "PUT",
+            headers: {
+                'Authorization': `Bearer ${token}`
+        }
+        });
+        message.success("password changed")
         console.log(result);
     }
     return (
@@ -46,9 +60,6 @@ const Changepwd = () => {
                                                                 placeholder="password" required />
                                                         </div>
                                                     </div>
-
-
-
                                                     <div className="card">
 
                                                         <div className="card-body">

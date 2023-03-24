@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import User from '../images/user.png'
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
-
+import { message } from "antd";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,7 +19,7 @@ const Login = () => {
     .then(async (res) => {
       console.log(res);
         await localStorage.setItem("token", res.data.data.token);
-        alert("Login Successfully...")
+        message.success("Login Successfully");
         if (res?.data?.data?.user?.type === "admin") {
           await Navigate("/dashboard");
         } else {

@@ -27,20 +27,20 @@ const Login = () => {
     const credentials = {
       email: email,
       password: password
-    };
-   
-    const data = await axios.post("http://localhost:5000/api/user/login", credentials)
+    }; 
+    const { data } = await axios.post("http://localhost:5000/api/rece/rlogin", credentials)
        .then(async(res)=>{
          await localStorage.setItem("token", res.data.data.token);
         message.success("Login sucessfully")
-          Navigate('/dashboard')
+          Navigate('/rdashboard')
         }).catch((err)=>{
-      alert("username and password are wrong..")
+          alert("username and password are wrong..")
         })
+        // console.log(data);
     }
     return(
-        <div >
-        <Grid  >
+        <div>
+        <Grid>
             <Paper elevation={20} style={paperStyle}   >
                 <Grid align='center'>
                      <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
@@ -59,13 +59,10 @@ const Login = () => {
                     }
                     label="Remember me"
                  />
-                <Button type='submit' color='primary' variant="contained" style={btnstyle} fullWidth onClick={onLogin}>Sign in</Button>
-                
-            </Paper>
-          
+                <Button type='submit' color='primary' variant="contained" style={btnstyle} fullWidth onClick={onLogin}>Sign in</Button>      
+            </Paper>     
         </Grid>
         </div>
     )
 }
-
 export default Login

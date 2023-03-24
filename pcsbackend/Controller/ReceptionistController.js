@@ -5,11 +5,13 @@ const bcrypt = require("bcrypt");
 //const Todo = require("../models/todosModel");
 const db = require("../models/UserModal.js");
 const  Receptionist= require("../models/Receptionist");
+const { getUserToken } = require('../Config/authenicate');
 //const CryptoJS = require("crypto-js");
 
 //1 login 
 
 const loginReceptionist = async (req, res, next) => {
+  debugger
     try {
         const validateSchema = Joi.object().keys({
           email: Joi.string().required().email(),
@@ -58,7 +60,6 @@ const loginReceptionist = async (req, res, next) => {
         });
 };
 }
-
 // register admin 
 
 const addReceptionist =async(req,res)=>{

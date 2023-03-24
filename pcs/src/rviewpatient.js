@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import Sidebar from './Dsidebar'
-import Nav from './Dnav'
-import Footer from './Dfooter'
+import Sidebar from './Rsidebar'
+import Nav from './Rnav'
+import Footer from './Rfooter'
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Link } from 'react-router-dom';
@@ -12,7 +12,7 @@ const ViewPatient = () => {
   useEffect(() => {
     getAllPatient();
     handleDelete();
-  }, []);
+  },[]);
 
   const getAllPatient = async () => {
     const { data } = await axios.get('http://localhost:5000/api/user/');
@@ -38,7 +38,7 @@ const ViewPatient = () => {
               <div className="container-fluid p-0">
               <h1>View Doctor</h1>
               <br/>
-                <table cellPadding="10" cellSpacing="300px" border="2px solid" style={{borderColor:"#3b7ddd"}} >
+                <table cellPadding="5" cellSpacing="200px" border="2px solid" style={{borderColor:"#3b7ddd"}} >
                 
                   <thead border="2px solid blue">
                     <tr style={{backgroundColor:"#3b7ddd",fontSize:"20",fontWeight:"bold",color:"white",textAlign:"center"}} color="primary">
@@ -49,30 +49,24 @@ const ViewPatient = () => {
                       <th>age</th>
                       <th>sec_question</th>
                       <th>answer</th>
-                      <th>Operation</th>
+                     
                       </tr>
                   </thead>
                   <tbody>
                     {
-                      patients.map(p => {
+                      patients.map(patient => {
                         //console.log(doctor);
                        return  <tr style={{marginBottom:"20px"}}>
-                        <td> {p.full_name} </td>
-                          <td> {p.username}  </td>
-                          <td> {p.address}</td>
-                          <td>{p.contact_no}  </td>
-                          <td> {p.age} </td>
-                          <td> {p.sec_question} </td>
-                          <td>  {p.answer}</td> 
-                          <td> <td>
-                            <Link to={`/pedit/${p.id}`} className="btn btn-success">
-                              <EditIcon color='' />Edit</Link>
-                              <button className='btn btn-danger' style={{border:"none"}} onClick={()=>handleDelete(p.id)}> <DeleteIcon color='' />Delete</button>
-                         </td></td>
+                        <td> {patient.full_name} </td>
+                          <td> {patient.username}  </td>
+                          <td> {patient.address}</td>
+                          <td>{patient.contact_no}  </td>
+                          <td> {patient.age} </td>
+                          <td> {patient.sec_question} </td>
+                          <td>  {patient.answer}</td> 
                         </tr>
                       })
-                    }
-                  
+                    }     
                   </tbody>
                 </table>
               </div>

@@ -6,9 +6,10 @@ const bcrypt = require("bcrypt");
 const db = require("../models/AdminModule");
 const Patient = require("../models/PatientModule.js");
 const {getUserToken}=require('../Config/authenicate');
+const Appointment=require('../Models/AppointmentModal')
 //login 
-const loginPatient = async (req, res, next) => {
 
+const loginPatient = async (req, res, next) => {
   try {
     const validateSchema = Joi.object().keys({
       email: Joi.string().required().email(),
@@ -43,8 +44,8 @@ const loginPatient = async (req, res, next) => {
         status: 200,
         message: "Login Successful",
         data:{
-          user
-,token
+          user,
+          token
         }
         })
     }
@@ -57,8 +58,6 @@ const loginPatient = async (req, res, next) => {
     });
   }
 };
-
-
 
 // register admin 
 
@@ -253,11 +252,8 @@ const notification =async(req,res)=>{
   try {
     
   } catch (error) {
-    console.log(error);
-    
-    
+    console.log(error); 
   }
-
 }
 const getAllNotificationController = async (req, res) => {
   try {
@@ -283,6 +279,27 @@ const getAllNotificationController = async (req, res) => {
   }
 };
 
+
+
+const getAppointment = async (req, res) => {
+  try {
+    let doctor = await Appointment.findAll({ where: { uid: req.user.id } });
+    if (!doctor) {
+      return res.status(400).json({
+        message: "error fetching appointment"
+      })
+    }
+    res.status(200).json({
+      data: doctor
+    })
+  } catch (error) {
+    res.status(400).json({
+      message: error.message
+    })
+  }
+
+}
+
 module.exports = {
    loginPatient,
   addPatient,
@@ -290,7 +307,8 @@ module.exports = {
   deletePatient,
   getPatientById,
   getAllPatient,
-  getAllNotificationController
+  getAllNotificationController,
+  getAppointment
 
 }
 

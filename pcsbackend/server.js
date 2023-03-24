@@ -42,6 +42,12 @@ app.use("/api/", router);
 const rrouter = require("./routes/ReceptionistRoute");
 app.use("/api/rece/", rrouter);
 
+
+//Router in bill
+
+const brouter = require("./routes/BillRoute");
+app.use("/api/bill/", brouter);
+
 // app.use(
 //     session({
 //         name:'session_id',

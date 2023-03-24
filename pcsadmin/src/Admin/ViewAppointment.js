@@ -3,7 +3,7 @@ import axios from 'axios';
 import Sidebar from './Sidebar'
 import Nav from './Nav'
 import Footer from './Footer'
-
+import './table.css'
 const ViewDoctor = () => {
   const [appointment, setAppointment] = useState([]);
   useEffect(() => {
@@ -13,7 +13,6 @@ const ViewDoctor = () => {
   
   const getAllAppoitment = async () => {
     const { data } = await axios.get('http://localhost:5000/api/');
-    // const resData = await data.json();
     setAppointment(data)
   }
 
@@ -35,9 +34,9 @@ const ViewDoctor = () => {
               <div className="container-fluid p-0">
                 <h1>View Appointment</h1>
                 <br />
-                <table cellPadding="5" cellSpacing="200px" border="2px solid" style={{ borderColor: "#3b7ddd" }} >
+                <table cellPadding="5" cellSpacing="300" border="2px solid" style={{ borderColor: "#3b7ddd" }} >
                   <thead border="2px solid blue">
-                    <tr style={{ backgroundColor: "#3b7ddd", fontSize: "20", fontWeight: "bold", color: "white", textAlign: "center" }} color="primary">      
+                    <tr style={{ backgroundColor: "#3b7ddd", fontSize: "20", fontWeight: "bold", color: "white", textAlign: "center" ,height:'30px'}} color="primary">      
                       <th>Patient id</th>
                       <th>contact_no</th>
                       <th>Date</th>
@@ -52,11 +51,11 @@ const ViewDoctor = () => {
                         //console.log(doctor);
                         return <tr style={{ marginBottom: "20px" }}>
                           <td> {d.uid} </td>
-                          <td>{d.contact_no}  </td>
+                          <td> {d.contact_no}  </td>
                           <td> {d.date} </td>
                           <td> {d.time} </td>
-                          <td>  {d.a_reason}</td>
-                          <td>  {d.status}</td>
+                          <td> {d.a_reason}</td>
+                          <td> {d.status}</td>
 
                           {/* <td>
                             <Link to={`/dedit/${d.id}`}>
@@ -66,7 +65,6 @@ const ViewDoctor = () => {
                         </tr>
                       })
                     }
-
                   </tbody>
                 </table>
               </div>

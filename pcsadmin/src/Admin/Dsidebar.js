@@ -34,7 +34,7 @@ const Dsidebar = () => {
                             </Link>
                         </li>
                         <li className="sidebar-item">
-                            <Link className="sidebar-link" to="/Profile">
+                            <Link className="sidebar-link" to="/dprofile">
                                 <AccountCircleOutlinedIcon classNameName="align-middle" /><span className="align-middle">Profile</span>
                             </Link>
                         </li>

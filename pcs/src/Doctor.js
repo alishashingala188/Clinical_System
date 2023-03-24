@@ -3,6 +3,7 @@ import axios from 'axios';
 import Sidebar from './Sidebar'
 import Nav from './Nav'
 import Footer from './Footer'
+import './table.css'
 
 const Doctor = () => {
   const [doctors, setDoctor] = useState([]);
@@ -26,10 +27,10 @@ const Doctor = () => {
             <main class="content">
               <div class="container-fluid p-0">
                 <h1>View Doctor</h1>
-                <br />
-                <table cellPadding="5" cellSpacing="200px" border="2px solid" style={{ borderColor: "#3b7ddd",marginLeft:50 }} >
+                <br/>
+                <table  border="2px solid" style={{ borderColor: "#3b7ddd",marginLeft:50 ,width:"70%"}} >
                   <thead>
-                    <tr style={{ backgroundColor: "#3b7ddd", fontSize: "20", fontWeight: "bold", color: "white", textAlign: "center"}} color="primary">
+                    <tr style={{ backgroundColor: "#3b7ddd", fontSize: "20", fontWeight: "bold", color: "white", textAlign: "center", height:30}} >
                       <th>DoctorName</th>
                       <th>Username</th>
                       <th>Education</th>
@@ -39,11 +40,11 @@ const Doctor = () => {
                       <th>Clinic_name</th>     
                     </tr>
                   </thead>
-                  <tbody cellPadding="5" cellSpacing="200">
+                  <tbody >
                     {
                       doctors.map(d => {
                         //console.log(doctor);
-                        return <tr style={{ marginBottom: "20px" }}>
+                        return <tr cellSpacing="200px" style={{}}>
                           <td> {d.name} </td>
                           <td> {d.username}  </td>
                           <td> {d.education}</td>

@@ -4,11 +4,10 @@ const Doctor = require('../Models/UserModal.js')
 const { getUserToken } = require('../Config/authenicate');
 const { where } = require('sequelize');
 const Appointment = require('../Models/AppointmentModal');
-
+const Patient = require('../Models/PatientModule');
 //Login in doctor
 
 const loginDoctor = async (req, res, next) => {
-
   try {
     const validateSchema = Joi.object().keys({
       email: Joi.string().required().email(),
@@ -30,7 +29,6 @@ const loginDoctor = async (req, res, next) => {
     const isPasswordValid = await bcrypt.compare(
       req.body.password,
       user.password,
-
     );
     if (!isPasswordValid) {
       return res.status(412).json({
@@ -234,12 +232,29 @@ const getAllDoctor = async (req, res) => {
 
 
 const getAppointment = async (req, res) => {
-  
   try {
     let doctor = await Appointment.findAll({ where: { did: req.user.id } });
     if (!doctor) {
       return res.status(400).json({
         message: "error fetching appointment"
+      })
+    }
+    res.status(200).json({
+      data: doctor
+    })
+  } catch (error) {
+    res.status(400).json({
+      message: error.message
+    })
+  }
+
+}
+const getPatient = async (req, res) => {
+  try {
+    let doctor = await Patient.findAll(Appointment.uid );
+    if (!doctor) {
+      return res.status(400).json({
+        message: "error fetching patient"
       })
     }
     res.status(200).json({
@@ -262,6 +277,7 @@ module.exports = {
   deleteDoctor,
   getDoctorById,
   getAllDoctor,
-  getAppointment
+  getAppointment,
+  getPatient
 
 }

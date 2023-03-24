@@ -14,10 +14,11 @@ arouter.get('/profile', verifyUserToken, (req, res) =>{
         },
       });
 });
+// arouter.post('/profile',adminController.profile)
+arouter.put("/change-password", verifyUserToken, adminController.changePassword);
 arouter.post("/addAdmin", adminController.addAdmin);
 arouter.put("/:id",adminController.updateAdmin);
 arouter.delete("/:id", adminController.deleteAdmin);
 arouter.get("/:id", adminController.getAdminById);
 arouter.get("/", adminController.getAllAdmin);
-arouter.put("/cpassword/:id",adminController.changePassword);
-module.exports = arouter;   
+module.exports = arouter;    

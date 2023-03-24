@@ -2,6 +2,7 @@ import React from 'react'
 import Dashboard from './Admin/Dashboard.js'
 import { Route, BrowserRouter as Router,Routes } from 'react-router-dom'
 import Profile from './Admin/Profile'
+import Dprofile from './Admin/dprofile'
 import AddDoctor from './Admin/AddDoctor.js'
 import Chart from './Admin/Chart.js'
 import ViewDoctor from './Admin/ViewDoctor'
@@ -26,6 +27,7 @@ const App = () => {
             <Route path='/dashboard'  element={<Dashboard />}  />
             <Route path='/ddashboard'  element={<Ddashboard />}  />
             <Route path='/Profile'  element={<Profile/>}/>
+            <Route path='/dprofile'  element={<Dprofile/>}/>
             <Route path='/AddDoctor'  element={<AddDoctor/>} />
             <Route path='/ViewDoctor'  element={<ViewDoctor/>}/>
             <Route path='/Chart'  element={<Chart/>} />

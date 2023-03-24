@@ -1,5 +1,6 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
+import React from 'react'   
+import { Link ,useNavigate} from 'react-router-dom'
+import { message } from "antd";
 import DashboardCustomizeOutlinedIcon from '@mui/icons-material/DashboardCustomizeOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
@@ -11,6 +12,12 @@ import PasswordOutlinedIcon from '@mui/icons-material/PasswordOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import User from '../images/user.png'
 const Sidebar = () => {
+    const navigate = useNavigate();
+    const handleLogout = () => {
+        localStorage.clear();
+        message.success("Logout Successfully");
+        navigate("/");
+      };
     return (
         <>
             <nav id="sidebar" className="sidebar js-sidebar">
@@ -57,9 +64,6 @@ const Sidebar = () => {
                             <MedicalInformationOutlinedIcon  classNameName="align-middle" /> <span className="align-middle">View Doctor</span>
                             </Link>
                         </li>
-
-                      
-
                         <li className="sidebar-item">
                             <Link className="sidebar-link" to="/Chart">
                             <BorderColorOutlinedIcon  classNameName="align-middle" /> <span className="align-middle">Chart</span>
@@ -81,18 +85,15 @@ const Sidebar = () => {
                             <CreditScoreOutlinedIcon  classNameName="align-middle" /> <span className="align-middle">View Appointment</span>
                             </Link>
                         </li>
-
-                       
-
                         <li className="sidebar-item ">
                             <Link className="sidebar-link" to="/Changepwd">
                             <PasswordOutlinedIcon  classNameName="align-middle" /><span className="align-middle">Change Password</span>
                             </Link>
                         </li>
 
-                        <li className="sidebar-item ">
-                            <Link className="sidebar-link" to="/">
-                            <LogoutOutlinedIcon  classNameName="align-middle" /> <span className="align-middle">Logout</span>
+                        <li className="sidebar-item " onClick={handleLogout}>
+                            <Link className="sidebar-link" to="/" >
+                                <LogoutOutlinedIcon classNameName="align-middle" /> <span className="align-middle">Logout</span>
                             </Link>
                         </li>
                     </ul>

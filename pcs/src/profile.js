@@ -7,14 +7,14 @@ import Nav from './Nav'
 import Footer from './Footer'
 import axios from 'axios'
 import { Link } from 'react-router-dom';
-const Profile = () => {
-  const [admin, setAdmin] = useState([]);
+const Dprofile = () => {
+  const [patient, setPatient] = useState([]);
   useEffect(() => {
-    getAllAdmin();
+    getAllPatient();
   }, []);
-  console.log("", admin);
-  const getAllAdmin = async (req) => {
-    const data = await axios.get(`http://localhost:5000/api/admin/profile`,
+  console.log("", patient);
+  const getAllPatient = async (req) => {
+    const data = await axios.get(`http://localhost:5000/api/user/Profile`,
       {
         method: "GET",
         headers: {
@@ -22,9 +22,10 @@ const Profile = () => {
           'Authorization': ' Bearer ' + localStorage.getItem("token")
         }
       }).then((res) => {
-        setAdmin(res.data.data.user)
+        setPatient(res.data.data.user)
         console.log(res.data.data.user)
       })
+      console.log(data);
   }
   return (
     <>
@@ -36,44 +37,47 @@ const Profile = () => {
             <main className="content">
               <div className="container-fluid p-0"></div>
               <div className="mb-3">
-                <h1 className="h3 d-inline align-middle">Add Doctor</h1>
               </div>
               <div className='pcard'>
                 <div className="upper-container">
                   <div className="image-container">
                     <img src={image} alt='' height='100px' className="images" width='200px' />
                   </div>
-                </div>
-
+                </div>  
                 <div className='lower-container'>
+                <h1>{patient.full_name}</h1>
                   <div className='filed-container'>
-                
-                          <table cellPadding="20" cellSpacing="30" style={{ textAlign: "center", marginLeft: 400, fontWeight: "bold" }}>
-                            <tr>
-                              <td>Name :: </td>
-                              <td>{admin.name}</td>
-                            </tr>
+               
+                          <table cellPadding="10" cellSpacing="30" style={{ textAlign: "center", marginLeft: 400, fontWeight: "bold" ,marginTop:'-70px'}}>
+                           
                             <tr>
                               <td>Email :: </td>
-                              <td>{admin.email}</td>
+                              <td>{patient.email}</td>
                             </tr>
                             <tr>
                               <td>UserName :: </td>
-                              <td>{admin.username}</td>
+                              <td>{patient.username}</td>
                             </tr>
                             <tr>
                               <td>Contact No :: </td>
-                              <td>{admin.contact_no}</td>
+                              <td>{patient.contact_no}</td>
+                            </tr>
+                            <tr>
+                              <td>education :: </td>
+                              <td>{patient.education}</td>
+                            </tr>
+                            <tr>
+                              <td>Speciality :: </td>
+                              <td>{patient.speciality}</td>
                             </tr>
                             {/* <tr>
                             <td></td>
                             <td>
-                              <Link to={`/Changepwd/${admin.id}`} className='btn btn-info'>
+                              <Link to={`/Changepwd/${patient.id}`} className='btn btn-info'>
                                 <EditIcon color='' />Change password</Link>
                             </td>
                           </tr> */}
                           </table>
-                      
                   </div>
                   <Link />
                 </div>
@@ -92,4 +96,4 @@ const Profile = () => {
 
 
 
-export default Profile;
+export default Dprofile;

@@ -31,14 +31,14 @@ const Rsidebar = () => {
                         </li>
 
                         <li class="sidebar-item">
-                            <Link class="sidebar-link" to="/Rprofile">
+                            <Link class="sidebar-link" to="/rprofile">
                           <AccountCircleOutlinedIcon  className="align-middle" /><span class="align-middle">Rprofile</span>
                             </Link>
                         </li>
 
 
                         <li class="sidebar-item">
-                            <Link class="sidebar-link" to="/ViewPatient">
+                            <Link class="sidebar-link" to="/rviewpatient">
                             <FavoriteBorderOutlinedIcon  className="align-middle" /> <span class="align-middle"> View Patient </span>
                             </Link>
                         </li>

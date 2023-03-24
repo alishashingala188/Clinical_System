@@ -38,9 +38,9 @@ const ViewDoctor = () => {
               <div className="container-fluid p-0">
                 <h1>View Doctor</h1>
                 <br />
-                <table cellPadding="5" cellSpacing="200px" border="2px solid" style={{ borderColor: "#3b7ddd" }} >
+                <table cellPadding="5" cellSpacing="200px" border="2px solid" style={{ borderColor: "#3b7ddd",}} >
                   <thead border="2px solid blue">
-                    <tr style={{ backgroundColor: "#3b7ddd", fontSize: "20", fontWeight: "bold", color: "white", textAlign: "center" }} color="primary">
+                    <tr style={{ backgroundColor: "#3b7ddd", fontSize: "25", fontWeight: "inherit", color: "white", textAlign: "center",height:'50px'}} color="">
                       <th>DoctorName</th>
                       <th>Username</th>
                       <th>Education</th>
@@ -64,9 +64,9 @@ const ViewDoctor = () => {
                           <td> {d.email} </td>
                           <td>  {d.clinic_name}</td>
                           <td>
-                            <Link to={`/dedit/${d.id}`}>
-                              <EditIcon color='success' />Edit</Link>
-                              <button classNameName='btn btn-dangr' style={{border:"none"}} onClick={()=>handleDelete(d.id)}> <DeleteIcon color='error' />Delete</button>
+                            <Link to={`/dedit/${d.id}`} className='btn btn-success'>
+                              <EditIcon color='' />Edit</Link>
+                              <button className='btn btn-danger' style={{border:"none"}} onClick={()=>handleDelete(d.id)}> <DeleteIcon color='' />Delete</button>
                          </td>
                         </tr>
                       })

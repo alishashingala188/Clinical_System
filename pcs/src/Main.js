@@ -26,6 +26,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import { Link } from 'react-router-dom'
+import { maxWidth } from '@mui/system';
 export const Main = () => {
 
 
@@ -35,14 +36,14 @@ export const Main = () => {
         <div class="container">
           <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
-              <a class="navbar-brand1" href="#">
-                <img src={Logo} alt="logo"/>
+              <a class="navbar-brand1" href="#" style={{marginLeft:-250}}>
+                <img src={Logo} alt="logo" />
               </a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <div class="collapse navbar-collapse" id="navbarSupportedContent" style={{marginLeft:-200}}>
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0"  >
                   <li class="nav-item">
                     <a class="nav-link1 active" aria-current="page" href="#home-section">Home</a>
                   </li>
@@ -72,7 +73,8 @@ export const Main = () => {
                   </li>
 
                   <li class="nav-item">
-                    <Link class="nav-link1" to="/signin">Sign In </Link>
+                        <Link class="nav-link1" to="/signin"> Patient </Link>
+                        <Link class="nav-link1" to="/rlogin">Receptionist </Link>    
                   </li>
                 </ul>
               </div>

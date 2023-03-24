@@ -25,10 +25,11 @@ const addA = async (req, res) => {
 // get all apoointment
 const getA = async (req, res) => {
   const todo = await Appointments.findAll(
- {uid : Patient.full_name},
- {did : User.name});
+   {uid : Patient.full_name},
+   {did : User.name});
   res.status(200).send(todo);
 };
+
 //update a appointment`1
 const updateA = async (req, res) => {
   const todo = await Appointments.update(req.body, {
@@ -53,13 +54,11 @@ const deleteA = async (req, res) => {
 
 const editStatus = async (req, res) => {
   let Id = req.query.id ? req.query.id : req.params.id;
-  console.log("aId", Id);
-  let status = "confirm"
-  console.log("status", status);
+ // console.log("aId", Id);
+  //console.log("status", status);
     const result = await Appointments.update(
-     {where: {status:status}},
-      {where: { id: Id } }
-    );
+ { status:req.body.status},
+      {where: { id: Id } });
 
     if (result[0] === 0) {
       return res.status(412).json({

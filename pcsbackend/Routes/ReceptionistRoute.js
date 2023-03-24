@@ -17,7 +17,7 @@ rrouter.get('/profile', verifyUserToken, (req, res) =>{
 rrouter.post("/addrece", receptionstController.addReceptionist);
 rrouter.put("/:id", receptionstController.updateReceptionist);
 rrouter.get("/",receptionstController.getAllReceptionist);
-rrouter.post("/dlogin", receptionstController.updateReceptionist)
+rrouter.post("/rlogin", receptionstController.loginReceptionist)
 
 
 module.exports = rrouter;

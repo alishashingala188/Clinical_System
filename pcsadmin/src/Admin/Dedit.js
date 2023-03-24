@@ -11,7 +11,6 @@ const Dedit = () => {
     const [username, setUsername] = useState("");
     const [address, setAddress] = useState("");
     const [clinic_name, setClinic_name] = useState("");
-
     const { id } = useParams();
     let Navigate = useNavigate();
     useEffect(() => {

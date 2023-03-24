@@ -56,7 +56,6 @@ const Users = db.define(
         type: DataTypes.STRING,
         allowNull: false
     },
-
     time: {
         type: DataTypes.STRING,
         allowNull: true
@@ -70,8 +69,10 @@ const Users = db.define(
         paranoid: true,
     },
     {
-        tableName: "user",
-    });
+        tableName: "users",
+    }
+    );
+
 (async () => {
     await db.sync({ force: false });   // not crete model in second time
     console.log('sync here.....!!!');

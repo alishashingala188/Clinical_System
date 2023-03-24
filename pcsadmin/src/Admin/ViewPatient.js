@@ -65,9 +65,9 @@ const ViewPatient = () => {
                           <td> {patient.sec_question} </td>
                           <td>  {patient.answer}</td> 
                           <td> <td>
-                            <Link to={`/pedit/${patient.id}`}>
-                              <EditIcon color='success' />Edit</Link>
-                              <button classNameName='btn btn-dangr'  style={{border:"none"}} onClick={()=>handleDelete(patient.id)}> <DeleteIcon color='error' />Delete</button>
+                            <Link to={`/pedit/${patient.id}`} className="btn btn-success">
+                              <EditIcon color='' />Edit</Link>
+                              <button className='btn btn-danger'  style={{border:"none"}} onClick={()=>handleDelete(patient.id)}> <DeleteIcon color='' />Delete</button>
                          </td></td>
                         </tr>
                       })

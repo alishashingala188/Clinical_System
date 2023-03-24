@@ -2,19 +2,19 @@ import { useState, useEffect } from 'react'
 import React from 'react'
 import './Info.css'
 import image from './14.jpg'
-import Sidebar from './Sidebar'
-import Nav from './Nav'
-import Footer from './Footer'
+import Sidebar from './Dsidebar'
+import Nav from './Dnav'
+import Footer from './Dfooter'
 import axios from 'axios'
 import { Link } from 'react-router-dom';
-const Profile = () => {
-  const [admin, setAdmin] = useState([]);
+const Dprofile = () => {
+  const [doctor, setDoctor] = useState([]);
   useEffect(() => {
     getAllAdmin();
   }, []);
-  console.log("", admin);
+  console.log("", doctor);
   const getAllAdmin = async (req) => {
-    const data = await axios.get(`http://localhost:5000/api/admin/profile`,
+    const data = await axios.get(`http://localhost:5000/api/doctor/profile`,
       {
         method: "GET",
         headers: {
@@ -22,7 +22,7 @@ const Profile = () => {
           'Authorization': ' Bearer ' + localStorage.getItem("token")
         }
       }).then((res) => {
-        setAdmin(res.data.data.user)
+        setDoctor(res.data.data.user)
         console.log(res.data.data.user)
       })
   }
@@ -43,37 +43,41 @@ const Profile = () => {
                   <div className="image-container">
                     <img src={image} alt='' height='100px' className="images" width='200px' />
                   </div>
-                </div>
-
+                </div>  
                 <div className='lower-container'>
+                <h1>{doctor.name}</h1>
                   <div className='filed-container'>
-                
-                          <table cellPadding="20" cellSpacing="30" style={{ textAlign: "center", marginLeft: 400, fontWeight: "bold" }}>
-                            <tr>
-                              <td>Name :: </td>
-                              <td>{admin.name}</td>
-                            </tr>
+               
+                          <table cellPadding="10" cellSpacing="30" style={{ textAlign: "center", marginLeft: 400, fontWeight: "bold" ,marginTop:'-70px'}}>
+                           
                             <tr>
                               <td>Email :: </td>
-                              <td>{admin.email}</td>
+                              <td>{doctor.email}</td>
                             </tr>
                             <tr>
                               <td>UserName :: </td>
-                              <td>{admin.username}</td>
+                              <td>{doctor.username}</td>
                             </tr>
                             <tr>
                               <td>Contact No :: </td>
-                              <td>{admin.contact_no}</td>
+                              <td>{doctor.contact_no}</td>
+                            </tr>
+                            <tr>
+                              <td>education :: </td>
+                              <td>{doctor.education}</td>
+                            </tr>
+                            <tr>
+                              <td>Speciality :: </td>
+                              <td>{doctor.speciality}</td>
                             </tr>
                             {/* <tr>
                             <td></td>
                             <td>
-                              <Link to={`/Changepwd/${admin.id}`} className='btn btn-info'>
+                              <Link to={`/Changepwd/${doctor.id}`} className='btn btn-info'>
                                 <EditIcon color='' />Change password</Link>
                             </td>
                           </tr> */}
                           </table>
-                      
                   </div>
                   <Link />
                 </div>
@@ -92,4 +96,4 @@ const Profile = () => {
 
 
 
-export default Profile;
+export default Dprofile;

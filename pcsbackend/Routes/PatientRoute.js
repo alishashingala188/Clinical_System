@@ -1,11 +1,19 @@
 const { loginUser } = require('../Config/authenicate');
 const { verifyUserToken } = require('../Config/authenicate');
-
 const patientController =require('../Controller/PatientController');
-
-
 const prouter = require("express").Router();
 //patient Route
+
+prouter.get('/Profile', verifyUserToken, (req, res) =>{
+  return res.status(200).json({
+      status: 200,
+      message: "User found!",
+      data: {
+        user: req.user,
+      },
+    });
+});
+prouter.get("/appointment",verifyUserToken, patientController.getAppointment)
 prouter.post("/addPatient", patientController.addPatient);
 prouter.put("/:id", patientController.updatePatient);
 prouter.delete("/:id", patientController.deletePatient);

@@ -4,7 +4,7 @@ module.exports={
     HOST : "localhost",
     USER : "root",
     PASSWORD :"",
-    DB : "paperless",
+    DB : "pcs",
     dialect :"mysql",
     pool:{
         mix :5,

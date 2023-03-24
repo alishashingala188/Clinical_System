@@ -223,12 +223,13 @@ async function getAdminById(req, res) {
 
  // change password 
 
-async function changePassword(req, res) {
+ async function changePassword(req, res) {
+  
   try {
     const validateSchema = Joi.object().keys({
-      oldpassword:Joi.string().required(),
-      password: Joi.string().required(),
-      confirmpassword: Joi.string().required(),
+      oldpassword:Joi.string().min(6).required(),
+      password: Joi.string().min(6).required(),
+      confirmpassword: Joi.string().min(6).required(),
     });
     const validate = validateSchema.validate(req.body);
     if (validate.error) {
@@ -242,27 +243,27 @@ async function changePassword(req, res) {
         status: 412,
         message: "Passwords do not match",
       });
-    }
-    const admin = await Admin.findOne({ where: { id: req.params.id } });
-    if (!admin) {
+     }
+    const user = await Admin.findOne({ where: { id: req.user.id } });
+    if (!user) {
       return res.status(404).json({
         status: 404,
         message: "User not found",
       });
     }
-    const isMatch = await bcrypt.compare(req.body.oldpassword, admin.password);
+    const isMatch = await bcrypt.compare(req.body.oldpassword, user.password);
     if (!isMatch) {
       return res.status(412).json({
         status: 412,
-        message: "Old password is not correct",
+        message: "Old password is incorrect",
       });
     }
-    const password = await bcrypt.hash(req.body.password,10);
+    const password = await bcrypt.hash(req.body.password, 10);
     const result = await Admin.update(
       {
-        password,
+       password:password,
       },
-      { where: { id: req.params.id } }
+      { where: { id: req.user.id } }
     );
     if (!result) {
       return res.status(412).json({
@@ -282,15 +283,14 @@ async function changePassword(req, res) {
   }
 }
 
-
-
       module.exports={
         addAdmin,
         updateAdmin,
         deleteAdmin,
         getAdminById,
         getAllAdmin,
-        changePassword
+        changePassword,
+     
       }
       
     

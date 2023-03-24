@@ -15,6 +15,7 @@ drouter.get('/profile', verifyUserToken, (req, res) =>{
       });
 });
 drouter.get("/appointment",verifyUserToken, doctorController.getAppointment)
+drouter.get("/patient",verifyUserToken, doctorController.getPatient)
 drouter.post("/addDoctor", doctorController.addDoctor);
 drouter.put("/:id", doctorController.updateDoctor);
 drouter.delete("/:id",doctorController.deleteDoctor);
