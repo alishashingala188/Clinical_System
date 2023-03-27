@@ -4,10 +4,11 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 //const Todo = require("../models/todosModel");
 const db = require("../models/AdminModule");
-const Patient = require("../models/PatientModule.js");
+const Patients = require("../models/PatientModule.js");
 const {getUserToken}=require('../Config/authenicate');
 const Appointment=require('../Models/AppointmentModal')
-const Users=require('../Models/UserModal') 
+const Users=require('../Models/UserModal');
+const Bill =require('../Models/BillModal')
 //login 
 
 const loginPatient = async (req, res, next) => {
@@ -25,7 +26,7 @@ const loginPatient = async (req, res, next) => {
       
       });
     }
-    const user = await Patient.findOne({ where: { email: req.body.email}  });
+    const user = await Patients.findOne({ where: { email: req.body.email}  });
     const token=await getUserToken(user)
     user.token=token
     console.log(user.token);
@@ -87,7 +88,7 @@ const addPatient = async (req, res) => {
         message: validate.error.details[0].message,
       });
     }
-    const patient = await Patient.findOne({ where: { email: req.body.email } });
+    const patient = await Patients.findOne({ where: { email: req.body.email } });
     // findOne;
     if (patient) {
       return res.status(412).json({
@@ -106,7 +107,7 @@ const addPatient = async (req, res) => {
 
       // console.log("req :: ", req.body);
       // const user = new User(req.body);
-      const data = await Patient.create(req.body);
+      const data = await Patients.create(req.body);
       return res.status(200).json({
         status: 200,
         message: "patient registered successfully",
@@ -126,7 +127,7 @@ async function updatePatient(req, res) {
   let id = req.query.id ? req.query.id : req.params.id;
   console.log("aId", id);
   try {
-    const patient = await Patient.findOne({ where: { id: id } });
+    const patient = await Patients.findOne({ where: { id: id } });
     if (!patient) {
       return res.status(412).json({
         status: 412,
@@ -147,7 +148,7 @@ async function updatePatient(req, res) {
       });
     }
 
-    const result = await Patient.update(
+    const result = await Patients.update(
       req.body,
       { where: { id: id } },
       // { returning: true }
@@ -175,14 +176,14 @@ async function updatePatient(req, res) {
 async function deletePatient(req, res) {
   const id = req.query.id ? req.query.id : req.params.id;
   try {
-    const patient = await Patient.findOne({ where: { id: id } });
+    const patient = await Patients.findOne({ where: { id: id } });
     if (!patient) {
       return res.status(412).json({
         status: 412,
         message: "User not Found !"
       });
     }
-    const result = Patient.destroy({ where: { id: id } });
+    const result = Patients.destroy({ where: { id: id } });
     return res.status(200).json({
       status: 200,
       message: "Doctor deleted successfully...!!",
@@ -204,7 +205,7 @@ async function deletePatient(req, res) {
 async function getPatientById(req, res) {
   try {
     const id = req.params.id;
-    const result = await Patient.findOne({
+    const result = await Patients.findOne({
       where: { id },
     });
     return res.status(200).json({
@@ -226,7 +227,7 @@ async function getPatientById(req, res) {
 
 const getAllPatient = async (req, res) => {
 
-  let doctor = await Patient.findAll();
+  let doctor = await Patients.findAll();
   res.status(200).send(doctor)
 }
 
@@ -256,7 +257,7 @@ const notification =async(req,res)=>{
 }
 const getAllNotificationController = async (req, res) => {
   try {
-    const user = await Patient.findOne({ _id: req.body.id });
+    const user = await Patients.findOne({ _id: req.body.id });
     const seennotification = user.seennotification;
     const notifcation = user.notifcation;
     seennotification.push(...notifcation);
@@ -277,7 +278,6 @@ const getAllNotificationController = async (req, res) => {
     });
   }
 };
-
 const getAppointment = async (req, res) => {
   try {
     let doctor = await Appointment.findAll({where:{uid:req.user.id},
@@ -301,6 +301,26 @@ const getAppointment = async (req, res) => {
     })
   }
 }
+const ViewBill=async(req,res)=>{
+  try{
+let patient =await Bill.findAll({where:{uid:req.user.id}
+});
+
+if (!patient) {
+return res.status(400).json({
+  message: "error fetching appointment"
+})
+}
+res.status(200).json({
+data: patient
+})
+
+} catch (error) {
+res.status(400).json({
+message: error.message
+})
+}
+}
 
 module.exports = {
   loginPatient,
@@ -310,7 +330,8 @@ module.exports = {
   getPatientById,
   getAllPatient,
   getAllNotificationController,
-  getAppointment
+  getAppointment,
+  ViewBill
 
 }
 

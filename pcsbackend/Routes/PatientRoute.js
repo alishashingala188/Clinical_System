@@ -17,6 +17,7 @@ prouter.get('/profile', verifyUserToken, (req, res) =>{
     });
 });
 prouter.get("/appointment",verifyUserToken, patientController.getAppointment)
+prouter.get("/viewbill",verifyUserToken, patientController.ViewBill)
 prouter.post("/addPatient", patientController.addPatient);
 prouter.put("/:id", patientController.updatePatient);
 prouter.delete("/:id", patientController.deletePatient);
