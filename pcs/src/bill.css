@@ -2,7 +2,8 @@
 #invoice{
     padding: 30px;
     margin-left:100px;
-    width:90%
+    width:90%;
+    margin-top: -80px;
 }
 
 .invoice {

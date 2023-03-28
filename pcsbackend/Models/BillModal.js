@@ -13,6 +13,7 @@ const Bills = db.define(
     uid: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        unique:true,
         references: {
             model: patients,
             key: "id",
@@ -23,6 +24,7 @@ const Bills = db.define(
     did: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        unique:true,
         references: {
             model: users,
             key: "id",

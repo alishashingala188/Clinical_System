@@ -6,6 +6,9 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 import axios from 'axios'
+import { useParams } from 'react-router-dom';
+import { message } from 'antd';
+
 const InvoiceForm = () => {
   const [patients, setPatient] = useState([]);
   const [doctors, setDoctor] = useState([]);
@@ -21,7 +24,7 @@ const InvoiceForm = () => {
   const [discount, setDiscount] = useState(0)
   const [totle, setTotle] = useState(0)
   const [date, setDate] = useState()
-
+  const { id } = useParams();
 
   useEffect(() => {
     getAllPatient();
@@ -38,13 +41,11 @@ const InvoiceForm = () => {
     // const resData = await data.json();
     setDoctor(data)
   }
-
-
   const addBillHandler = async (e) => {
     e.preventDefault();
     const data = {
       did:did,
-      uid:uid,
+      uid:id,
       email:email,
       date:date,
       room_cost:room_cost,
@@ -57,8 +58,13 @@ const InvoiceForm = () => {
     }
     console.log(data);
     await axios.post('http://localhost:5000/api/bill/addbill', data).then(() => {
-      alert("Bill are generated successfully.....")
+     message.success("Bill Generated successfully...")
+    }).catch((err)=>{
+      message.error("error",err)
+    
     })
+
+   
   }
   return (
     <Form ml={200} onSubmit={addBillHandler} style={{marginLeft:220}}>
@@ -93,14 +99,7 @@ const InvoiceForm = () => {
             <Row className="mb-5">
               <Col>
                 <Form.Label className="fw-bold">Patient Name:</Form.Label>
-                <Form.Select placeholder="Who is this invoice from?" name="uid" className="my-2" required="required"
-                  onChange={(e) => setUid(e.target.value)} >
-                   {
-                            patients.map(p => {
-                              console.log(p);
-                              return<option value={p.id}>{p.full_name}</option>                            })
-                  }
-                </Form.Select>
+                <Form.Control placeholder="Who is this invoice from?" name="id" className="my-2" required="required" value={id}    />                   
                 <Form.Label className="fw-bold">Doctor Name:</Form.Label>
                 <Form.Select placeholder={"Who is this invoice from?"} name="did" className="my-2" autoComplete="name" required="required"
                   onChange={(e) => setDid(e.target.value)} >
@@ -129,7 +128,7 @@ const InvoiceForm = () => {
             <Row className="mt-4 justify-content-end">
               <Col lg={6}>
                 <div className="d-flex flex-row align-items-start justify-content-between">
-                  <span className="fw-bold">Subtotal:
+                  <span className="fw-bold">Subtotal:{parseInt(medician_cost)+parseInt(doctor_charge)+parseInt(room_cost)+parseInt(extra_charge)}
                   </span>
                   <span>
                   </span>
@@ -154,7 +153,6 @@ const InvoiceForm = () => {
             </Row>
             <hr className="my-4" />
               <Button variant="primary" type="submit" className="d-block w-100 height-50">Review Invoice</Button>
-         
           </Card>
         </Col> 
       </Row>

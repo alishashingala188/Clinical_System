@@ -1,6 +1,6 @@
 const aController = require("../controller/AController");
 const router = require("express").Router();
-
+const { verifyUserToken } = require('../Config/authenicate');
 router.post("/addTodo", aController.addA);
 // router.get("/getAllTodos", todoController.getAllTodos);
 

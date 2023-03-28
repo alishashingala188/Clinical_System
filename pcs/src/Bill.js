@@ -137,9 +137,6 @@ async function displayRazorpay() {
                             </div>
 
                             <div id="invoice">
-                                <div className="toolbar hidden-print">
-                                    <hr />
-                                </div>
                                 <div className="invoice overflow-auto">
                                     <div style={{ minWidth: '200px' }}>
                                         <header style={{ backgroundColor: '#3989c6', color: "white" }}>
@@ -170,7 +167,7 @@ async function displayRazorpay() {
                                                     <div className="date">Due Date: 30/10/2018</div>
                                                 </div>
                                             </div>
-                                            <table border="0" cellspacing="0" cellpadding="0">
+                                            <table border="0" cellspacing="10" cellpadding="10">
                                                 <thead>
                                                     <tr>
                                                         <th className="text-left">Index</th>

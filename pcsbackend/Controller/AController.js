@@ -24,9 +24,18 @@ const addA = async (req, res) => {
 
 // get all apoointment
 const getA = async (req, res) => {
-  const todo = await Appointments.findAll(
-   {uid : Patient.full_name},
-   {did : User.name});
+  const todo = await Appointments.findAll({
+    include: [{
+      model: Patient,
+     
+      as:"patients",
+      attributes: ['full_name', 'username'] 
+    }],
+  
+    
+     
+    
+  })
   res.status(200).send(todo);
 };
 
