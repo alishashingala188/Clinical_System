@@ -77,7 +77,7 @@ const ViewDoctor = () => {
                         ? appointments.map(d => {
                           // console.log(d)
                           return <tr style={{ marginBottom: "20px" }}>
-                            <td> {d.uid} </td>
+                            <td> {d.patients.full_name} </td>
                             <td>{d.contact_no}  </td>
                             <td> {d.date} </td>
                             <td> {d.time} </td>

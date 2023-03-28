@@ -5,8 +5,6 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
-import InvoiceItem from './InvoiceItem';
-import InputGroup from 'react-bootstrap/InputGroup';
 import axios from 'axios'
 const InvoiceForm = () => {
   const [patients, setPatient] = useState([]);
@@ -63,10 +61,12 @@ const InvoiceForm = () => {
     })
   }
   return (
-    <Form ml={100} onSubmit={addBillHandler}>
+    <Form ml={200} onSubmit={addBillHandler} style={{marginLeft:220}}>
       <Row>
         <Col md={8} lg={9} ml={10}>
-          <Card className="p-4 p-xl-5 my-3 my-xl-4">
+         
+          <Card className="p-4 p-xl-5 my-3 my-xl-4" >
+          <div style={{backgroundColor:'#71b7e6',height:50,marginTop:-40,width:760,marginLeft:-50,marginBottom:20}}></div>
             <div className="d-flex flex-row align-items-start justify-content-between mb-3">
               <div class="d-flex flex-column">
                 <div className="d-flex flex-column">
@@ -91,12 +91,6 @@ const InvoiceForm = () => {
             </div>
             <hr className="my-4" />
             <Row className="mb-5">
-              {/* <Col>
-                <Form.Label className="fw-bold">Bill to:</Form.Label>
-                <Form.Control placeholder={"Who is this invoice to?"} rows={3} value={this.state.billTo} type="text" name="billTo" className="my-2" onChange={(event) => this.editField(event)} autoComplete="name" required="required"/>
-                <Form.Control placeholder={"Email address"} value={this.state.billToEmail} type="email" name="billToEmail" className="my-2" onChange={(event) => this.editField(event)} autoComplete="email" required="required"/>
-                <Form.Control placeholder={"Billing address"} value={this.state.billToAddress} type="text" name="billToAddress" className="my-2" autoComplete="address" onChange={(event) => this.editField(event)} required="required"/>
-              </Col> */}
               <Col>
                 <Form.Label className="fw-bold">Patient Name:</Form.Label>
                 <Form.Select placeholder="Who is this invoice from?" name="uid" className="my-2" required="required"
@@ -159,7 +153,7 @@ const InvoiceForm = () => {
               </Col>
             </Row>
             <hr className="my-4" />
-              <Button variant="primary" type="submit" className="d-block w-100">Review Invoice</Button>
+              <Button variant="primary" type="submit" className="d-block w-100 height-50">Review Invoice</Button>
          
           </Card>
         </Col> 

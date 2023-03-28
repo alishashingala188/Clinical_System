@@ -90,7 +90,7 @@ const Dashboard = () => {
                         <main className="content">
                             <div className="container-fluid p-0">
 
-                                <h1 className="h3 mb-3"><strong>Analytics</strong> Dashboard</h1>
+                                <h1 className="h3 mb-3"><strong>Analytics </strong><b style={{color:'blue'}} >ADMIN</b>   Dashboard</h1>
 
                                 <div className="row">
                                     <div className="col-xl-6 col-xxl-5 d-flex">

@@ -5,13 +5,15 @@ import startOfWeek from "date-fns/startOfWeek";
 import React, { useEffect, useState } from "react";
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios'
-import { TimePicker } from "antd";
+import Sidebar from './Dsidebar'
+import Nav from './Dnav'
+import Footer from './Dfooter'
 import FullCalendar from '@fullcalendar/react' // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
 import { useNavigate } from "react-router-dom";
+import { width } from "@mui/system";
 
 const locales = {
     "en-US": require("date-fns/locale/en-US"),
@@ -61,19 +63,32 @@ function Calander() {
                 }
             });
         console.log(data);
-        let a=data.data.map((res)=>({title:res.a_reason,date:new Date(res.date),time:res.time}))
+        let a = data.data.map((res) => ({ title: res.a_reason, date: new Date(res.date), time: res.time }))
         setAllEvents(a);
     }
     return (
-        <div className="App">
-           
-        <FullCalendar
-        plugins={[ dayGridPlugin]}
-        events={allEvents}
-        eventBackgroundColor="red"
-      />
-      
-      </div>
+        <div className="wrapper">
+            <Sidebar />
+            <div className="wrapper">
+                <div className="main">
+                    <Nav />
+                    <main className="content">
+                        <div className="container-fluid p-0" width="300px">
+                           <div style={{width:'1000px'}}>
+                            <FullCalendar
+                                plugins={[dayGridPlugin]}
+                                events={allEvents}
+                                localizer={localizer}
+                                width={100}
+                            />
+                            </div> 
+                        </div>
+                    </main>
+                    <Footer />
+                </div>
+            </div>
+        </div>
+
     );
 }
 export default Calander

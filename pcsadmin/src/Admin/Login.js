@@ -17,7 +17,7 @@ const Login = () => {
 
     const  {data}  = await axios.post("http://localhost:5000/api/doctor/dlogin", credentials)
     .then(async (res) => {
-      console.log(res);
+
         await localStorage.setItem("token", res.data.data.token);
         message.success("Login Successfully");
         if (res?.data?.data?.user?.type === "admin") {
@@ -25,15 +25,8 @@ const Login = () => {
         } else {
           await Navigate("/ddashboard");
         }
-        // if (data.user.type === "admin") {
-        //   // console.log(id);
-        //    Navigate("/dashboard");
-          
-        // }
-        // else {
-        //    Navigate("/ddashboard");
-        //   alert("Login Successfully...")
-        // }
+      }).catch(()=>{
+        message.error("Plese enter valid username and password");
       })
   };
 

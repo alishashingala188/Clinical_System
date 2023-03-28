@@ -4,7 +4,7 @@ const Doctor = require('../Models/UserModal.js')
 const { getUserToken } = require('../Config/authenicate');
 const { where } = require('sequelize');
 const Appointment = require('../Models/AppointmentModal');
-const Patient = require('../Models/PatientModule');
+const Patients = require('../Models/PatientModule');
 //Login in doctor
 
 const loginDoctor = async (req, res, next) => {
@@ -233,7 +233,12 @@ const getAllDoctor = async (req, res) => {
 
 const getAppointment = async (req, res) => {
   try {
-    let doctor = await Appointment.findAll({ where: { did: req.user.id } });
+    let doctor = await Appointment.findAll({ where: { did: req.user.id },
+    include:[{
+      model :Patients,
+      as:"patients",
+      attributes:['full_name','username','contact_no','sec_question','answer','age','address']
+    }] });
     if (!doctor) {
       return res.status(400).json({
         message: "error fetching appointment"

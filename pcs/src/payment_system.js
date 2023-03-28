@@ -30,7 +30,7 @@ function Payment() {
 			return
 		}
 
-		const data = await axios.post('http://localhost:5000/razorpay', { method: 'POST' }).then((t) =>
+		const data = await fetch('http://localhost:5000/razorpay', { method: 'POST' }).then((t) =>
 			t.json()
 		)
 
@@ -41,9 +41,9 @@ function Payment() {
 			currency: data.currency,
 			amount: data.amount.toString(),
 			order_id: data.id,
-			name: 'Donation',
+			name: 'Payment',
 			description: 'Thank you for nothing. Please give us some money',
-			image: 'http://localhost:5000/logo.svg',
+			
 			handler: function (response) {
 				alert(response.razorpay_payment_id)
 				alert(response.razorpay_order_id)

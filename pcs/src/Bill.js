@@ -13,9 +13,25 @@ import html2canvas from 'html2canvas'
 import {BiCloudDownload} from 'react-icons/bi'
 import './bill.css'
 import { Link } from 'react-router-dom'
+
+   
+function loadScript(src) {
+	return new Promise((resolve) => {
+		const script = document.createElement('script')
+		script.src = src
+		script.onload = () => {
+			resolve(true)
+		}
+		script.onerror = () => {
+			resolve(false)
+		}
+		document.body.appendChild(script)
+	})
+}
 const Dprofile = () => {
     const [bill, setBill] = useState([]);
     const [admin, setAdmin] = useState([]);
+    const [name, setName] = useState('nikita')
 
     useEffect(() => {
         getAllBill();
@@ -68,6 +84,46 @@ const Dprofile = () => {
           pdf.save('invoice-001.pdf');
         });
       }
+
+      //payment system
+
+   
+async function displayRazorpay() {
+    const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')
+
+    if (!res) {
+        alert('Razorpay SDK failed to load. Are you online?')
+        return
+    }
+
+    const data = await fetch('http://localhost:5000/razorpay', { method: 'POST' }).then((t) =>
+        t.json()
+    )
+
+    console.log(data)
+
+    const options = {
+        key:document.domain === 'localhost' ? 'rzp_test_QTuO1fvgzMpvEy' : 'PRODUCTION_KEY',
+        currency: data.currency,
+        amount: data.amount.toString(),
+        order_id: data.id,
+        name: 'Payment',
+        description: 'Thank you for nothing. Please give us some money',
+        
+        handler: function (response) {
+            alert(response.razorpay_payment_id)
+            alert(response.razorpay_order_id)
+            alert(response.razorpay_signature)
+        },
+        prefill: {
+            name,
+            email: 'sem3a.67.tmtbca@gmail.com',
+            phone_number: '7069582962'
+        }
+    }
+    const paymentObject = new window.Razorpay(options)
+    paymentObject.open()
+}
     return (
         <>
             <div className="wrapper">
@@ -247,7 +303,7 @@ const Dprofile = () => {
                                             
                                         </main>
                                         <div className="text-right">
-                                        <Link className="btn btn-info" to="/payment" ><i className="fa fa-money"></i> Payment</Link>
+                                        <button className="btn btn-info"  	onClick={displayRazorpay}><i className="fa fa-money"></i><a>Payment</a> </button>
                                         <button className="btn btn-info" onClick={GenerateInvoice} ><i className="fa fa-file-pdf-o"></i><BiCloudDownload /> Download PDF</button>
                                     </div>
                                     </div>

@@ -7,6 +7,22 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Link,useNavigate } from 'react-router-dom';
 const ViewPatient = () => {
+  const [filterdata, setFilterdata] = useState([]);
+  const [query, setQuery] = useState('');
+
+  
+  const handleFilter = (event) => {
+    const getsearch = event.target.value;
+    setQuery(getsearch);
+    if (getsearch.length > 0) {
+      const searchdata = patients.filter((item) => item.full_name.includes(getsearch));
+      setPatient(searchdata);
+
+    } else {
+      setPatient(filterdata);
+    }
+  }
+
   const navigate = useNavigate()
     useEffect(() => {
         if (!localStorage.getItem('token')) {
@@ -24,6 +40,7 @@ const ViewPatient = () => {
     const { data } = await axios.get('http://localhost:5000/api/user/');
    console.log(data);
    setPatient(data)
+   setFilterdata(data);
   }
   
   const handleDelete=async(id)=>{
@@ -44,6 +61,9 @@ const ViewPatient = () => {
               <div className="container-fluid p-0">
               <h1>View Doctor</h1>
               <br/>
+              <div>
+                  <input type='search' placeholder='search' value={query} onChange={(e)=>handleFilter(e)} style={{marginBottom:10,border:'1px solid blue',borderRadius:10,height:30}} />
+                </div>
                 <table cellPadding="5" cellSpacing="200px" border="2px solid" style={{borderColor:"#3b7ddd"}} >
                 
                   <thead border="2px solid blue">

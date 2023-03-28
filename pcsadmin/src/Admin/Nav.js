@@ -16,7 +16,7 @@ const Nav = () => {
     useEffect(() => {
         getAllAdmin();
     }, []);
-    console.log("", admin);
+    //console.log("", admin);
     const getAllAdmin = async (req) => {
         const data = await axios.get(`http://localhost:5000/api/admin/profile`,
             {
@@ -27,7 +27,7 @@ const Nav = () => {
                 }
             }).then((res) => {
                 setAdmin(res.data.data.user)
-                console.log(res.data.data.user)
+               // console.log(res.data.data.user)
             })
     }
     return (

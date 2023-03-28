@@ -86,7 +86,7 @@ const AddDoctor = ({ history }) => {
                         </div>
                       </div>
                       <div className="card">
-                        <button className="btn btn-primary" type='submit'>Insert Doctor</button>
+                        <button className="btn btn-primary" type='submit'>Insert Receptionist</button>
                       </div>
 
                     </div>

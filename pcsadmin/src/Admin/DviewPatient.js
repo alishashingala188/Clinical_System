@@ -21,11 +21,17 @@ const ViewPatient = () => {
   }, []);
 
   const getAllPatient = async () => {
-    const { data } = await axios.get('http://localhost:5000/api/user/');
-   console.log(data);
-   setPatient(data)
-  }
-  
+    const { data } = await axios.get(`http://localhost:5000/api/doctor/appointment`,
+       {
+         method: "GET",
+         headers: {
+           'Content-Type': 'multipart/form-data',
+           'Authorization': ' Bearer ' + localStorage.getItem("token")
+         }
+       });
+       console.log(data);
+     setPatient(data.data);
+   }
   const handleDelete=async(id)=>{
     console.log(id);
     const deleteData = await axios.delete(`http://localhost:5000/api/user/${id}`);
@@ -63,13 +69,13 @@ const ViewPatient = () => {
                       patients.map(p => {
                         //console.log(doctor);
                        return  <tr style={{marginBottom:"20px"}}>
-                        <td> {p.full_name} </td>
-                          <td> {p.username}  </td>
-                          <td> {p.address}</td>
-                          <td>{p.contact_no}  </td>
-                          <td> {p.age} </td>
-                          <td> {p.sec_question} </td>
-                          <td>  {p.answer}</td> 
+                        <td> {p.patients.full_name} </td>
+                          <td> {p.patients.username}  </td>
+                          <td> {p.patients.address}</td>
+                          <td>{p.patients.contact_no}  </td>
+                          <td> {p.patients.age} </td>
+                          <td> {p.patients.sec_question} </td>
+                          <td>  {p.patients.answer}</td> 
                           <td> <td>
                             <Link to={`/pedit/${p.id}`} className="btn btn-success">
                               <EditIcon color='' />Edit</Link>
