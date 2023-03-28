@@ -57,18 +57,12 @@ const ViewDoctor = () => {
                       appointment.map(d => {
                         //console.log(doctor);
                         return <tr style={{ marginBottom: "20px" }}>
-                          <td> {d.uid} </td>
+                          <td> {d.patients.full_name} </td>
                           <td> {d.contact_no}  </td>
                           <td> {d.date} </td>
                           <td> {d.time} </td>
                           <td> {d.a_reason}</td>
                           <td> {d.status}</td>
-
-                          {/* <td>
-                            <Link to={`/dedit/${d.id}`}>
-                              <EditIcon color='success' />Edit</Link>
-                              <button classNameName='btn btn-dangr' onClick={()=>handleDelete(d.id)}> <DeleteIcon color='error' />Delete</button>
-                         </td> */}
                         </tr>
                       })
                     }
