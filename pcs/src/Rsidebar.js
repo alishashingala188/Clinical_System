@@ -13,7 +13,7 @@ const Rsidebar = () => {
     const handleLogout = () => {
         localStorage.clear();
         message.success("Logout Successfully");
-        navigate("/signin");
+        navigate("/rlogin");
     };
     return (
         <>
@@ -93,7 +93,7 @@ const Rsidebar = () => {
                         </li> */}
 
                         <li className="sidebar-item " onClick={handleLogout}>
-                            <Link className="sidebar-link" to="/signin" >
+                            <Link className="sidebar-link" to="/rlogin" >
                                 <LogoutOutlinedIcon classNameName="align-middle" /> <span className="align-middle">Logout</span>
                             </Link>
                         </li>

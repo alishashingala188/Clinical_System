@@ -48,7 +48,7 @@ const ViewPatient = () => {
             <Nav />
             <main className="content">
               <div className="container-fluid p-0">
-              <h1>View Doctor</h1>
+              <h1>View patient</h1>
               <br/>
                 <table cellPadding="10" cellSpacing="300px" border="2px solid" style={{borderColor:"#3b7ddd"}} >
                 
@@ -77,7 +77,7 @@ const ViewPatient = () => {
                           <td> {p.patients.sec_question} </td>
                           <td>  {p.patients.answer}</td> 
                           <td> <td>
-                            <Link to={`/pedit/${p.id}`} className="btn btn-success">
+                            <Link to={`/dpedit/${p.uid}`} className="btn btn-success">
                               <EditIcon color='' />Edit</Link>
                               <button className='btn btn-danger' style={{border:"none"}} onClick={()=>handleDelete(p.id)}> <DeleteIcon color='' />Delete</button>
                          </td></td>

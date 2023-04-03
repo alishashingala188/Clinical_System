@@ -16,6 +16,16 @@ prouter.get('/profile', verifyUserToken, (req, res) =>{
       },
     });
 });
+
+prouter.get('/book', verifyUserToken, (req, res) =>{
+  return res.status(200).json({
+      status: 200,
+      message: "User found!",
+      data: {
+        user: req.user,
+      },
+    });
+});
 prouter.get("/appointment",verifyUserToken, patientController.getAppointment)
 prouter.get("/viewbill",verifyUserToken, patientController.ViewBill)
 prouter.post("/addPatient", patientController.addPatient);

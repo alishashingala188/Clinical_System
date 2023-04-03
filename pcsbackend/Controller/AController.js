@@ -27,17 +27,50 @@ const getA = async (req, res) => {
   const todo = await Appointments.findAll({
     include: [{
       model: Patient,
-     
       as:"patients",
-      attributes: ['full_name', 'username'] 
-    }],
-  
-    
-     
-    
+      attributes: ['full_name', 'username','id','address','contact_no','sec_question','answer','age'] 
+    },
+    {
+      model: User,
+      as:"users",
+      attributes: ['name', 'username','speciality'] 
+    },
+  ],
   })
   res.status(200).send(todo);
 };
+
+ const getAppointmentById=async(req, res)=> {
+  try {
+    const id = req.params.id;
+    const result = await Appointments.findOne({
+      where: { id },
+      include: [{
+        model: Patient,
+        as:"patients",
+        attributes: ['full_name','id'] 
+      },
+      {
+        model: User,
+        as:"users",
+        attributes: ['name','id'] 
+      },
+    ],
+    });
+    return res.status(200).json({
+      status: 200,
+      message: "User found successfully!",
+      data: {
+        user: result,
+      },
+    });
+  } catch (error) {
+    return res.status(412).json({
+      status: 412,
+      message: error.message,
+    });
+  }
+}
 
 //update a appointment`1
 const updateA = async (req, res) => {
@@ -45,7 +78,6 @@ const updateA = async (req, res) => {
     where: { id: req.params.id },
 
   });
-
   res.status(200).json({
     message: "Todo Updated Successfully!",
   });
@@ -55,7 +87,6 @@ const updateA = async (req, res) => {
 const deleteA = async (req, res) => {
   await Appointments.destroy({ where: { id: req.params.id } });
   res.status(200).json({
-
     message:"Deleted Successfully"
   });
 };
@@ -86,5 +117,6 @@ module.exports = {
   getA,
   updateA,
   deleteA,
-  editStatus
+  editStatus,
+  getAppointmentById
 };

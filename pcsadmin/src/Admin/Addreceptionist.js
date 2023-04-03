@@ -4,6 +4,7 @@ import Nav from './Nav'
 import Footer from './Footer'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { message } from 'antd'
 const AddDoctor = ({ history }) => {
   const navigate = useNavigate()
     useEffect(() => {
@@ -26,8 +27,12 @@ const AddDoctor = ({ history }) => {
       email: email
     }
     console.log(data);
-    await axios.post('http://localhost:5000/api/rece/addrece', data).then(() => {
-      alert("Record Inserted successfully.....")
+    await axios.post('http://localhost:5000/api/rece/addrece', data)
+    .then(() => {
+     message.success("Record Inserted...")
+    }).catch(()=>{
+     message.error("something are wrong ...")
+
     })
   }
   return (

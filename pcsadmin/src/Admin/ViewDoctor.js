@@ -30,7 +30,7 @@ const ViewDoctor = () => {
     const getsearch = event.target.value;
     setQuery(getsearch);
     if (getsearch.length > 0) {
-      const searchdata = doctors.filter((item) => item.name.includes(getsearch));
+      const searchdata = doctors.filter((item) => item.name.includes(getsearch) || item.speciality.includes(getsearch)) ;
       setDoctor(searchdata);
 
     } else {
@@ -67,18 +67,15 @@ const ViewDoctor = () => {
                 <div>
                   <input type='search' placeholder='search' value={query} onChange={(e)=>handleFilter(e)} style={{marginBottom:10,border:'1px solid blue',borderRadius:10,height:30}} />
                 </div>
-
-
-                <table cellPadding="5" cellSpacing="200px" border="2px solid" style={{ borderColor: "#3b7ddd", }} >
+                <table cellPadding="0" cellSpacing="100x" border="2px solid" style={{ borderColor: "#3b7ddd", }} >
                   <thead border="2px solid blue">
-                    <tr style={{ backgroundColor: "#3b7ddd", fontSize: "25", fontWeight: "inherit", color: "white", textAlign: "center", height: '50px' }} color="">
+                    <tr style={{ backgroundColor: "#3b7ddd", fontSize: "20", fontWeight: "inherit", color: "white", textAlign: "center", height: '50px' }} color="">
                       <th>DoctorName</th>
                       <th>Username</th>
                       <th>Education</th>
                       <th>contact_no</th>
                       <th>Speciality</th>
                       <th>Email</th>
-                      <th>Clinic_name</th>
                       <th>Operation</th>
                     </tr>
                   </thead>
@@ -86,14 +83,14 @@ const ViewDoctor = () => {
                     {
                       doctors.map(d => {
                         //console.log(doctor);
-                        return <tr style={{ marginBottom: "20px" }}>
+                        return <tr style={{ marginBottom: "10px" }}>
                           <td> {d.name} </td>
                           <td> {d.username}  </td>
                           <td> {d.education}</td>
                           <td>{d.contact_no}  </td>
                           <td> {d.speciality} </td>
                           <td> {d.email} </td>
-                          <td>  {d.clinic_name}</td>
+                         
                           <td>
                             <Link to={`/dedit/${d.id}`} className='btn btn-success'>
                               <EditIcon color='' />Edit</Link>

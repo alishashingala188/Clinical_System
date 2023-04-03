@@ -21,6 +21,7 @@ import ViewAppointment from './ViewAppointment'
 import Profile from './profile'
 import Rprofile from './Rprofile'
 import RviewAppointment from './Rviewappointment'
+import Changeprofile from './changeprofile'
 const App = () => {
   return (
     <div>
@@ -39,6 +40,7 @@ const App = () => {
           <Route path='/feedback' element={<Feedback/>}/>
           <Route path='/Rdashboard' element={<Rdashboard/>}/>
           <Route path='/invoiceForm/:id' element={<InvoiceForm/>}/>
+          <Route path='/changeprofile/:id' element={<Changeprofile/>}/>
           <Route path='/payment' element={<Payment/>}/>
           <Route path='/rviewpatient' element={<Rviewpatine/>}/>
           <Route path='/bill' element={<Bill/>}/>

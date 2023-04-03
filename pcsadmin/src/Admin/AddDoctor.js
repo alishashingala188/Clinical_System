@@ -4,6 +4,7 @@ import Nav from './Nav'
 import Footer from './Footer'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { message } from 'antd'
 const AddDoctor = ({ history }) => {
   const navigate = useNavigate()
     useEffect(() => {
@@ -23,9 +24,12 @@ const AddDoctor = ({ history }) => {
   const [education, setEducation] = useState("");
   const [time, setTime] = useState("");
   const [available_day, setAvailable_day] = useState("");
-
+  const [image,setImage] =useState("");
 
   const Navigate = useNavigate()
+
+  const [file, setFile] = useState();
+  const [fileName, setFileName] = useState("");
 
   const addDoctorhandler = async (e) => {
     e.preventDefault();
@@ -42,13 +46,18 @@ const AddDoctor = ({ history }) => {
       education: education,
       type: "doctor",
       time:time,
-      available_day:available_day
+      available_day:available_day,
+      image:image,
+      isActive:"yes"
+      
     }
     console.log(data);
-    await axios.post('http://localhost:5000/api/doctor/addDoctor', data).then(() => {
+    await axios.post('http://localhost:5000/api/doctor/addDoctor', data)
+    .then(() => {
+      message.success("record inserted..")
 
-      alert("Record Inserted successfully.....")
-
+    }).catch(()=>{
+      message.error("something are wrong...")
     })
   }
   return (
@@ -64,10 +73,11 @@ const AddDoctor = ({ history }) => {
                 <div className="mb-3">
                   <h1 className="h3 d-inline align-middle">Add Doctor</h1>
                 </div>
-                <form onSubmit={addDoctorhandler}>
+                <form onSubmit={addDoctorhandler} method="post" encType='multipart/form-data'>
                   <div className="row">
                     <div className="col-12 col-lg-6">
                       <div className="card">
+                        
                         <div className="card-body">
 
                           <input type="text" className="form-control" placeholder="Doctor name" name="name"
@@ -83,7 +93,6 @@ const AddDoctor = ({ history }) => {
                       </div>
 
                       <div className="card">
-
                         <div className="card-body">
                           <input type="password" className="form-control" placeholder="Enter password" name="password"
                             onChange={(e) => setPassword(e.target.value)} value={password} />
@@ -120,7 +129,6 @@ const AddDoctor = ({ history }) => {
                             <option>Heart specialist </option>
                             <option>Skin specialist</option>
                             <option>neurologist specialist</option>
-
                           </select>
                         </div>
                       </div>
@@ -151,8 +159,15 @@ const AddDoctor = ({ history }) => {
                             onChange={(e) => setCname(e.target.value)} value={cname} />
                         </div>
                       </div>
-                      <div className="card">
 
+                      <div className="card">
+                        <div className="card-body">
+                          <input type="file" className="form-control" name="image" size="lg"
+                            onChange={(e) => setImage(e.target.files[0])}  />
+                        </div>
+                      </div>
+
+                      <div className="card">
                         <div className="card-body">
                           <input type="text" className="form-control" placeholder="Education" name="education"
                             onChange={(e) => setEducation(e.target.value)} value={education} />

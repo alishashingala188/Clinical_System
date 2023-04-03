@@ -64,6 +64,14 @@ const Users = db.define(
         type: DataTypes.STRING,
         allowNull: true
     },
+    image:{
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    isActive:{
+        type: DataTypes.STRING,
+        allowNull: true
+    }
 },
     {
         paranoid: true,

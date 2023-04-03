@@ -11,6 +11,7 @@ var corOptions={
 }
 
 app.use(cors());
+app.use('/Images', express.static('./Images'))
 const razorpay = new Razorpay({
 	key_id: 'rzp_test_QTuO1fvgzMpvEy',
 	key_secret: 'GLB8Wrot6zSgreN4ekxUMLnt'

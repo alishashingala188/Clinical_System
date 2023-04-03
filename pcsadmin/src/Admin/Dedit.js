@@ -40,7 +40,6 @@ const Dedit = () => {
         }
         console.log(credential);
      const user=await axios.put(`http://localhost:5000/api/doctor/${id}`,credential)
-    
         console.log(user);
          Navigate('/ViewDoctor')
   
@@ -55,7 +54,7 @@ const Dedit = () => {
                         <main className="content">
                             <div className="container-fluid p-0">
                                 <div className="mb-3">
-                                    <h1 className="h3 d-inline align-middle">Add Doctor</h1>
+                                    <h1 className="h3 d-inline align-middle">Update Doctor</h1>
                                 </div>
                                 <form onSubmit={handlesubmit}>
                                     <div className="row">

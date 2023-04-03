@@ -28,8 +28,12 @@ const Changepwd = () => {
             headers: {
                 'Authorization': `Bearer ${token}`
         }
-        });
-        message.success("password changed")
+        }).then(()=>{
+            message.success("password changed")
+        }).catch(()=>{
+            message.error("something are wrong")
+        })
+       
         console.log(result);
     }
     return (

@@ -40,7 +40,7 @@ const ViewDoctor = () => {
   }
   console.log(credential);
     const editdata = await axios.put(`http://localhost:5000/api/edit/${id}`,credential);
-    alert("changed")
+   
   }
   const handleDelete = async (id) => {
     console.log(id);
@@ -62,7 +62,7 @@ const ViewDoctor = () => {
                 <table cellPadding="5" cellSpacing="200px" border="2px solid" style={{ borderColor: "#3b7ddd" }} >
                   <thead border="2px solid blue">
                     <tr style={{ backgroundColor: "#3b7ddd", fontSize: "20", fontWeight: "bold", color: "white", textAlign: "center" }} color="primary">
-                      <th>Patient id</th>
+                      <th>Patient name</th>
                       <th>contact_no</th>
                       <th>Date</th>
                       <th>Time</th>

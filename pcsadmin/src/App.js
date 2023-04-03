@@ -14,10 +14,13 @@ import ViewDoctor from './Admin/ViewDoctor'
  import DviewAppointment from './Admin/dviewAppointment'
  import Dedit from './Admin/Dedit';
  import Pedit from './Admin/Pedit'
+ import Dpedit from './Admin/dpedit'
  import Ddashboard from './Admin/Ddashboard'
  import Calender from './Admin/Calendar'
 import Dviewpatient from './Admin/DviewPatient'
 import Receptionist from './Admin/Addreceptionist'
+import ChangeProfile from './Admin/changeprofile'
+import DchangeProfile from './Admin/dchangeprofile'
 const App = () => {
   return (
     <>
@@ -37,10 +40,13 @@ const App = () => {
             <Route path='/Changepwd'  element={<Changepwd/>} />
             <Route path='/dedit/:id'  element={<Dedit/>} />
             <Route path='/pedit/:id'  element={<Pedit/>} />
+            <Route path='/dpedit/:id'  element={<Dpedit/>} />
             <Route path='/Alogout'   element={<Alogout/>}/>
             <Route path='/viewappointment'   element={<ViewAppointment/>}/>
             <Route path='/dviewappointment'   element={<DviewAppointment/>}/>
             <Route path='/addReceptionist'   element={<Receptionist/>}/>
+            <Route path='/changeprofile/:id'   element={<ChangeProfile/>}/>
+            <Route path='/dchangeprofile/:id'   element={<DchangeProfile/>}/>
 
 
 

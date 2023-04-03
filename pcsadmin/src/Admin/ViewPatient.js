@@ -10,7 +10,6 @@ const ViewPatient = () => {
   const [filterdata, setFilterdata] = useState([]);
   const [query, setQuery] = useState('');
 
-  
   const handleFilter = (event) => {
     const getsearch = event.target.value;
     setQuery(getsearch);
@@ -64,7 +63,7 @@ const ViewPatient = () => {
               <div>
                   <input type='search' placeholder='search' value={query} onChange={(e)=>handleFilter(e)} style={{marginBottom:10,border:'1px solid blue',borderRadius:10,height:30}} />
                 </div>
-                <table cellPadding="5" cellSpacing="200px" border="2px solid" style={{borderColor:"#3b7ddd"}} >
+                <table cellPadding="0" cellSpacing="100" border="2px solid" style={{borderColor:"#3b7ddd"}} >
                 
                   <thead border="2px solid blue">
                     <tr style={{backgroundColor:"#3b7ddd",fontSize:"20",fontWeight:"bold",color:"white",textAlign:"center"}} color="primary">
@@ -82,7 +81,7 @@ const ViewPatient = () => {
                     {
                       patients.map(patient => {
                         //console.log(doctor);
-                       return  <tr style={{marginBottom:"20px"}}>
+                       return  <tr style={{marginBottom:"10px"}}>
                         <td> {patient.full_name} </td>
                           <td> {patient.username}  </td>
                           <td> {patient.address}</td>

@@ -76,13 +76,13 @@ const Dprofile = () => {
                               <td>Speciality :: </td>
                               <td>{doctor.speciality}</td>
                             </tr>
-                            {/* <tr>
+                            <tr>
                             <td></td>
                             <td>
-                              <Link to={`/Changepwd/${doctor.id}`} className='btn btn-info'>
-                                <EditIcon color='' />Change password</Link>
+                              <Link to={`/dchangeprofile/${doctor.id}`} className='btn btn-info'>
+                               Change Profile</Link>
                             </td>
-                          </tr> */}
+                          </tr>
                           </table>
                   </div>
                   <Link />

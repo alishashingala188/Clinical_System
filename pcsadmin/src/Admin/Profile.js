@@ -7,6 +7,7 @@ import Nav from './Nav'
 import Footer from './Footer'
 import axios from 'axios'
 import { Link,useNavigate } from 'react-router-dom';
+import {EditIcon} from '@mui/icons-material'
 const Profile = () => {
   const navigate = useNavigate()
     useEffect(() => {
@@ -71,13 +72,13 @@ const Profile = () => {
                               <td>Contact No :: </td>
                               <td>{admin.contact_no}</td>
                             </tr>
-                            {/* <tr>
+                            <tr>
                             <td></td>
                             <td>
-                              <Link to={`/Changepwd/${admin.id}`} className='btn btn-info'>
-                                <EditIcon color='' />Change password</Link>
+                              <Link to={`/changeprofile/${admin.id}`} className='btn btn-info'>
+                               Change Profile</Link>
                             </td>
-                          </tr> */}
+                          </tr>
                           </table>
                       
                   </div>

@@ -52,7 +52,7 @@ const Dedit = () => {
                         <main className="content">
                             <div className="container-fluid p-0">
                                 <div className="mb-3">
-                                    <h1 className="h3 d-inline align-middle">Add Doctor</h1>
+                                    <h1 className="h3 d-inline align-middle">Update Patient</h1>
                                 </div>
                                 <form onSubmit={handlesubmit}>
                                     <div className="row">

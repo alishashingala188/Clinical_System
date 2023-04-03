@@ -15,11 +15,10 @@ const ViewPatient = () => {
   },[]);
 
   const getAllPatient = async () => {
-    const { data } = await axios.get('http://localhost:5000/api/user/');
+    const { data } = await axios.get('http://localhost:5000/api/');
    console.log(data);
    setPatient(data)
   }
-  
   const handleDelete=async(id)=>{
     console.log(id);
     const deleteData = await axios.delete(`http://localhost:5000/api/user/${id}`);
@@ -36,14 +35,15 @@ const ViewPatient = () => {
             <Nav />
             <main className="content">
               <div className="container-fluid p-0">
-              <h1>View Doctor</h1>
+              <h1>View Patient</h1>
               <br/>
                 <table cellPadding="5" cellSpacing="200px" border="2px solid" style={{borderColor:"#3b7ddd"}} >
                 
                   <thead border="2px solid blue">
                     <tr style={{backgroundColor:"#3b7ddd",fontSize:"20",fontWeight:"bold",color:"white",textAlign:"center"}} color="primary">
-                      <th>fullname</th>
-                      <th>Username</th>
+                      <th>patient name</th>
+                      <th>doctor name </th>
+                     
                       <th>address</th>
                       <th>contact_no</th>
                       <th>age</th>
@@ -57,13 +57,13 @@ const ViewPatient = () => {
                       patients.map(patient => {
                         //console.log(doctor);
                        return  <tr style={{marginBottom:"20px"}}>
-                        <td> {patient.full_name} </td>
-                          <td> {patient.username}  </td>
-                          <td> {patient.address}</td>
-                          <td>{patient.contact_no}  </td>
-                          <td> {patient.age} </td>
-                          <td> {patient.sec_question} </td>
-                          <td>  {patient.answer}</td> 
+                        <td> {patient.patients.full_name} </td>
+                          <td> {patient.users.name}  </td>
+                          <td> {patient.patients.address}</td>
+                          <td>{patient.patients.contact_no}  </td>
+                          <td> {patient.patients.age} </td>
+                          <td> {patient.patients.sec_question} </td>
+                          <td>  {patient.patients.answer}</td> 
                         </tr>
                       })
                     }     

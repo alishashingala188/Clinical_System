@@ -5,6 +5,10 @@ const { getUserToken } = require('../Config/authenicate');
 const { where } = require('sequelize');
 const Appointment = require('../Models/AppointmentModal');
 const Patients = require('../Models/PatientModule');
+const multer = require('multer')
+const path = require('path')
+const fs = require("fs");
+
 //Login in doctor
 
 const loginDoctor = async (req, res, next) => {
@@ -55,8 +59,6 @@ const loginDoctor = async (req, res, next) => {
     });
   }
 };
-
-
 //1 add a doctor 
 
 const addDoctor = async (req, res) => {
@@ -74,6 +76,8 @@ const addDoctor = async (req, res) => {
       type: Joi.string().required(),
       time: Joi.string().required(),
       available_day: Joi.string().required(),
+
+      isActive: Joi.string().required(),
       password: Joi.string()
         .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/)
         .required()
@@ -81,7 +85,11 @@ const addDoctor = async (req, res) => {
           "string.pattern.base":
             "Password must contain 8 characters,one uppercase,one lowercase,one number and one special character",
         }),
+      image: Joi.required(),
     });
+
+    req.body.image = req.file;
+
     const validate = validateSchema.validate(req.body);
     if (validate.error) {
       return res.status(412).json({
@@ -103,14 +111,30 @@ const addDoctor = async (req, res) => {
           message: "Error while hashing password"
         })
       }
-      req.body.password = hash;
-      const data = await Doctor.create(req.body);
-      return res.status(200).json({
-        status: 200,
-        message: "Doctor registered successfully",
-        data: data,
-      });
+      req.body.password = hash; 
+    const data = await Doctor.create({
+      name: req.body.name,
+      email: req.body.email,
+      username: req.body.username,
+      address: req.body.address,
+      contact_no: req.body.contact_no,
+      speciality: req.body.speciality,
+      clinic_name: req.body.clinic_name,
+      gender: req.body.gender,
+      education: req.body.education,
+      type: req.body.type,
+      time: req.body.time,
+      image: req.file.path,
+      available_day: req.body.available_day,
+      isActive: req.body.isActive,
+      password:req.body.password
     });
+    return res.status(200).json({
+      status: 200,
+      message: "Doctor registered successfully",
+      data: data,
+    });
+  });
   } catch (error) {
     return res.status(412).json({
       status: 412,
@@ -118,6 +142,28 @@ const addDoctor = async (req, res) => {
     });
   }
 }
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+      cb(null, 'Images')
+  },
+  filename: (req, file, cb) => {
+      cb(null, Date.now() + path.extname(file.originalname))
+  }
+})
+const upload = multer({
+  storage: storage,
+  limits: { fileSize: '1000000' },
+  fileFilter: (req, file, cb) => {
+      const fileTypes = /jpeg|jpg|png|gif/
+      const mimeType = fileTypes.test(file.mimetype)  
+      const extname = fileTypes.test(path.extname(file.originalname))
+      if(mimeType && extname) {
+          return cb(null, true)
+      }
+      cb('Give proper files formate to upload')
+  }
+}).single('image')
+
 // 2 update doctor
 
 const updateDoctor = async (req, res) => {
@@ -137,7 +183,6 @@ const updateDoctor = async (req, res) => {
       clinic_name: Joi.string().required(),
 
     });
-
     const validate = validateSchema.validate(req.body);
     if (validate.error) {
       return res.status(412).json({
@@ -233,12 +278,14 @@ const getAllDoctor = async (req, res) => {
 
 const getAppointment = async (req, res) => {
   try {
-    let doctor = await Appointment.findAll({ where: { did: req.user.id },
-    include:[{
-      model :Patients,
-      as:"patients",
-      attributes:['full_name','username','contact_no','sec_question','answer','age','address']
-    }] });
+    let doctor = await Appointment.findAll({
+      where: { did: req.user.id },
+      include: [{
+        model: Patients,
+        as: "patients",
+        attributes: ['full_name', 'username', 'contact_no', 'sec_question', 'answer', 'age', 'address']
+      }]
+    });
     if (!doctor) {
       return res.status(400).json({
         message: "error fetching appointment"
@@ -256,7 +303,7 @@ const getAppointment = async (req, res) => {
 }
 const getPatient = async (req, res) => {
   try {
-    let doctor = await Patient.findAll(Appointment.uid );
+    let doctor = await Patient.findAll(Appointment.uid);
     if (!doctor) {
       return res.status(400).json({
         message: "error fetching patient"
@@ -283,6 +330,7 @@ module.exports = {
   getDoctorById,
   getAllDoctor,
   getAppointment,
-  getPatient
+  getPatient,
+  upload
 
 }

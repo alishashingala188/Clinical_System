@@ -70,13 +70,13 @@ const Dprofile = () => {
                               <td>Age :: </td>
                               <td>{patient.age}</td>
                             </tr>
-                            {/* <tr>
+                            <tr>
                             <td></td>
                             <td>
-                              <Link to={`/Changepwd/${patient.id}`} className='btn btn-info'>
-                                <EditIcon color='' />Change password</Link>
+                              <Link to={`/changeprofile/${patient.id}`} className='btn btn-info'>
+                               Change Profile</Link>
                             </td>
-                          </tr> */}
+                          </tr>
                           </table>
                   </div>
                   <Link />

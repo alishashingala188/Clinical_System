@@ -10,12 +10,11 @@ import { useParams } from 'react-router-dom';
 import { message } from 'antd';
 
 const InvoiceForm = () => {
-  const [patients, setPatient] = useState([]);
   const [doctors, setDoctor] = useState([]);
+  const [patient, setPatient] = useState([]);
 
   const [uid, setUid] = useState(0)
   const [did, setDid] = useState(0)
-  const [email, setEmail] = useState("")
   const [invoice_no, setInvoice_no] = useState("")
   const [room_cost, setRoom_cost] = useState(0)
   const [medician_cost, setMedician_cost] = useState(0)
@@ -24,30 +23,27 @@ const InvoiceForm = () => {
   const [discount, setDiscount] = useState(0)
   const [totle, setTotle] = useState(0)
   const [date, setDate] = useState()
-  const { id } = useParams();
-
+  const { id} = useParams();
   useEffect(() => {
-    getAllPatient();
-    getAllDoctor();
+     getAllAppoitment();
+    // getAllDoctor();
   }, [])
 
-  const getAllPatient = async () => {
-    const { data } = await axios.get('http://localhost:5000/api/user/');
-    console.log(data);
-    setPatient(data)
-  }
-  const getAllDoctor = async () => {
-    const { data } = await axios.get('http://localhost:5000/api/doctor/');
-    // const resData = await data.json();
-    setDoctor(data)
+  const getAllAppoitment = async () => {
+    const { data } = await axios.get(`http://localhost:5000/api/${id}`)
+    setPatient(data.data.user.patients);
+    setDoctor(data.data.user.users);
+   
+    // console.log(data);
+    // setAppointment(data)
   }
   const addBillHandler = async (e) => {
     e.preventDefault();
     const data = {
-      did:did,
-      uid:id,
-      email:email,
+      uid:patient.id,
+      did:doctors.id,
       date:date,
+      email:"abc@gmail.com",
       room_cost:room_cost,
       invoice_no:invoice_no,
       medician_cost:medician_cost,
@@ -63,9 +59,8 @@ const InvoiceForm = () => {
       message.error("error",err)
     
     })
-
-   
   }
+  var i=0;
   return (
     <Form ml={200} onSubmit={addBillHandler} style={{marginLeft:220}}>
       <Row>
@@ -92,34 +87,33 @@ const InvoiceForm = () => {
                 <span className="fw-bold me-2">Invoice&nbsp;Number:&nbsp;</span>
                 <Form.Control type="number" min="1" style={{
                   maxWidth: '70px'
-                }} onChange={(e) => setInvoice_no(e.target.value)} required="required" />
+                }}  onChange={(e) => setInvoice_no(e.target.value)} required="required" />
               </div>
             </div>
             <hr className="my-4" />
             <Row className="mb-5">
               <Col>
                 <Form.Label className="fw-bold">Patient Name:</Form.Label>
-                <Form.Control placeholder="Who is this invoice from?" name="id" className="my-2" required="required" value={id}    />                   
+                <Form.Control placeholder="Who is this invoice from?" name="uid" className="my-2" required="required" value={patient.full_name} 
+                 />      
+
                 <Form.Label className="fw-bold">Doctor Name:</Form.Label>
-                <Form.Select placeholder={"Who is this invoice from?"} name="did" className="my-2" autoComplete="name" required="required"
-                  onChange={(e) => setDid(e.target.value)} >
-                  {
-                    doctors.map(d => {
-                      console.log(d);
-                      return <option value={d.id}>{d.name}</option>
-                    })
-                  }
-                </Form.Select>
-                <Form.Control placeholder={"Email address"} type="email" name="email" className="my-2" autoComplete="email" required="required"
-                onChange={(e) => setEmail(e.target.value)} />
+                <Form.Control placeholder={"Who is this invoice from?"} name="did" className="my-2"  required="required" value={doctors.name}
+                >
+
+                </Form.Control>
                 <Form.Control placeholder={"Room Cost"} type="number" name="email" className="my-2" autoComplete="email" required="required" 
                  onChange={(e) => setRoom_cost(e.target.value)}/>
+
                 <Form.Control placeholder={"Medician cost"} type="number" name="email" className="my-2" autoComplete="email" required="required" 
                  onChange={(e) => setMedician_cost(e.target.value)}/>
+
                 <Form.Control placeholder={"Doctor Charge"} type="number" name="email" className="my-2" autoComplete="email" required="required" 
                  onChange={(e) => setDoctor_charge(e.target.value)}/>
+
                 <Form.Control placeholder={"Extra Charge"} type="number" name="email" className="my-2" autoComplete="email" required="required" 
                  onChange={(e) => setExtra_charge(e.target.value)}/>
+
                 <Form.Control placeholder={"Discount"} type="number" name="email" className="my-2" autoComplete="email" required="required" 
                  onChange={(e) => setDiscount(e.target.value)}/>
 

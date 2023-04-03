@@ -12,7 +12,7 @@ const Aform = () => {
   const [did, setDid] = useState(0);
   const [uid, setUid] = useState(0);
   const [a_reason, setA_reason] = useState("");
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState();
   const [time, setTime] = useState("");
   
 
@@ -20,7 +20,7 @@ const Aform = () => {
     e.preventDefault();
     const data = {
       did:did,
-      uid:uid,
+      uid:patients.id,
       a_reason:a_reason,
       date:date,
       time:time,
@@ -28,26 +28,46 @@ const Aform = () => {
       status:"pending"
     }
     console.log(data);
-    await axios.post('http://localhost:5000/api/addTodo', data).then(() => {
+    await axios.post('http://localhost:5000/api/addTodo', data)
+    .then(() => {
       alert("Record Inserted successfully.....")
+    }).catch(()=>{
+      alert("something are wrong")
     })
   }
   useEffect(() => {
     getAllPatient();
     getAllDoctor();
-   
   }, []);
-
-  const getAllPatient = async () => {
-    const { data } = await axios.get('http://localhost:5000/api/user/');
-    console.log(data);
-    setPatient(data)
+  const getAllPatient = async (req) => {
+    const data = await axios.get(`http://localhost:5000/api/user/book`,
+      {
+        method: "GET",
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': ' Bearer ' + localStorage.getItem("token")
+        }
+      }).then((res) => {
+        setPatient(res.data.data.user)
+        console.log(res.data.data.user)
+      })
+      console.log(data);
   }
   const getAllDoctor = async () => {
     const { data } = await axios.get('http://localhost:5000/api/doctor/');
     // const resData = await data.json();
     setDoctor(data)
   }
+
+  const checkdate=()=>{
+var date=document.getElementById('date').value;
+var varDate = new Date(date);
+var today=new Date();
+if(varDate <= today){
+  alert("the date must be greter then today date");
+  return false
+}
+ return true; }
   return (
     <div class="wrapper">
       <Sidebar />
@@ -78,15 +98,9 @@ const Aform = () => {
                     <div class="w-full sm:w-half formbold-px-3">
                       <div class="formbold-mb-5">
                         <label for="time" class="formbold-form-label"> patient Name </label>
-                        <select name='uid' style={{ width: 250, height: 45, border: '1px gray', borderRadius: 5 }}
-                         onChange={(e)=>setUid(e.target.value)}>
-
-                          {
-                            patients.map(p => {
-                              console.log(p);
-                              return<option value={p.id}>{p.full_name}</option>                            })
-                          }
-                        </select>
+                        <input name='uid' style={{ width: 250, height: 45, border: '1px gray', borderRadius: 5 }}
+                         value={patients.full_name}>
+                        </input>  
                       </div>
                     </div>
                   </div>
@@ -109,8 +123,8 @@ const Aform = () => {
                           type="date"
                           name="date"
                           id="date"
+                          onChange={checkdate}
                           class="formbold-form-input"
-                          onChange={(e)=>setDate(e.target.value)}
                         />
                       </div>
                     </div>
