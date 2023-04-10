@@ -50,12 +50,7 @@ const Sidebar = () => {
                             </Link>
                         </li>
 
-                        <li class="sidebar-item">
-                            <Link class="sidebar-link" to="/appointment">
-                                <BorderColorOutlinedIcon
-                                    className="align-middle" /> <span class="align-middle">Book Appointment</span>
-                            </Link>
-                        </li>
+                    
 
                         <li class="sidebar-item">
                             <Link class="sidebar-link" to="/viewappointment">
@@ -82,11 +77,6 @@ const Sidebar = () => {
                             </Link>
                         </li>
 
-                        {/* <li class="sidebar-item">
-                            <Link class="sidebar-link" to="/ViewAppointment">
-                            <CreditScoreOutlinedIcon  className="align-middle" /> <span class="align-middle">View Appointment</span>
-                            </Link>
-                        </li> */}
 
                         <li class="sidebar-item ">
                             <Link class="sidebar-link" to="/bill">
@@ -94,11 +84,7 @@ const Sidebar = () => {
                             </Link>
                         </li>
 
-                        <li class="sidebar-item ">
-                            <Link class="sidebar-link" to="/Payment">
-                                <PaymentIcon className="align-middle" /><span class="align-middle">Payment</span>
-                            </Link>
-                        </li>
+                       
 
                         <li className="sidebar-item " onClick={handleLogout}>
                             <Link className="sidebar-link" to="/signin" >

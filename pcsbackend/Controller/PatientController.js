@@ -1,14 +1,14 @@
 const { Joi } = require("express-validation");
-const express = require("express");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-//const Todo = require("../models/todosModel");
 const db = require("../models/AdminModule");
 const Patients = require("../models/PatientModule.js");
-const {getUserToken}=require('../Config/authenicate');
-const Appointment=require('../Models/AppointmentModal')
-const Users=require('../Models/UserModal');
-const Bill =require('../Models/BillModal')
+const { getUserToken, verifyUserToken } = require('../Config/authenicate');
+const Appointment = require('../Models/AppointmentModal');
+const Bill = require('../Models/BillModal')
+const nodemailer = require("nodemailer");
+const keysecret = process.env.USER_SECRET_KEY
+
 //login 
 
 const loginPatient = async (req, res, next) => {
@@ -23,39 +23,39 @@ const loginPatient = async (req, res, next) => {
       return res.status(412).json({
         status: 412,
         message: validate.error.details[0].message,
-      
+
       });
     }
-    const user = await Patients.findOne({ where: { email: req.body.email}  });
-    const token=await getUserToken(user)
-    user.token=token
+    const user = await Patients.findOne({ where: { email: req.body.email } });
+    const token = await getUserToken(user)
+    user.token = token
     console.log(user.token);
     const isPasswordValid = await bcrypt.compare(
       req.body.password,
-       user.password,
-			
-     );
-     if (!isPasswordValid) {
-       return res.status(412).json({
-         status: 412,
-         message: "Invalid password",
-       });
-     }
+      user.password,
+
+    );
+    if (!isPasswordValid) {
+      return res.status(412).json({
+        status: 412,
+        message: "Invalid password",
+      });
+    }
     if (user) {
       return res.status(200).json({
         status: 200,
         message: "Login Successful",
-        data:{
+        data: {
           user,
           token
         }
-        })
+      })
     }
   } catch (error) {
     return res.status(412).json({
       status: 412,
       message: "not Login..",
-    
+
     });
   }
 };
@@ -138,7 +138,7 @@ async function updatePatient(req, res) {
       full_name: Joi.string().required(),
       address: Joi.string().required(),
       contact_no: Joi.string().length(10).required(),
-     
+
     });
     const validate = validateSchema.validate(req.body);
     if (validate.error) {
@@ -248,11 +248,11 @@ const getAllPatient = async (req, res) => {
 
 //notification all 
 
-const notification =async(req,res)=>{
+const notification = async (req, res) => {
   try {
-    
+
   } catch (error) {
-    console.log(error); 
+    console.log(error);
   }
 }
 const getAllNotificationController = async (req, res) => {
@@ -280,11 +280,12 @@ const getAllNotificationController = async (req, res) => {
 };
 const getAppointment = async (req, res) => {
   try {
-    let doctor = await Appointment.findAll({where:{uid:req.user.id},
-      include:[{
-        model:Users,
-        as:"users",
-        attributes:['name','username']
+    let doctor = await Appointment.findAll({
+      where: { uid: req.user.id },
+      include: [{
+        model: Users,
+        as: "users",
+        attributes: ['name', 'username']
       }]
     });
     if (!doctor) {
@@ -301,24 +302,125 @@ const getAppointment = async (req, res) => {
     })
   }
 }
-const ViewBill=async(req,res)=>{
-  try{
-let patient =await Bill.findAll({where:{uid:req.user.id}
-});
+const ViewBill = async (req, res) => {
+  try {
+    let patient = await Bill.findAll({
+      where: { uid: req.user.id }
+    });
 
-if (!patient) {
-return res.status(400).json({
-  message: "error fetching appointment"
-})
+    if (!patient) {
+      return res.status(400).json({
+        message: "error fetching appointment"
+      })
+    }
+    res.status(200).json({
+      data: patient
+    })
+
+  } catch (error) {
+    res.status(400).json({
+      message: error.message
+    })
+  }
 }
-res.status(200).json({
-data: patient
-})
 
+//send email Link For reset Password
+const sendPasswordLink = async (req, res, user) => {
+
+ 
+  // Create a SMTP transporter object
+  let transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: 'demopractice6720@gmail.com', 
+      pass: 'hfklaednxeuhjtnm'
+    }
+  });
+  try {
+    console.log(req.body)
+    const { email } = req.body;
+
+  if(!email){
+      res.status(401).json({status:401,message:"Enter Your Email"})
+  };
+  const userfind = await Patients.findOne({where:{email:email}});
+    
+    const token = await jwt.sign(
+      {
+        id:userfind.id,
+        email: userfind.email,
+      },
+      process.env.USER_SECRET_KEY,
+      {
+        expiresIn: "1h",
+      }
+    );
+   console.log(token)
+
+
+    const mailOptions = {
+      from: 'demopractice6720@gmail.com',
+      to: req.body.email,
+      subject: "Sending Email For password Reset",
+      text: `This Link Valid For 2 MINUTES http://localhost:3001/forgotpassword/${userfind.id}/${token}`
+    }
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.log(error);
+        // res.status(401).json({ status: 401, message: "email not send" })
+      } else {
+        console.log("Email sent");
+      }
+    })
+  } catch (error) {
+    res.status(401).json({ status: 401, message: "invalid user" })
+  }
+}
+
+
+const forgotpassword =async(req,res)=>{
+const {id,token} = req.params;
+try {
+    const validuser = await Patients.findOne({_id:id,verifyToken:token});
+    console.log(validuser);
+    const verifyToken = jwt.verify(token,keysecret);
+
+    console.log("hello",verifyToken)
+    if(validuser && verifyToken.id){
+        res.status(201).json({status:201,validuser})
+    }else{
+        res.status(401).json({status:401,message:"user not exist"})
+    }
 } catch (error) {
-res.status(400).json({
-message: error.message
-})
+    res.status(401).json({status:401,error})
+}
+};
+
+const FchangePassword=async(req,res)=>{
+const {id,token} = req.params;
+
+const { password } = req.body;
+
+try {
+    const validuser = await Patients.findOne({id:id,verifytoken:token});
+    
+    const verifyToken = jwt.verify(token,keysecret);
+
+    if(validuser && verifyToken.id){
+        const newpassword = await bcrypt.hash(password,10);
+
+        const setnewuserpass = await Patients.update({password:newpassword},
+         { where :{id:id}})
+      
+        //setnewuserpass.save()
+        res.status(201).json({status:201,setnewuserpass})
+    }else{
+        res.status(401).json({status:401,message:"user not exist"})
+    }
+} catch (error) {
+    res.status(401).json({status:401,
+      message:error.message})
 }
 }
 
@@ -331,7 +433,11 @@ module.exports = {
   getAllPatient,
   getAllNotificationController,
   getAppointment,
-  ViewBill
+  ViewBill,
+  sendPasswordLink,
+  forgotpassword,
+  FchangePassword
+
 
 }
 

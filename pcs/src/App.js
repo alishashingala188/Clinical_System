@@ -22,6 +22,8 @@ import Profile from './profile'
 import Rprofile from './Rprofile'
 import RviewAppointment from './Rviewappointment'
 import Changeprofile from './changeprofile'
+import ForgotPassword from './ForgotPassword'
+import Resetpassword from './Resetpassword'
 const App = () => {
   return (
     <div>
@@ -35,7 +37,7 @@ const App = () => {
           <Route path='/nav' element={<Nav />} />
           <Route path='/footer' element={<Footer />} />
           <Route path='/doctor' element={<Doctor/>}/>
-          <Route path='/appointment' element={<Aform/>}/>
+          <Route path='/appointment/:id' element={<Aform/>}/>
           <Route path='/contact' element={<Contact/>}/>
           <Route path='/feedback' element={<Feedback/>}/>
           <Route path='/Rdashboard' element={<Rdashboard/>}/>
@@ -49,6 +51,8 @@ const App = () => {
           <Route path='/rviewappointment' element={<RviewAppointment/>}/>
           <Route path='/profile' element={<Profile/>}/>
           <Route path='/rprofile' element={<Rprofile/>}/>
+          <Route path='/forgotpassword/:id/:token' element={<ForgotPassword/>}/>
+          <Route path='/resetpassword' element={<Resetpassword/>}/>
         </Routes>
       </Router>
     

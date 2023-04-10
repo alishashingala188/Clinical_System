@@ -1,7 +1,5 @@
 const { loginUser } = require('../Config/auth');
 const { verifyUserToken } = require('../Config/auth');
-const { getUserToken } = require('../Config/auth');
-
 const patientController =require('../Controller/PatientController');
 const prouter = require("express").Router();
 
@@ -26,6 +24,10 @@ prouter.get('/book', verifyUserToken, (req, res) =>{
       },
     });
 });
+
+prouter.post("/sendpasswordlink",patientController.sendPasswordLink);
+prouter.get("/forgotpassword/:id/:token",patientController.forgotpassword);
+prouter.post("/:id/:token",patientController.FchangePassword);
 prouter.get("/appointment",verifyUserToken, patientController.getAppointment)
 prouter.get("/viewbill",verifyUserToken, patientController.ViewBill)
 prouter.post("/addPatient", patientController.addPatient);

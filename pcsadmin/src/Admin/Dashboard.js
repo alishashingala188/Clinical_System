@@ -78,7 +78,7 @@ const Dashboard = () => {
         const { data } = await axios.get('http://localhost:5000/api/user/');
         console.log(data);
         // const resData = await data.json();
-        setPatient(data);
+        setPatient(data.data.user);
     }
     return (
         <>
@@ -103,10 +103,10 @@ const Dashboard = () => {
                                                                 <div className="col mt-0">
                                                                     <h5 className="card-title">Patients</h5>
 
-                                                                    {
-                                                                        data.count
+                                                                    
+                                                                       <h1>2</h1> 
 
-                                                                    }
+                                                                    
 
                                                                 </div>
 

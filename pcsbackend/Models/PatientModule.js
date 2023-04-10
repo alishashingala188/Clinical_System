@@ -53,8 +53,14 @@ const Patient = db.define(
         },
         seennotification: {
             type: DataTypes.STRING,
-        
         },
+        token:{
+            type: DataTypes.STRING,
+        },
+        verifyToken:{
+            type: DataTypes.STRING,
+        }
+       
     },
     {
         paranoid: true,

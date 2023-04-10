@@ -19,40 +19,36 @@ const AddDoctor = ({ history }) => {
   const [address, setAddress] = useState("");
   const [speciality, setSpeciality] = useState("");
   const [email, setEmail] = useState("");
-  const [gender, setGender] = useState("");
-  const [cname, setCname] = useState("");
+  const [gender, setGender] = useState("")
+  const [clinic_name, setClinic_name] = useState("");
   const [education, setEducation] = useState("");
   const [time, setTime] = useState("");
   const [available_day, setAvailable_day] = useState("");
   const [image,setImage] =useState("");
-
+  const [type,setType] =useState('doctor')
+  const [isActive,setIsactive] =useState('yes');
   const Navigate = useNavigate()
-
-  const [file, setFile] = useState();
-  const [fileName, setFileName] = useState("");
 
   const addDoctorhandler = async (e) => {
     e.preventDefault();
-    const data = {
-      name: name,
-      username: username,
-      password: password,
-      contact_no: contact_no,
-      address: address,
-      speciality: speciality,
-      email: email,
-      gender: gender,
-      clinic_name: cname,
-      education: education,
-      type: "doctor",
-      time:time,
-      available_day:available_day,
-      image:image,
-      isActive:"yes"
-      
-    }
-    console.log(data);
-    await axios.post('http://localhost:5000/api/doctor/addDoctor', data)
+    const formdata =new FormData() 
+    formdata.append('name',name)
+    formdata.append('username',username)
+    formdata.append('password',password)
+    formdata.append('contact_no',contact_no)
+    formdata.append('address',address)
+    formdata.append('speciality',speciality)
+    formdata.append('email',email)
+    formdata.append('gender',gender)
+    formdata.append('clinic_name',clinic_name)
+    formdata.append('education',education)
+    formdata.append('type',type)
+    formdata.append('time',time)
+    formdata.append('available_day',available_day)
+    formdata.append('image',image)
+    formdata.append('isActive',isActive)
+    
+    await axios.post('http://localhost:5000/api/doctor/addDoctor', formdata)
     .then(() => {
       message.success("record inserted..")
 
@@ -81,21 +77,21 @@ const AddDoctor = ({ history }) => {
                         <div className="card-body">
 
                           <input type="text" className="form-control" placeholder="Doctor name" name="name"
-                            onChange={(e) => setName(e.target.value)} value={name} />
+                            onChange={(e) => setName(e.target.value)}  />
                         </div>
                       </div>
                       <div className="card">
 
                         <div className="card-body">
                           <input type="text" className="form-control" placeholder="Enter Username" name="username"
-                            onChange={(e) => setUsername(e.target.value)} value={username} />
+                            onChange={(e) => setUsername(e.target.value)}  />
                         </div>
                       </div>
 
                       <div className="card">
                         <div className="card-body">
                           <input type="password" className="form-control" placeholder="Enter password" name="password"
-                            onChange={(e) => setPassword(e.target.value)} value={password} />
+                            onChange={(e) => setPassword(e.target.value)}  />
                         </div>
                       </div>
 
@@ -103,7 +99,7 @@ const AddDoctor = ({ history }) => {
 
                         <div className="card-body">
                           <input type="number" className="form-control" placeholder="Contact No" name="contact_no"
-                            onChange={(e) => setContact_no(e.target.value)} value={contact_no} />
+                            onChange={(e) => setContact_no(e.target.value)}  />
                         </div>
                       </div>
 
@@ -112,7 +108,7 @@ const AddDoctor = ({ history }) => {
 
                         <div className="card-body">
                           <textarea rows="4" cols="50" className="form-control" placeholder="Address" name="address"
-                            onChange={(e) => setAddress(e.target.value)} value={address} ></textarea>
+                            onChange={(e) => setAddress(e.target.value)} ></textarea>
                         </div>
                       </div>
 
@@ -120,7 +116,7 @@ const AddDoctor = ({ history }) => {
 
                         <div className="card-body">
                           <select className="form-control" rows="1" placeholder="Speciality" name="speciality"
-                            onChange={(e) => setSpeciality(e.target.value)} value={speciality}>
+                            onChange={(e) => setSpeciality(e.target.value)} >
                             <option >--Select speciality--</option>
                             <option>Eye Speciality</option>
                             <option>Dentist specialist</option>
@@ -137,11 +133,10 @@ const AddDoctor = ({ history }) => {
 
                         <div className="card-body">
                           <input type="text" className="form-control" placeholder="Email" name="email"
-                            onChange={(e) => setEmail(e.target.value)} value={email} />
+                            onChange={(e) => setEmail(e.target.value)}  />
                         </div>
                       </div>
                       <div className="card">
-
                         <div className="card-body">
                           Select Gender ::
                           <br />
@@ -156,7 +151,7 @@ const AddDoctor = ({ history }) => {
 
                         <div className="card-body">
                           <input type="text" className="form-control" placeholder="Clinic name" name="clinic_name"
-                            onChange={(e) => setCname(e.target.value)} value={cname} />
+                            onChange={(e) => setClinic_name(e.target.value)} value={clinic_name} />
                         </div>
                       </div>
 

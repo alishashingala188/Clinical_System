@@ -6,6 +6,7 @@ module.exports={
     PASSWORD :"",
     DB : "pcs",
     dialect :"mysql",
+    logging:false,
     pool:{
         mix :5,
         min:0,

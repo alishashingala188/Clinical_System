@@ -2,7 +2,6 @@ const doctorController =require('../Controller/UserController');
 const drouter = require("express").Router();
 const { loginUser } = require('../Config/authenicate');
 const { verifyUserToken } = require('../Config/authenicate');
-//const upload =require('../middleware/upload')
 //doctor Route
 drouter.post("/addDoctor",doctorController.upload,doctorController.addDoctor);
 drouter.get('/profile', verifyUserToken, (req, res) =>{

@@ -18,6 +18,8 @@ const ViewDoctor = () => {
   const [edit, setEdit] = useState([]);
   const [mess, setMess] = useState([]);
   const [status,setStatus]=useState("")
+  const [showButton, setShowButton] = useState(true);
+
   useEffect(() => {
     getAllAppoitment();
   }, []);
@@ -38,9 +40,11 @@ const ViewDoctor = () => {
     const credential={
       status:"confirm"
   }
+  
   console.log(credential);
     const editdata = await axios.put(`http://localhost:5000/api/edit/${id}`,credential);
-   
+    setShowButton(!showButton);
+
   }
   const handleDelete = async (id) => {
     console.log(id);
@@ -84,7 +88,7 @@ const ViewDoctor = () => {
                             <td>  {d.a_reason}</td>
                             <td>{d.status}</td>
                             <td>
-                              <button className='btn btn-success' style={{ border: "none" }} onClick={() => handleChange(d.id)}> <CheckIcon color='' />Confirm</button>
+                            {showButton && <button className='btn btn-success' id='btn' style={{ border: "none" }} onClick={() => handleChange(d.id)}> <CheckIcon color='' />Confirm</button>}
                               <button className='btn btn-danger' style={{ border: "none" }} onClick={() => handleDelete(d.id)}> <DeleteIcon color='' />Delete</button>
                             </td>
                           </tr>

@@ -85,7 +85,8 @@ const Dashboard = () => {
                                                     <div class="card-body">
                                                         <div class="row">
                                                             <div class="col mt-0">
-                                                                <h5 class="card-title">Patients</h5>
+                                                                <h5 class="card-title">doctors</h5>
+                                                                <h2>3</h2>
                                                             </div>
 
                                                             <div class="col-auto">

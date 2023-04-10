@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './Signup.css'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate,Link } from 'react-router-dom'
 const Form = () => {
   const [full_name, setFull_name] = useState("");
   const [username, setUsername] = useState("");
@@ -75,7 +75,7 @@ const Form = () => {
           </div>
           <div class="input-box">
             <span class="details">age</span>
-            <input type="text" placeholder="Enter your adreess" name='age' required
+            <input type="number" placeholder="Enter your age" name='age' required
              onChange={(e)=>setAge(e.target.value)}/>
           </div>
           <div class="input-box">
@@ -99,6 +99,9 @@ const Form = () => {
         <div class="button">
           <input type="submit" value="Register"/>
         </div>
+        </div>
+        <div>
+         You Have Already Account  <Link to='/signin'>Sign In here</Link>
         </div>
       </form>
       </div>

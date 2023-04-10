@@ -4,14 +4,13 @@ const Doctor = require('../Models/UserModal.js')
 const { getUserToken } = require('../Config/authenicate');
 const { where } = require('sequelize');
 const Appointment = require('../Models/AppointmentModal');
-const Patients = require('../Models/PatientModule');
+const Patients =  require ('../Models/PatientModule.js');
 const multer = require('multer')
 const path = require('path')
 const fs = require("fs");
-
 //Login in doctor
 
-const loginDoctor = async (req, res, next) => {
+const loginDoctor = async(req, res, next) => {
   try {
     const validateSchema = Joi.object().keys({
       email: Joi.string().required().email(),
@@ -23,7 +22,6 @@ const loginDoctor = async (req, res, next) => {
       return res.status(412).json({
         status: 412,
         message: validate.error.details[0].message,
-
       });
     }
     const user = await Doctor.findOne({ where: { email: req.body.email } });
@@ -85,7 +83,7 @@ const addDoctor = async (req, res) => {
           "string.pattern.base":
             "Password must contain 8 characters,one uppercase,one lowercase,one number and one special character",
         }),
-      image: Joi.required(),
+        image:Joi.required()
     });
 
     req.body.image = req.file;
@@ -142,6 +140,7 @@ const addDoctor = async (req, res) => {
     });
   }
 }
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
       cb(null, 'Images')
@@ -199,7 +198,6 @@ const updateDoctor = async (req, res) => {
       return res.status(412).json({
         status: 412,
         message: "User not updated",
-
       });
     }
     return res.status(200).json({
@@ -275,7 +273,6 @@ const getAllDoctor = async (req, res) => {
   res.status(200).send(doctor)
 }
 
-
 const getAppointment = async (req, res) => {
   try {
     let doctor = await Appointment.findAll({
@@ -320,8 +317,6 @@ const getPatient = async (req, res) => {
 
 }
 
-
-
 module.exports = {
   loginDoctor,
   addDoctor,
@@ -332,5 +327,6 @@ module.exports = {
   getAppointment,
   getPatient,
   upload
+  
 
 }

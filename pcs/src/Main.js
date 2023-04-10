@@ -73,7 +73,7 @@ export const Main = () => {
                   </li>
 
                   <li class="nav-item">
-                        <Link class="nav-link1" to="/signin"> Patient </Link>
+                      
                         <Link class="nav-link1" to="/rlogin">Receptionist </Link>    
                   </li>
                 </ul>

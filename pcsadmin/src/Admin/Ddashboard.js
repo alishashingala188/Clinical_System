@@ -93,6 +93,7 @@ const Ddashboard = () => {
                                                         <div className="row">
                                                             <div className="col mt-0">
                                                                 <h5 className="card-title">Patients</h5>
+                                                                <h1>2</h1>
                                                             </div>
 
                                                             <div className="col-auto">

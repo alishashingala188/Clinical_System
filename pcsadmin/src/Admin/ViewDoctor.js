@@ -23,7 +23,7 @@ const ViewDoctor = () => {
   }, [])
   useEffect(() => {
     getAllAdmin();
-    handleDelete();
+     handleDelete();
   }, []);
 
   const handleFilter = (event) => {
@@ -47,7 +47,7 @@ const ViewDoctor = () => {
   //delete doctor
 
   const handleDelete = async (id) => {
-    console.log(id);
+   // console.log(id);
     const deleteData = await axios.delete(`http://localhost:5000/api/doctor/${id}`);
     //console.log(deleteData);
     setMess(deleteData);
@@ -71,9 +71,9 @@ const ViewDoctor = () => {
                   <thead border="2px solid blue">
                     <tr style={{ backgroundColor: "#3b7ddd", fontSize: "20", fontWeight: "inherit", color: "white", textAlign: "center", height: '50px' }} color="">
                       <th>DoctorName</th>
+                      <th>Image</th>
                       <th>Username</th>
                       <th>Education</th>
-                      <th>contact_no</th>
                       <th>Speciality</th>
                       <th>Email</th>
                       <th>Operation</th>
@@ -84,10 +84,10 @@ const ViewDoctor = () => {
                       doctors.map(d => {
                         //console.log(doctor);
                         return <tr style={{ marginBottom: "10px" }}>
+                          <td><img src={'http://localhost:5000/'+d.image} width="100" height="100" style={{borderRadius:50}} /></td>
                           <td> {d.name} </td>
                           <td> {d.username}  </td>
                           <td> {d.education}</td>
-                          <td>{d.contact_no}  </td>
                           <td> {d.speciality} </td>
                           <td> {d.email} </td>
                          

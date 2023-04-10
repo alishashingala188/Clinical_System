@@ -60,7 +60,6 @@ const InvoiceForm = () => {
     
     })
   }
-  var i=0;
   return (
     <Form ml={200} onSubmit={addBillHandler} style={{marginLeft:220}}>
       <Row>
