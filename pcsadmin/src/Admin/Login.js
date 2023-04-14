@@ -14,10 +14,8 @@ const Login = () => {
       email: email,
       password: password
     };
-
     const  {data}  = await axios.post("http://localhost:5000/api/doctor/dlogin", credentials)
     .then(async (res) => {
-
         await localStorage.setItem("token", res.data.data.token);
         message.success("Login Successfully");
         if (res?.data?.data?.user?.type === "admin") {
@@ -30,7 +28,6 @@ const Login = () => {
       })
   };
 
-
 return (
   <div>
     <main className="d-flex w-100">
@@ -38,14 +35,12 @@ return (
         <div className="row vh-100">
           <div className="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100">
             <div className="d-table-cell align-middle">
-
               <div className="text-center mt-4">
                 <h1 className="h2">Welcome back</h1>
                 <p className="lead">
                   Sign in to your account to continue
                 </p>
               </div>
-
               <div className="card">
                 <div className="card-body">
                   <div className="m-sm-4">
@@ -56,17 +51,15 @@ return (
                     <form>
                       <div className="mb-3">
                         <input className="form-control form-control-lg" type="email" name="email" placeholder="Enter your Email Id" style={{ marginBottom: 20 }}
-                          onChange={(e) => setEmail(e.target.value)}
+                          onChange={(e) => setEmail(e.target.value)} required
                         />
                       </div>
                       <div className="mb-3">
                         <input className="form-control form-control-lg" type="password" name="password" placeholder="Enter your password" style={{ marginBottom: 20 }}
-                          onChange={(e) => setPassword(e.target.value)}
+                          onChange={(e) => setPassword(e.target.value)} required
                         />
-
                       </div>
                       <div className="mb-3">
-
                         <small>
                           <a href="index.html">Forgot password?</a>
                         </small>
@@ -80,9 +73,8 @@ return (
                         </label>
                       </div>
                       <div className="text-center mt-3">
-                        <button className="btn btn-lg btn-primary" style={{ width: 200, height: 40 }} type="button" onClick={onLogin}>Sign in</button>
+                        <button className="btn btn-lg btn-primary" style={{ width: 200, height: 40 }} type='button'  onClick={onLogin}>Sign in</button>
                       </div>
-
                     </form>
                   </div>
                 </div>

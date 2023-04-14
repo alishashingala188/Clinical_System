@@ -49,8 +49,8 @@ const InvoiceForm = () => {
       medician_cost:medician_cost,
       doctor_charge:doctor_charge,
       extra_charge:extra_charge,
-      discount:discount,
-      totle:parseInt(medician_cost)+parseInt(doctor_charge)+parseInt(room_cost)+parseInt(extra_charge)-parseFloat(discount*100/100)
+      discount:10,
+      totle:parseInt(medician_cost)+parseInt(doctor_charge)+parseInt(room_cost)+parseInt(extra_charge)
     }
     console.log(data);
     await axios.post('http://localhost:5000/api/bill/addbill', data).then(() => {
@@ -113,8 +113,8 @@ const InvoiceForm = () => {
                 <Form.Control placeholder={"Extra Charge"} type="number" name="email" className="my-2" autoComplete="email" required="required" 
                  onChange={(e) => setExtra_charge(e.target.value)}/>
 
-                <Form.Control placeholder={"Discount"} type="number" name="email" className="my-2" autoComplete="email" required="required" 
-                 onChange={(e) => setDiscount(e.target.value)}/>
+                {/* <Form.Control placeholder={"Discount"} type="number" name="email" className="my-2" autoComplete="email" required="required" 
+                 onChange={(e) => setDiscount(e.target.value)}/> */}
 
               </Col>
             </Row>
@@ -126,18 +126,18 @@ const InvoiceForm = () => {
                   <span>
                   </span>
                 </div>
-                <div className="d-flex flex-row align-items-start justify-content-between mt-2">
+                {/* <div className="d-flex flex-row align-items-start justify-content-between mt-2">
                   <span className="fw-bold">Discount:{discount}</span>
                   <span>
                     <span className="small "></span>
                   </span>
-                </div>
+                </div> */}
                
                 <hr />
                 <div className="d-flex flex-row align-items-start justify-content-between" style={{
                   fontSize: '1.125rem'
                 }}>
-                  <span className="fw-bold">Total:{parseInt(medician_cost)+parseInt(doctor_charge)+parseInt(room_cost)+parseInt(extra_charge)-parseFloat(discount*100/100)}
+                  <span className="fw-bold">Total:{parseInt(medician_cost)+parseInt(doctor_charge)+parseInt(room_cost)+parseInt(extra_charge)}
                   </span>
                   <span className="fw-bold">
                   </span>

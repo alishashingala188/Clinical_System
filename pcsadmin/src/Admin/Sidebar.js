@@ -38,7 +38,7 @@ const Sidebar = () => {
                         </li>
 
                         <li className="sidebar-item active">
-                            <Link to="/dashboard/:id" className="sidebar-link" >
+                            <Link to="/dashboard" className="sidebar-link" >
                             <DashboardCustomizeOutlinedIcon classNameName="align-middle"  fontSize='small' /> <span className="align-middle">Dashboard</span>
                             </Link>
                         </li>

@@ -36,9 +36,5 @@ prouter.delete("/:id", patientController.deletePatient);
 prouter.get("/:id",patientController.getPatientById);
 prouter.get("/", patientController.getAllPatient);
 prouter.post("/login", patientController.loginPatient)
-prouter.post(
-    "/get-all-notification",
-    verifyUserToken,
-    patientController.getAllNotificationController
-  );
+
 module.exports = prouter;

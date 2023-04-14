@@ -31,7 +31,7 @@ const Forgotpassword = () => {
 }
 
 const validUser=async ()=>{
-  const data = axios.post(`http://localhost:5000/api/user/forgotpassword/${id}/${token}`)
+  const data = axios.get(`http://localhost:5000/api/user/forgotpassword/${id}/${token}`)
 .then(()=>{
   console.log("user valid")
 })
@@ -62,7 +62,7 @@ const validUser=async ()=>{
           </Grid>
          <br/> <br/>
           <TextField label='New Password' placeholder='Enter new password' sx={{ mb: 2 }} type='password' fullWidth required
-            onChange={changeHandler} name='email'/>
+            onChange={changeHandler} name='password'/>
           <FormControlLabel
             control={
               <Checkbox

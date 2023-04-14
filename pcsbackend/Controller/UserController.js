@@ -74,7 +74,6 @@ const addDoctor = async (req, res) => {
       type: Joi.string().required(),
       time: Joi.string().required(),
       available_day: Joi.string().required(),
-
       isActive: Joi.string().required(),
       password: Joi.string()
         .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/)
@@ -296,7 +295,6 @@ const getAppointment = async (req, res) => {
       message: error.message
     })
   }
-
 }
 const getPatient = async (req, res) => {
   try {

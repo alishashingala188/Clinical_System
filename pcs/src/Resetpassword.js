@@ -29,7 +29,8 @@ const Resetpassword = () => {
       await axios.post('http://localhost:5000/api/user/sendpasswordlink',email)
     .then(async(res)=>{
       await localStorage.setItem("token", res.data.data.token);
-      setEmail('')
+      setEmail('');
+      alert('done')
     })
     .catch((error)=>{
       console.log(error)

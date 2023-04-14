@@ -5,6 +5,7 @@ const db = require("../models/AdminModule");
 const Patients = require("../models/PatientModule.js");
 const { getUserToken, verifyUserToken } = require('../Config/authenicate');
 const Appointment = require('../Models/AppointmentModal');
+const Users =require('../Models/UserModal.js');
 const Bill = require('../Models/BillModal')
 const nodemailer = require("nodemailer");
 const keysecret = process.env.USER_SECRET_KEY
@@ -246,38 +247,8 @@ const getAllPatient = async (req, res) => {
 //   }
 // }
 
-//notification all 
 
-const notification = async (req, res) => {
-  try {
 
-  } catch (error) {
-    console.log(error);
-  }
-}
-const getAllNotificationController = async (req, res) => {
-  try {
-    const user = await Patients.findOne({ _id: req.body.id });
-    const seennotification = user.seennotification;
-    const notifcation = user.notifcation;
-    seennotification.push(...notifcation);
-    user.notifcation = [];
-    user.seennotification = notifcation;
-    const updatedUser = await user.save();
-    res.status(200).send({
-      success: true,
-      message: "all notification marked as read",
-      data: updatedUser,
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).send({
-      message: "Error in notification",
-      success: false,
-      error,
-    });
-  }
-};
 const getAppointment = async (req, res) => {
   try {
     let doctor = await Appointment.findAll({
@@ -362,7 +333,7 @@ const sendPasswordLink = async (req, res, user) => {
       from: 'demopractice6720@gmail.com',
       to: req.body.email,
       subject: "Sending Email For password Reset",
-      text: `This Link Valid For 2 MINUTES http://localhost:3001/forgotpassword/${userfind.id}/${token}`
+      text: `This Link Valid For 2 MINUTES http://localhost:3000/forgotpassword/${userfind.id}/${token}`
     }
 
     transporter.sendMail(mailOptions, (error, info) => {
@@ -431,7 +402,6 @@ module.exports = {
   deletePatient,
   getPatientById,
   getAllPatient,
-  getAllNotificationController,
   getAppointment,
   ViewBill,
   sendPasswordLink,
