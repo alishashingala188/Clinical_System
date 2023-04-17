@@ -5600,7 +5600,8 @@ fieldset:disabled .btn {
 }
 
 .align-middle {
-    vertical-align: middle!important
+    vertical-align: middle!important;
+    font-weight: 400;
 }
 
 .align-bottom {

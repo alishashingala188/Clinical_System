@@ -19,6 +19,19 @@ const {id}=useParams();
 //console.log(id)
   const addApoointmenthandler = async (e) => {
     e.preventDefault();
+    if(a_reason === ""){
+      message.error("Please enter appointment reason.")
+    }
+    else if(date === "" ){
+      message.error("Please enter date")
+
+    }
+    else if(time === "" ){
+      message.error("Please enter time")
+
+    }
+   
+    else{
     const data = {
       did:doctors.id,
       uid:patients.id,
@@ -37,6 +50,7 @@ const {id}=useParams();
 
     })
   }
+  }
   useEffect(() => {
     getAllPatient();
     getAllDoctor();
@@ -53,7 +67,6 @@ const {id}=useParams();
         setPatient(res.data.data.user)
       
       })
-    
   }
   const getAllDoctor = async () => {
     const { data } = await axios.get(`http://localhost:5000/api/doctor/${id}`)
@@ -70,7 +83,7 @@ var date=document.getElementById('date').value;
 var varDate = new Date(date);
 var today=new Date();
 if(varDate <= today){
-  alert("the date must be greter then today date");
+  message.error("the date must be greter then today date");
   return false
 }
  return true; }

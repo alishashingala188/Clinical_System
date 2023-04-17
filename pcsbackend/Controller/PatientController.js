@@ -275,9 +275,7 @@ const getAppointment = async (req, res) => {
 }
 const ViewBill = async (req, res) => {
   try {
-    let patient = await Bill.findAll({
-      where: { uid: req.user.id }
-    });
+    let patient = await Bill.findAll();
 
     if (!patient) {
       return res.status(400).json({

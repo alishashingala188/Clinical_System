@@ -1,4 +1,4 @@
-import React, { useState ,useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import Sidebar from './Sidebar'
 import Nav from './Nav'
 import Footer from './Footer'
@@ -7,11 +7,11 @@ import { useNavigate } from 'react-router-dom'
 import { message } from 'antd'
 const AddDoctor = ({ history }) => {
   const navigate = useNavigate()
-    useEffect(() => {
-        if (!localStorage.getItem('token')) {
-            navigate('/')
-        }
-    })
+  useEffect(() => {
+    if (!localStorage.getItem('token')) {
+      navigate('/')
+    }
+  })
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -24,37 +24,59 @@ const AddDoctor = ({ history }) => {
   const [education, setEducation] = useState("");
   const [time, setTime] = useState("");
   const [available_day, setAvailable_day] = useState("");
-  const [image,setImage] =useState("");
-  const [type,setType] =useState('doctor')
-  const [isActive,setIsactive] =useState('yes');
+  const [image, setImage] = useState("");
+  const [type, setType] = useState('doctor')
+  const [isActive, setIsactive] = useState('yes');
   const Navigate = useNavigate()
 
   const addDoctorhandler = async (e) => {
     e.preventDefault();
-    const formdata =new FormData() 
-    formdata.append('name',name)
-    formdata.append('username',username)
-    formdata.append('password',password)
-    formdata.append('contact_no',contact_no)
-    formdata.append('address',address)
-    formdata.append('speciality',speciality)
-    formdata.append('email',email)
-    formdata.append('gender',gender)
-    formdata.append('clinic_name',clinic_name)
-    formdata.append('education',education)
-    formdata.append('type',type)
-    formdata.append('time',time)
-    formdata.append('available_day',available_day)
-    formdata.append('image',image)
-    formdata.append('isActive',isActive)
-    
-    await axios.post('http://localhost:5000/api/doctor/addDoctor', formdata)
-    .then(() => {
-      message.success("record inserted..")
 
-    }).catch(()=>{
-      message.error("something are wrong...")
-    })
+    if (name === '' || username === "") {
+      message.error("Please fill up name & username")
+    }
+    
+    else if (password.search(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/)) {
+      message.error("Please fill password Using one uppercase,one lower case and special chracter and digit greter then 8 char.")
+    }
+    else if(contact_no.match(10)){
+      message.error("Contact no must be 10 char.")
+
+    }
+    else if(address === ""){
+      message.error("Please fill up Address")
+    }
+   
+    else if(email === "" || email.search( /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)){
+      message.error("Please Email Id must be strig,digit and @ include ")
+    }
+    else {
+      const formdata = new FormData()
+      formdata.append('name', name)
+      formdata.append('username', username)
+      formdata.append('password', password)
+      formdata.append('contact_no', contact_no)
+      formdata.append('address', address)
+      formdata.append('speciality', speciality)
+      formdata.append('email', email)
+      formdata.append('gender', gender)
+      formdata.append('clinic_name', clinic_name)
+      formdata.append('education', education)
+      formdata.append('type', type)
+      formdata.append('time', time)
+      formdata.append('available_day', available_day)
+      formdata.append('image', image)
+      formdata.append('isActive', isActive)
+
+      await axios.post('http://localhost:5000/api/doctor/addDoctor', formdata)
+        .then(() => {
+          message.success("record inserted..")
+
+        })
+        // .catch(() => {
+        //   message.error("Enter valid data...")
+        // })
+    }
   }
   return (
     <>
@@ -73,25 +95,25 @@ const AddDoctor = ({ history }) => {
                   <div className="row">
                     <div className="col-12 col-lg-6">
                       <div className="card">
-                        
+
                         <div className="card-body">
 
                           <input type="text" className="form-control" placeholder="Doctor name" name="name"
-                            onChange={(e) => setName(e.target.value)}  />
+                            onChange={(e) => setName(e.target.value)} />
                         </div>
                       </div>
                       <div className="card">
 
                         <div className="card-body">
                           <input type="text" className="form-control" placeholder="Enter Username" name="username"
-                            onChange={(e) => setUsername(e.target.value)}  />
+                            onChange={(e) => setUsername(e.target.value)} />
                         </div>
                       </div>
 
                       <div className="card">
                         <div className="card-body">
                           <input type="password" className="form-control" placeholder="Enter password" name="password"
-                            onChange={(e) => setPassword(e.target.value)}  />
+                            onChange={(e) => setPassword(e.target.value)} />
                         </div>
                       </div>
 
@@ -133,7 +155,7 @@ const AddDoctor = ({ history }) => {
 
                         <div className="card-body">
                           <input type="text" className="form-control" placeholder="Email" name="email"
-                            onChange={(e) => setEmail(e.target.value)}  />
+                            onChange={(e) => setEmail(e.target.value)} />
                         </div>
                       </div>
                       <div className="card">
@@ -158,7 +180,7 @@ const AddDoctor = ({ history }) => {
                       <div className="card">
                         <div className="card-body">
                           <input type="file" className="form-control" name="image" size="lg"
-                            onChange={(e) => setImage(e.target.files[0])}  />
+                            onChange={(e) => setImage(e.target.files[0])} />
                         </div>
                       </div>
 

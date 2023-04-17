@@ -26,6 +26,13 @@ const Login = () => {
   let Navigate = useNavigate();
 
   const onLogin = async () => {
+    if(email == ""){
+      message.error("Please fill up email Id")
+  }
+  else if(password== ""){
+    message.error("Please fill up Password ")
+  }
+  else{
     const credentials = {
       email: email,
       password: password
@@ -37,8 +44,9 @@ const Login = () => {
         message.success("Login sucessfully")
         Navigate('/dashboard')
       }).catch((err) => {
-        alert("username and password are wrong..")
+        message.error("username and password are wrong..")
       })
+    }
   }
   return (
     <div >
@@ -48,9 +56,9 @@ const Login = () => {
             <Avatar style={avatarStyle}><LockOutlinedIcon /></Avatar>
             <h2>Sign In</h2>
           </Grid>
-          <TextField label='Username' placeholder='Enter username' sx={{ mb: 2 }} fullWidth required
+          <TextField label='Email Id' placeholder='Enter Email id' sx={{ mb: 2 }} fullWidth 
             onChange={(e) => setEmail(e.target.value)} />
-          <TextField label='Password' placeholder='Enter password' sx={{ mb: 2 }} type='password' fullWidth required
+          <TextField label='Password' placeholder='Enter password' sx={{ mb: 2 }} type='password' fullWidth 
             onChange={(e) => setPassword(e.target.value)} />
           <FormControlLabel
             control={

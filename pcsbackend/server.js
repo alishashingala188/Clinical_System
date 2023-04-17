@@ -17,8 +17,9 @@ const razorpay = new Razorpay({
 	key_secret: 'GLB8Wrot6zSgreN4ekxUMLnt'
 })
 app.post('/razorpay', async (req, res) => {
+	
 	const payment_capture = 1
-	const amount = 590
+	const amount = 1500
 	const currency = 'INR'
 
 	const options = {

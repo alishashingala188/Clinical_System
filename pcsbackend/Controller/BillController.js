@@ -23,7 +23,7 @@ const addBill = async (req, res) => {
 
 // get all apoointment
 const getBill = async (req, res) => {
-  const todo = await Bill.findAll()
+  const todo = await Bill.findAll({})
   res.status(200).send(todo);
 };
 

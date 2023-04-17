@@ -10,6 +10,13 @@ const Login = () => {
   let Navigate = useNavigate();
 
   const onLogin = async () => {
+    if(email == ""){
+        message.error("Please fill up email Id")
+    }
+    else if(password== ""){
+      message.error("Please fill up Password ")
+    }
+    else{
     const credentials = {
       email: email,
       password: password
@@ -23,9 +30,11 @@ const Login = () => {
         } else {
           await Navigate("/ddashboard");
         }
-      }).catch(()=>{
-        message.error("Plese enter valid username and password");
       })
+      .catch(()=>{
+        message.error("Please enter valid username and password");
+      })
+    }
   };
 
 return (

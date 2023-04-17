@@ -10,34 +10,34 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import jsPDF from 'jspdf'
 import html2canvas from 'html2canvas'
 
-import {BiCloudDownload} from 'react-icons/bi'
+import { BiCloudDownload } from 'react-icons/bi'
 import './bill.css'
 import { Link } from 'react-router-dom'
 
-   
+
 function loadScript(src) {
-	return new Promise((resolve) => {
-		const script = document.createElement('script')
-		script.src = src
-		script.onload = () => {
-			resolve(true)
-		}
-		script.onerror = () => {
-			resolve(false)
-		}
-		document.body.appendChild(script)
-	})
+    return new Promise((resolve) => {
+        const script = document.createElement('script')
+        script.src = src
+        script.onload = () => {
+            resolve(true)
+        }
+        script.onerror = () => {
+            resolve(false)
+        }
+        document.body.appendChild(script)
+    })
 }
 const Dprofile = () => {
     const [bill, setBill] = useState([]);
     const [admin, setAdmin] = useState([]);
-    const [name, setName] = useState('nikita')
+    const [name, setName] = useState(admin.full_name)
 
     useEffect(() => {
         getAllBill();
         getAllAdmin();
     }, []);
-    console.log("hello ", bill)
+    //console.log("hello ", bill)
 
     const getAllBill = async () => {
         const data = await axios.get(`http://localhost:5000/api/user/viewbill`,
@@ -53,7 +53,6 @@ const Dprofile = () => {
             })
 
     }
-
     const getAllAdmin = async (req) => {
         const data = await axios.get(`http://localhost:5000/api/user/profile`,
             {
@@ -64,66 +63,66 @@ const Dprofile = () => {
                 }
             }).then((res) => {
                 setAdmin(res.data.data.user)
-                //console.log(res.data.data.user)
+                console.log(res.data.data.user)
             })
     }
     // (html2canvas as any)(...).then().catch()
     function GenerateInvoice() {
         html2canvas(document.querySelector("#invoice")).then((canvas) => {
-          const imgData = canvas.toDataURL('image/png', 1.0);
-          const pdf = new jsPDF({
-            orientation: 'portrait',
-            unit: 'pt',
-            format: [612, 792]
-          });
-          pdf.internal.scaleFactor = 1;
-          const imgProps= pdf.getImageProperties(imgData);
-          const pdfWidth = pdf.internal.pageSize.getWidth();
-          const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-          pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-          pdf.save('invoice-001.pdf');
+            const imgData = canvas.toDataURL('image/png', 1.0);
+            const pdf = new jsPDF({
+                orientation: 'portrait',
+                unit: 'pt',
+                format: [612, 792]
+            });
+            pdf.internal.scaleFactor = 1;
+            const imgProps = pdf.getImageProperties(imgData);
+            const pdfWidth = pdf.internal.pageSize.getWidth();
+            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+            pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+            pdf.save('invoice-001.pdf');
         });
-      }
-
-      //payment system
-
-   
-async function displayRazorpay() {
-    const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')
-
-    if (!res) {
-        alert('Razorpay SDK failed to load. Are you online?')
-        return
     }
 
-    const data = await fetch('http://localhost:5000/razorpay', { method: 'POST' }).then((t) =>
-        t.json()
-    )
+    //payment system
 
-    console.log(data)
 
-    const options = {
-        key:document.domain === 'localhost' ? 'rzp_test_QTuO1fvgzMpvEy' : 'PRODUCTION_KEY',
-        currency: data.currency,
-        amount: data.amount.toString(),
-        order_id: data.id,
-        name: 'Payment',
-        description: 'Thank you for nothing. Please give us some money',
-        
-        handler: function (response) {
-            alert(response.razorpay_payment_id)
-            alert(response.razorpay_order_id)
-            alert(response.razorpay_signature)
-        },
-        prefill: {
-            name,
-            email: 'sem3a.67.tmtbca@gmail.com',
-            phone_number: '7069582962'
+    async function displayRazorpay() {
+        const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')
+
+        if (!res) {
+            alert('Razorpay SDK failed to load. Are you online?')
+            return
         }
+
+        const data = await fetch('http://localhost:5000/razorpay', { method: 'POST' }).then((t) =>
+            t.json()
+        )
+
+        console.log(data)
+
+        const options = {
+            key: document.domain === 'localhost' ? 'rzp_test_QTuO1fvgzMpvEy' : 'PRODUCTION_KEY',
+            currency: data.currency,
+            amount: data.amount.toString(),
+            order_id: data.id,
+            name: 'Payment',
+            description: 'Thank you for nothing. Please give us some money',
+
+            handler: function (response) {
+                alert(response.razorpay_payment_id)
+                alert(response.razorpay_order_id)
+                alert(response.razorpay_signature)
+            },
+            prefill: {
+                name,
+                email: 'sem3a.67.tmtbca@gmail.com',
+                phone_number: '7069582962'
+            }
+        }
+        const paymentObject = new window.Razorpay(options)
+        paymentObject.open()
     }
-    const paymentObject = new window.Razorpay(options)
-    paymentObject.open()
-}
     return (
         <>
             <div className="wrapper">
@@ -132,9 +131,9 @@ async function displayRazorpay() {
                     <div className="main">
                         <Nav />
                         <main className="content">
-                            <div className="container-fluid p-0"></div>
+                            {/* <div className="container-fluid p-0"></div>
                             <div className="mb-3">
-                            </div>
+                            </div> */}
 
                             <div id="invoice">
                                 <div className="invoice overflow-auto">
@@ -184,17 +183,19 @@ async function displayRazorpay() {
                                                             <h3>Medician cost</h3> This is Paperless clinical system Medician cost
                                                         </td>
 
+
                                                         {
                                                             Array.isArray(bill)
                                                                 ? bill.map(d => {
                                                                     return (
-                                                                        <>
-                                                                            <td className="unit" style={{ width: 150 }}>{d.medician_cost}</td>
-                                                                            <td className="total">{d.medician_cost}</td>
-                                                                        </>
+                                                        <>
+                                                            <td className="unit" style={{ width: 150 }}>{d.medician_cost}</td>
+                                                            <td className="total">{d.medician_cost}</td>
+                                                            </>
                                                                     )
                                                                 })
                                                                 : null}
+
                                                     </tr>
                                                     <tr>
                                                         <td className="no">02</td>
@@ -259,7 +260,7 @@ async function displayRazorpay() {
                                                                 ? bill.map(d => {
                                                                     return (
                                                                         <>
-                                                                          {d.medician_cost+d.doctor_charge+d.room_cost+d.extra_charge}  
+                                                                            {d.medician_cost + d.doctor_charge + d.room_cost + d.extra_charge}
                                                                         </>
                                                                     )
                                                                 })
@@ -288,21 +289,21 @@ async function displayRazorpay() {
                                                                     return (
                                                                         <>
                                                                             {d.totle}
-                                                                        </> 
+                                                                        </>
                                                                     )
                                                                 })
                                                                 : null}</td>
                                                     </tr>
                                                 </tfoot>
-                                                
+
                                             </table>
                                             <div className="thanks">Thank you!</div>
-                                            
+
                                         </main>
                                         <div className="text-right">
-                                        <button className="btn btn-info"  	onClick={displayRazorpay}><i className="fa fa-money"></i><a>Payment</a> </button>
-                                        <button className="btn btn-info" onClick={GenerateInvoice} ><i className="fa fa-file-pdf-o"></i><BiCloudDownload /> Download PDF</button>
-                                    </div>
+                                            <button className="btn btn-info" onClick={displayRazorpay}><i className="fa fa-money"></i><a>Payment</a> </button>
+                                            <button className="btn btn-info" onClick={GenerateInvoice} ><i className="fa fa-file-pdf-o"></i><BiCloudDownload /> Download PDF</button>
+                                        </div>
                                     </div>
                                     <div>
                                     </div>

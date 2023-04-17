@@ -58,6 +58,11 @@ const Sidebar = () => {
                                     className="align-middle" /> <span class="align-middle">View Appointment</span>
                             </Link>
                         </li>
+                        <li class="sidebar-item ">
+                            <Link class="sidebar-link" to="/bill">
+                                <PaymentIcon className="align-middle" /><span class="align-middle">Bill</span>
+                            </Link>
+                        </li>
 
 
 
@@ -71,19 +76,9 @@ const Sidebar = () => {
                             { Report }
                         </li> */}
 
-                        <li class="sidebar-item">
-                            <Link class="sidebar-link" to="/Contact">
-                                <ContactPhoneIcon className="align-middle" /> <span class="align-middle">Contact</span>
-                            </Link>
-                        </li>
 
 
-                        <li class="sidebar-item ">
-                            <Link class="sidebar-link" to="/bill">
-                                <PaymentIcon className="align-middle" /><span class="align-middle">Bill</span>
-                            </Link>
-                        </li>
-
+                       
                        
 
                         <li className="sidebar-item " onClick={handleLogout}>

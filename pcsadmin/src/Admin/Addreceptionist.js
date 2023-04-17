@@ -19,6 +19,23 @@ const AddDoctor = ({ history }) => {
   const [email, setEmail] = useState("");
   const addReceptionisthandler = async (e) => {
     e.preventDefault();
+    
+    if (name === '' || username === "") {
+      message.error("Please fill up name & username")
+    }
+    
+    else if (password.search(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/)) {
+      message.error("Please fill password Using one uppercase,one lower case and special chracter and digit greter then 8 char.")
+    }
+    else if(contact_no.match(10)){
+      message.error("Contact no must be 10 char.")
+
+    }
+   
+    else if(email === "" || email.search( /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/) ){
+      message.error("Please Email Id must be strig,digit and @ include ")
+    }
+    else {
     const data = {
       name: name,
       username: username,
@@ -34,6 +51,7 @@ const AddDoctor = ({ history }) => {
      message.error("something are wrong ...")
 
     })
+  }
   }
   return (
     <>
