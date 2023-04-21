@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { Joi } = require("express-validation");
-const User = require("../models/Receptionist");
+const Rece = require("../models/Receptionist.js");
 const _ = require("lodash");
 require("dotenv").config();
 //Generating JWT token
@@ -38,7 +38,7 @@ const loginUser = async (req, res, next) => {
         },
       });
     }
-    const user = await User.findOne({ where: { email: req.body.email } });
+    const user = await Rece.findOne({ where: { email: req.body.email } });
     if (!user) {
       return res.status(404).json({
         status: 404,
@@ -88,7 +88,7 @@ const verifyUserToken = async (req, res, next) => {
       });
     }
     const decoded = await jwt.verify(token, process.env.USER_SECRET_KEY);
-    const user = await User.findOne({ where: { id: decoded.id } });
+    const user = await Rece.findOne({ where: { id: decoded.id } });
     if (!user) {
       return res.status(404).json({
         status: 404,

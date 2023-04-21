@@ -2,7 +2,7 @@ import React from 'react'
 import './css/style.css'
 import './css/footer.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Logo from './images/logo.png'
+import Logo from './images/logo.jfif'
 import Calendar from './images/calendar.png'
 import Staff from './images/staff.png'
 import Ambulancefrom from "./images/ambulance.png"
@@ -36,9 +36,9 @@ export const Main = () => {
         <div class="container">
           <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
-              <a class="navbar-brand1" href="#" style={{marginLeft:-250}}>
+             <a class="navbar-brand1" href="#" style={{marginLeft:-250}}>              
                 <img src={Logo} alt="logo" />
-              </a>
+              </a> 
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -69,7 +69,7 @@ export const Main = () => {
                   </li>
 
                   <li class="nav-item">
-                    <Link class="nav-link1" to="/signup"> Sign Up </Link>
+                    <Link class="nav-link1" to="/signup">patient </Link>
                   </li>
 
                   <li class="nav-item">
@@ -101,7 +101,6 @@ export const Main = () => {
       <section class="features-section">
         <div class="container">
           <div class="row gx-0">
-
             <div class="col-md-4">
               <div class="features-box bg1">
                 <img src={Calendar} alt="Calender" />
@@ -288,12 +287,7 @@ export const Main = () => {
                 <div class="team-info">
                   <h3>Johnathan Doe</h3>
                   <p>Cardiologist</p>
-                  <ul class="team-social">
-                    <li> <a href=""> <i class="fa fa-facebook" aria-hidden="true"></i> </a>  </li>
-                    <li> <a href=""> <i class="fa fa-twitter" aria-hidden="true"></i> </a>  </li>
-                    <li> <a href=""> <i class="fa fa-linkedin" aria-hidden="true"></i></a>  </li>
-                    <li> <a href=""> <i class="fa fa-instagram" aria-hidden="true"></i></a>  </li>
-                  </ul>
+                 
                 </div>
               </div>
             </div>
@@ -306,12 +300,7 @@ export const Main = () => {
                 <div class="team-info">
                   <h3>Johnathan Doe</h3>
                   <p>Cardiologist</p>
-                  <ul class="team-social">
-                    <li> <a href=""> <i class="fa fa-facebook" aria-hidden="true"></i> </a>  </li>
-                    <li> <a href=""> <i class="fa fa-twitter" aria-hidden="true"></i> </a>  </li>
-                    <li> <a href=""> <i class="fa fa-linkedin" aria-hidden="true"></i></a>  </li>
-                    <li> <a href=""> <i class="fa fa-instagram" aria-hidden="true"></i></a>  </li>
-                  </ul>
+                 
                 </div>
               </div>
             </div>
@@ -325,34 +314,13 @@ export const Main = () => {
                 <div class="team-info">
                   <h3>Johnathan Doe</h3>
                   <p>Cardiologist</p>
-                  <ul class="team-social">
-                    <li> <a href=""> <i class="fa fa-facebook" aria-hidden="true"></i> </a>  </li>
-                    <li> <a href=""> <i class="fa fa-twitter" aria-hidden="true"></i> </a>  </li>
-                    <li> <a href=""> <i class="fa fa-linkedin" aria-hidden="true"></i></a>  </li>
-                    <li> <a href=""> <i class="fa fa-instagram" aria-hidden="true"></i></a>  </li>
-                  </ul>
+                 
                 </div>
               </div>
             </div>
 
 
-            <div class="col-md-3">
-              <div class="team-box">
-                <div class="team-media">
-                  <img src={team4} alt="" />
-                </div>
-                <div class="team-info">
-                  <h3>Johnathan Doe</h3>
-                  <p>Cardiologist</p>
-                  <ul class="team-social">
-                    <li> <a href=""> <i class="fa fa-facebook" aria-hidden="true"></i> </a>  </li>
-                    <li> <a href=""> <i class="fa fa-twitter" aria-hidden="true"></i> </a>  </li>
-                    <li> <a href=""> <i class="fa fa-linkedin" aria-hidden="true"></i></a>  </li>
-                    <li> <a href=""> <i class="fa fa-instagram" aria-hidden="true"></i></a>  </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+            
 
 
           </div>

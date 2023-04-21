@@ -5,7 +5,7 @@ const db = require("../models/AdminModule");
 const Patients = require("../models/PatientModule.js");
 const { getUserToken, verifyUserToken } = require('../Config/authenicate');
 const Appointment = require('../Models/AppointmentModal');
-const Users =require('../Models/UserModal.js');
+const Users = require('../Models/UserModal.js');
 const Bill = require('../Models/BillModal')
 const nodemailer = require("nodemailer");
 const keysecret = process.env.USER_SECRET_KEY
@@ -275,7 +275,7 @@ const getAppointment = async (req, res) => {
 }
 const ViewBill = async (req, res) => {
   try {
-    let patient = await Bill.findAll();
+    let patient = await Bill.findAll({ where: { uid: req.user.id },});
 
     if (!patient) {
       return res.status(400).json({

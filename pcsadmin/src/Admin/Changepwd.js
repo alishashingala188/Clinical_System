@@ -17,6 +17,21 @@ const Changepwd = () => {
     const [confirmpassword, setConfirmPassword] = useState("");
     const token = localStorage.getItem("token")
     const changepassword = async () => {
+        if(oldpassword == ""){
+            message.error("Please Fill Up Old password")
+        }
+        else if(password == ""){
+            message.error("Please Fill Up new password")
+
+        }
+        else if(confirmpassword == ""){
+            message.error("Please Fill Up confirmpassword")
+
+        }
+        else if(password != confirmpassword){
+            message.error("password and confirmpassword are not match")
+        }
+        else{
         const credential={
             oldpassword:oldpassword,
             password:password,
@@ -36,6 +51,7 @@ const Changepwd = () => {
        
         console.log(result);
     }
+}
     return (
         <>
             <div className="wrapper">

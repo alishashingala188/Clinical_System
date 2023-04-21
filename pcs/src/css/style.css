@@ -50,15 +50,15 @@ font-weight: 500;
 /*Header*/
 
 header {
-    background: var(--bg-primary);
+    background: rgba(23,57,125);
     position: absolute;
     width: 100%;
     z-index: 1;
 }
 header .navbar-expand-lg .navbar-nav .nav-link1 {
     color: #FFF;
-    font-size: 16px;
-    font-weight: 600;
+    font-size: 20px;
+    font-weight: 400;
     text-transform: uppercase;
     padding: 10px 24px;
 }
@@ -68,7 +68,7 @@ header .navbar-expand-lg .navbar-nav .nav-link1 {
 }
 .navbar-light .navbar-nav .nav-link1:focus, .navbar-light .navbar-nav .nav-link1:hover {
     color: #FFF;
-    text-decoration: none;
+    text-decoration:none;
 }
 
 
@@ -140,7 +140,10 @@ section.features-section {
 }
 
 .features-box {
-    padding: 40px;
+    padding:70px;
+    margin-left: -120px;
+    width: 400px;
+    margin: 10;
 }
 
 
@@ -148,7 +151,8 @@ section.features-section {
 /*About Section*/
 
 section.about-section {
-    padding: 100px 0px;
+    padding: 100px 10px;
+    margin-left: -100px;
 }
 
 .btn-primary {
@@ -156,7 +160,8 @@ section.about-section {
     border-color: var(--bg-primary);
 }
 .about-media {
-    border: 10px solid var(--color-primary);
+    border: 5px solid var(--color-primary);
+  
 }
 
 
@@ -165,11 +170,13 @@ section.about-section {
 
 .section-title {
     margin-bottom: 60px;
+    margin-top: -100px;
 }
 
 section.services-section {
     padding: 100px 0px 50px;
     background: #efefef;
+    margin-left: -100px;
 }
 
 .services-box {
@@ -180,7 +187,7 @@ section.services-section {
 }
 
 .services-box h3 {
-    margin: 15px 0px 20px;
+    margin: 5px 100px 20px;
 }
 
 
@@ -224,7 +231,8 @@ section.services-section {
     color: #FFF;
     text-align: center;
     max-width: 700px;
-    margin: 0px auto;
+    /* margin: 0px auto; */
+    margin-left:100px;
 }
 
 .review-box p {
@@ -245,10 +253,14 @@ section.services-section {
 /*team Section*/
 
 section.team-section {
-    padding: 100px 0px;
+    padding: 100px 100px;
 }
 
-.team-box {}
+.team-box {
+    /* margin-left: -50px; */
+    margin-left: 30;
+    width:250px
+}
 
 .team-info {
     text-align: center;
@@ -423,6 +435,7 @@ ul.footer-menu li a {
 }
 .team-box {
     margin-bottom: 40px;
+    margin-left: -120px;
 }
 .hero-banner1 {
     padding: 137px 0px;

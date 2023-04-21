@@ -12,7 +12,7 @@ const Dprofile = () => {
   useEffect(() => {
     getAllPatient();
   }, []);
-  console.log("", patient);
+  //console.log("", patient);
   const getAllPatient = async (req) => {
     const data = await axios.get(`http://localhost:5000/api/rece/profile`,
       {

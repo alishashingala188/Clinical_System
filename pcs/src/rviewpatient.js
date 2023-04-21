@@ -20,7 +20,7 @@ const ViewPatient = () => {
    setPatient(data)
   }
   const handleDelete=async(id)=>{
-    console.log(id);
+    console.log(id);  
     const deleteData = await axios.delete(`http://localhost:5000/api/user/${id}`);
     console.log(deleteData);
     setMess(deleteData)

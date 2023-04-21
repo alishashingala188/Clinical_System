@@ -99,7 +99,7 @@ if(varDate <= today){
               <div class="formbold-form-wrapper">
                 <form onSubmit={addApoointmenthandler}>
                   <h1>Appointment Form</h1><br></br>
-                  <div class="flex flex-wrap formbold--mx-3">
+                  <div class="flex1 flex-wrap1 formbold--mx-3">
                     <div class="w-full sm:w-half formbold-px-3">
                       <div class="formbold-mb-5 w-full">
                         <label for="date" class="formbold-form-label"> Doctor Name </label>
@@ -126,7 +126,7 @@ if(varDate <= today){
                       onChange={(e)=>setA_reason(e.target.value)}
                     ></textarea>
                   </div>
-                  <div class="flex flex-wrap formbold--mx-3">
+                  <div class="flex1 flex-wrap1 formbold--mx-3">
                     <div class="w-full sm:w-half formbold-px-3">
                       <div class="formbold-mb-5 w-full">
                         <label for="date" class="formbold-form-label"> Date </label>

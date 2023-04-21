@@ -69,9 +69,7 @@ return (
                         />
                       </div>
                       <div className="mb-3">
-                        <small>
-                          <a href="index.html">Forgot password?</a>
-                        </small>
+                        
                       </div>
                       <div>
                         <label className="form-check">

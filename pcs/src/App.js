@@ -24,6 +24,7 @@ import RviewAppointment from './Rviewappointment'
 import Changeprofile from './changeprofile'
 import ForgotPassword from './ForgotPassword'
 import Resetpassword from './Resetpassword'
+import Viewmore from './Viewmore'
 const App = () => {
   return (
     <div>
@@ -43,6 +44,7 @@ const App = () => {
           <Route path='/Rdashboard' element={<Rdashboard/>}/>
           <Route path='/invoiceForm/:id' element={<InvoiceForm/>}/>
           <Route path='/changeprofile/:id' element={<Changeprofile/>}/>
+          <Route path='/viewmore/:id' element={<Viewmore/>}/>
           <Route path='/payment' element={<Payment/>}/>
           <Route path='/rviewpatient' element={<Rviewpatine/>}/>
           <Route path='/bill' element={<Bill/>}/>

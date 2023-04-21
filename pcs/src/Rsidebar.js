@@ -54,12 +54,7 @@ const Rsidebar = () => {
                             </Link>
                         </li>
 
-                        <li class="sidebar-item">
-                            <Link class="sidebar-link" to="/invoiceform">
-                                <BorderColorOutlinedIcon className="align-middle" /> <span class="align-middle">Invoiceform</span>
-                            </Link>
-                        </li>
-
+                   
 
 
                         {/* <li class="sidebar-item">

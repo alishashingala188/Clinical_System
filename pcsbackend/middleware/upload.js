@@ -8,6 +8,7 @@ const imageFilter =(req,file,cbf)=>{
         cbf("Please upload only image.",false)
     }
 };
+
 var uploadFile=multer({storage:storage,fileFilter:imageFilter});
 
 module.exports = uploadFile

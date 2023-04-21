@@ -28,9 +28,10 @@ const Login = () => {
       email: email,
       password: password
     }; 
-    const { data } = await axios.post("http://localhost:5000/api/rece/rlogin", credentials)
+    const data = await axios.post("http://localhost:5000/api/rece/rlogin", credentials)
        .then(async(res)=>{
          await localStorage.setItem("token", res.data.data.token);
+         console.log( res.data.data)
         message.success("Login sucessfully")
           Navigate('/rdashboard')
         }).catch((err)=>{

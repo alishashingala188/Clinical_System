@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 //const Todo = require("../models/todosModel");
 const db = require("../models/UserModal.js");
 const  Receptionist= require("../models/Receptionist");
-const { getUserToken } = require('../Config/authenicate');
+const { getUserToken } = require('../Config/rauth.js');
 //const CryptoJS = require("crypto-js");
 
 //1 login 
