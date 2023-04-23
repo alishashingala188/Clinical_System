@@ -30,7 +30,7 @@ const ViewDoctor = () => {
     const getsearch = event.target.value;
     setQuery(getsearch);
     if (getsearch.length > 0) {
-      const searchdata = doctors.filter((item) => item.name.includes(getsearch) || item.speciality.includes(getsearch)) ;
+      const searchdata = doctors.filter((item) => item.name.toLowerCase().includes(getsearch.toLowerCase())|| item.speciality.includes(getsearch)) ;
       setDoctor(searchdata);
 
     } else {
@@ -67,7 +67,7 @@ const ViewDoctor = () => {
                 <div>
                   <input type='search' placeholder='search' value={query} onChange={(e)=>handleFilter(e)} style={{marginBottom:10,border:'1px solid blue',borderRadius:10,height:30}} />
                 </div>
-                <table cellPadding="0" cellSpacing="100x" border="2px solid" style={{ borderColor: "#3b7ddd", }} >
+                <table cellPadding="0" cellSpacing="100px" border="2px solid" style={{ borderColor: "#3b7ddd", }} >
                   <thead border="2px solid blue">
                     <tr style={{ backgroundColor: "#3b7ddd", fontSize: "20", fontWeight: "inherit", color: "white", textAlign: "center", height: '50px' }} color="">
                       <th>DoctorName</th>

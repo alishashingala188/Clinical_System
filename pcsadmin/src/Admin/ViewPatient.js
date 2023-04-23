@@ -14,7 +14,7 @@ const ViewPatient = () => {
     const getsearch = event.target.value;
     setQuery(getsearch);
     if (getsearch.length > 0) {
-      const searchdata = patients.filter((item) => item.full_name.includes(getsearch));
+      const searchdata = patients.filter((item) => item.full_name.toLowerCase().includes(getsearch.toLowerCase()));
       setPatient(searchdata);
 
     } else {
@@ -63,10 +63,9 @@ const ViewPatient = () => {
               <div>
                   <input type='search' placeholder='search' value={query} onChange={(e)=>handleFilter(e)} style={{marginBottom:10,border:'1px solid blue',borderRadius:10,height:30}} />
                 </div>
-                <table cellPadding="0" cellSpacing="100" border="2px solid" style={{borderColor:"#3b7ddd"}} >
-                
+                <table   cellPadding="0" cellSpacing="100px" border="2px solid" style={{borderColor:"#3b7ddd"}} >
                   <thead border="2px solid blue">
-                    <tr style={{backgroundColor:"#3b7ddd",fontSize:"20",fontWeight:"bold",color:"white",textAlign:"center"}} color="primary">
+                    <tr style={{backgroundColor:"#3b7ddd",fontSize:"20",fontWeight:"bold",color:"white",textAlign:"center",}} color="primary">
                       <th>fullname</th>
                       <th>Username</th>
                       <th>address</th>
@@ -81,7 +80,7 @@ const ViewPatient = () => {
                     {
                       patients.map(patient => {
                         //console.log(doctor);
-                       return  <tr style={{marginBottom:"10px"}}>
+                       return  <tr style={{marginBottom:"-20px"}}>
                         <td> {patient.full_name} </td>
                           <td> {patient.username}  </td>
                           <td> {patient.address}</td>

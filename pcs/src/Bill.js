@@ -9,7 +9,6 @@ import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import jsPDF from 'jspdf'
 import html2canvas from 'html2canvas'
-
 import { BiCloudDownload } from 'react-icons/bi'
 import './bill.css'
 import { Link } from 'react-router-dom'
@@ -51,7 +50,6 @@ const Dprofile = () => {
                 setBill(res.data.data)
                 console.log(res.data.data)
             })
-
     }
     const getAllAdmin = async (req) => {
         const data = await axios.get(`http://localhost:5000/api/user/profile`,
@@ -66,7 +64,7 @@ const Dprofile = () => {
                 console.log(res.data.data.user)
             })
     }
-    // (html2canvas as any)(...).then().catch()
+    
     function GenerateInvoice() {
         html2canvas(document.querySelector("#invoice")).then((canvas) => {
             const imgData = canvas.toDataURL('image/png', 1.0);
@@ -85,8 +83,6 @@ const Dprofile = () => {
     }
 
     //payment system
-
-
     async function displayRazorpay() {
         const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')
 
@@ -131,9 +127,6 @@ const Dprofile = () => {
                     <div className="main">
                         <Nav />
                         <main className="content">
-                            {/* <div className="container-fluid p-0"></div>
-                            <div className="mb-3">
-                            </div> */}
 
                             <div id="invoice">
                                 <div className="invoice overflow-auto">
@@ -143,9 +136,7 @@ const Dprofile = () => {
                                                 <div className="col">
                                                 </div>
                                                 <div className="col company-details">
-
                                                     <h1 style={{ color: 'white' }}>{admin.full_name}</h1>
-
                                                     <div>{admin.address}</div>
                                                     <div>{admin.contact_no}</div>
                                                     <div>{admin.email}</div>
@@ -176,13 +167,11 @@ const Dprofile = () => {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-
                                                     <tr>
                                                         <td className="no">01</td>
                                                         <td className="text-left">
                                                             <h3>Medician cost</h3> This is Paperless clinical system Medician cost
                                                         </td>
-
 
                                                         {
                                                             Array.isArray(bill)

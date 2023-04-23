@@ -15,7 +15,7 @@ const ViewPatient = () => {
   },[]);
 
   const getAllPatient = async () => {
-    const { data } = await axios.get('http://localhost:5000/api/');
+    const { data } = await axios.get('http://localhost:5000/api/user/');
    console.log(data);
    setPatient(data)
   }
@@ -42,8 +42,7 @@ const ViewPatient = () => {
                   <thead border="2px solid blue">
                     <tr style={{backgroundColor:"#3b7ddd",fontSize:"20",fontWeight:"bold",color:"white",textAlign:"center"}} color="primary">
                       <th>patient name</th>
-                      <th>doctor name </th>
-                     
+                      <th>User name </th>
                       <th>address</th>
                       <th>contact_no</th>
                       <th>age</th>
@@ -57,13 +56,13 @@ const ViewPatient = () => {
                       patients.map(patient => {
                         //console.log(doctor);
                        return  <tr style={{marginBottom:"20px"}}>
-                        <td> {patient.patients.full_name} </td>
-                          <td> {patient.users.name}  </td>
-                          <td> {patient.patients.address}</td>
-                          <td>{patient.patients.contact_no}  </td>
-                          <td> {patient.patients.age} </td>
-                          <td> {patient.patients.sec_question} </td>
-                          <td>  {patient.patients.answer}</td> 
+                        <td> {patient.full_name} </td>
+                          <td> {patient.username}  </td>
+                          <td> {patient.address}</td>
+                          <td>{patient.contact_no}  </td>
+                          <td> {patient.age} </td>
+                          <td> {patient.sec_question} </td>
+                          <td>  {patient.answer}</td> 
                         </tr>
                       })
                     }     

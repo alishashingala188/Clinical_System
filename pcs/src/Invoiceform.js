@@ -12,7 +12,6 @@ import { message } from 'antd';
 const InvoiceForm = () => {
   const [doctors, setDoctor] = useState([]);
   const [patient, setPatient] = useState([]);
-
   const [uid, setUid] = useState(0)
   const [did, setDid] = useState(0)
   const [invoice_no, setInvoice_no] = useState("")
@@ -23,9 +22,9 @@ const InvoiceForm = () => {
   const [discount, setDiscount] = useState(0)
   const [totle, setTotle] = useState(0)
   const [date, setDate] = useState()
-  const { id} = useParams();
+  const { id } = useParams();
   useEffect(() => {
-     getAllAppoitment();
+    getAllAppoitment();
     // getAllDoctor();
   }, [])
 
@@ -33,40 +32,71 @@ const InvoiceForm = () => {
     const { data } = await axios.get(`http://localhost:5000/api/${id}`)
     setPatient(data.data.user.patients);
     setDoctor(data.data.user.users);
-   
-    // console.log(data);
-    // setAppointment(data)
+
   }
   const addBillHandler = async (e) => {
-    e.preventDefault();
-    const data = {
-      uid:patient.id,
-      did:doctors.id,
-      date:date,
-      email:"abc@gmail.com",
-      room_cost:room_cost,
-      invoice_no:invoice_no,
-      medician_cost:medician_cost,
-      doctor_charge:doctor_charge,
-      extra_charge:extra_charge,
-      discount:10,
-      totle:parseInt(medician_cost)+parseInt(doctor_charge)+parseInt(room_cost)+parseInt(extra_charge)
+   
+    if (date == "") {
+      message.error("Please fill up Date.");
     }
-    console.log(data);
-    await axios.post('http://localhost:5000/api/bill/addbill', data).then(() => {
-     message.success("Bill Generated successfully...")
-    }).catch((err)=>{
-      message.error("error",err)
-    
-    })
+   else if (invoice_no == "") {
+      message.error("Please fill up Invoice no.")
+    }
+  
+    else if (room_cost == "") {
+      message.error("Please fill up Room Cost.")
+    }
+    else if (isNaN(room_cost)) {
+      message.error("Room cost Must be Integer")
+    }
+    else if (medician_cost == "") {
+      message.error("Please fill up Medician Cost.")
+    }
+    else if (isNaN(medician_cost)) {
+      message.error("medician_cost Must be Integer")
+    }
+    else if (doctor_charge == "") {
+      message.error("Please fill up Doctor Charge.")
+    }
+    else if (isNaN(doctor_charge)) {
+      message.error("doctor_charge Must be Integer")
+    }
+    else if (extra_charge == "") {
+      message.error("Please fill up Doctor extra_charge.")
+    }
+    else if (isNaN(extra_charge)) {
+      message.error("extra_charge Must be Integer")
+    }
+    else {
+      const data = {
+        uid: patient.id,
+        did: doctors.id,
+        date: date,
+        email: "abc@gmail.com",
+        room_cost: room_cost,
+        invoice_no: invoice_no,
+        medician_cost: medician_cost,
+        doctor_charge: doctor_charge,
+        extra_charge: extra_charge,
+        discount: 10,
+        totle: parseInt(medician_cost) + parseInt(doctor_charge) + parseInt(room_cost) + parseInt(extra_charge)
+      }
+      console.log(data);
+
+      await axios.post('http://localhost:5000/api/bill/addbill', data).then(() => {
+        message.success("Bill Generated successfully...")
+      }).catch((err) => {
+        message.error("Something are Wrong...")
+      })
+    }
   }
   return (
-    <Form ml={200} onSubmit={addBillHandler} style={{marginLeft:220}}>
+    <Form ml={200}  style={{ marginLeft: 220 }}>
       <Row>
         <Col md={8} lg={9} ml={10}>
-         
+
           <Card className="p-4 p-xl-5 my-3 my-xl-4" >
-          <div style={{backgroundColor:'#71b7e6',height:50,marginTop:-40,width:760,marginLeft:-50,marginBottom:20}}></div>
+            <div style={{ backgroundColor: '#71b7e6', height: 50, marginTop: -40, width: 760, marginLeft: -50, marginBottom: 20 }}></div>
             <div className="d-flex flex-row align-items-start justify-content-between mb-3">
               <div class="d-flex flex-column">
                 <div className="d-flex flex-column">
@@ -84,34 +114,34 @@ const InvoiceForm = () => {
               </div>
               <div className="d-flex flex-row align-items-center">
                 <span className="fw-bold me-2">Invoice&nbsp;Number:&nbsp;</span>
-                <Form.Control type="number" min="1" style={{
+                <Form.Control type="text" defaultValue="101" style={{
                   maxWidth: '70px'
-                }}  onChange={(e) => setInvoice_no(e.target.value)} required="required" />
+                }} onChange={(e) => setInvoice_no(e.target.value)} required="required" />
               </div>
             </div>
             <hr className="my-4" />
             <Row className="mb-5">
               <Col>
                 <Form.Label className="fw-bold">Patient Name:</Form.Label>
-                <Form.Control placeholder="Who is this invoice from?" name="uid" className="my-2" required="required" value={patient.full_name} 
-                 />      
+                <Form.Control placeholder="Who is this invoice from?" name="uid" className="my-2" required="required" value={patient.full_name}
+                />
 
                 <Form.Label className="fw-bold">Doctor Name:</Form.Label>
-                <Form.Control placeholder={"Who is this invoice from?"} name="did" className="my-2"  required="required" value={doctors.name}
+                <Form.Control placeholder={"Who is this invoice from?"} name="did" className="my-2" required="required" value={doctors.name}
                 >
 
                 </Form.Control>
-                <Form.Control placeholder={"Room Cost"} type="number" name="email" className="my-2" autoComplete="email" required="required" 
-                 onChange={(e) => setRoom_cost(e.target.value)}/>
+                <Form.Control placeholder={"Room Cost"} type="text" name="email" className="my-2" autoComplete="email" required="required"
+                  onChange={(e) => setRoom_cost(e.target.value)} />
 
-                <Form.Control placeholder={"Medician cost"} type="number" name="email" className="my-2" autoComplete="email" required="required" 
-                 onChange={(e) => setMedician_cost(e.target.value)}/>
+                <Form.Control placeholder={"Medician cost"} type="text" name="email" className="my-2" autoComplete="email" required="required"
+                  onChange={(e) => setMedician_cost(e.target.value)} />
 
-                <Form.Control placeholder={"Doctor Charge"} type="number" name="email" className="my-2" autoComplete="email" required="required" 
-                 onChange={(e) => setDoctor_charge(e.target.value)}/>
+                <Form.Control placeholder={"Doctor Charge"} type="text" name="email" className="my-2" autoComplete="email" required="required"
+                  onChange={(e) => setDoctor_charge(e.target.value)} />
 
-                <Form.Control placeholder={"Extra Charge"} type="number" name="email" className="my-2" autoComplete="email" required="required" 
-                 onChange={(e) => setExtra_charge(e.target.value)}/>
+                <Form.Control placeholder={"Extra Charge"} type="text" name="email" className="my-2" autoComplete="email" required="required"
+                  onChange={(e) => setExtra_charge(e.target.value)} />
 
                 {/* <Form.Control placeholder={"Discount"} type="number" name="email" className="my-2" autoComplete="email" required="required" 
                  onChange={(e) => setDiscount(e.target.value)}/> */}
@@ -121,7 +151,7 @@ const InvoiceForm = () => {
             <Row className="mt-4 justify-content-end">
               <Col lg={6}>
                 <div className="d-flex flex-row align-items-start justify-content-between">
-                  <span className="fw-bold">Subtotal:{parseInt(medician_cost)+parseInt(doctor_charge)+parseInt(room_cost)+parseInt(extra_charge)}
+                  <span className="fw-bold">Subtotal:{parseInt(medician_cost) + parseInt(doctor_charge) + parseInt(room_cost) + parseInt(extra_charge)}
                   </span>
                   <span>
                   </span>
@@ -132,12 +162,12 @@ const InvoiceForm = () => {
                     <span className="small "></span>
                   </span>
                 </div> */}
-               
+
                 <hr />
                 <div className="d-flex flex-row align-items-start justify-content-between" style={{
                   fontSize: '1.125rem'
                 }}>
-                  <span className="fw-bold">Total:{parseInt(medician_cost)+parseInt(doctor_charge)+parseInt(room_cost)+parseInt(extra_charge)}
+                  <span className="fw-bold">Total:{parseInt(medician_cost) + parseInt(doctor_charge) + parseInt(room_cost) + parseInt(extra_charge)}
                   </span>
                   <span className="fw-bold">
                   </span>
@@ -145,9 +175,9 @@ const InvoiceForm = () => {
               </Col>
             </Row>
             <hr className="my-4" />
-              <Button variant="primary" type="submit" className="d-block w-100 height-50">Review Invoice</Button>
+            <Button variant="primary" type="button" onClick={addBillHandler} className="d-block w-100 height-50">Review Invoice</Button>
           </Card>
-        </Col> 
+        </Col>
       </Row>
     </Form>)
 }

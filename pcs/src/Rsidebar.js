@@ -30,7 +30,7 @@ const Rsidebar = () => {
                         </li>
 
                         <li class="sidebar-item active">
-                            <Link to="/" class="sidebar-link" >
+                            <Link to="/rdashboard" class="sidebar-link" >
                                 <DashboardCustomizeOutlinedIcon className="align-middle" fontSize='small' /> <span class="align-middle">Dashboard</span>
                             </Link>
                         </li>
@@ -40,7 +40,6 @@ const Rsidebar = () => {
                                 <AccountCircleOutlinedIcon className="align-middle" /><span class="align-middle">Rprofile</span>
                             </Link>
                         </li>
-
 
                         <li class="sidebar-item">
                             <Link class="sidebar-link" to="/rviewpatient">
@@ -52,40 +51,7 @@ const Rsidebar = () => {
                             <Link class="sidebar-link" to="/rviewappointment">
                                 <FavoriteBorderOutlinedIcon className="align-middle" /> <span class="align-middle"> View Appointment </span>
                             </Link>
-                        </li>
-
-                   
-
-
-                        {/* <li class="sidebar-item">
-                            <Link class="sidebar-link" to="/Feedback">
-                            <ThumbUpAltIcon  className="align-middle" /> <span class="align-middle">Feedback</span>
-                            </Link>
-                        </li> */}
-
-                        {/* <li class="sidebar-header">
-                            { Report }
-                        </li> */}
-                        {/* 
-                        <li class="sidebar-item">
-                            <Link class="sidebar-link" to="/Contact">
-                            <ContactPhoneIcon  className="align-middle" /> <span class="align-middle">Contact</span>
-                            </Link>
-                        </li> */}
-
-                        {/* <li class="sidebar-item">
-                            <Link class="sidebar-link" to="/ViewAppointment">
-                            <CreditScoreOutlinedIcon  className="align-middle" /> <span class="align-middle">View Appointment</span>
-                            </Link>
-                        </li> */}
-
-
-                        {/* 
-                        <li class="sidebar-item ">
-                            <Link class="sidebar-link" to="/Payment">
-                            <PaymentIcon  className="align-middle" /><span class="align-middle">Payment</span>
-                            </Link>
-                        </li> */}
+                        </li>             
 
                         <li className="sidebar-item " onClick={handleLogout}>
                             <Link className="sidebar-link" to="/rlogin" >
