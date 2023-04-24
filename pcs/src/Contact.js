@@ -4,12 +4,7 @@ import Footer from './Footer'
 import Nav from './Nav'
 import './css/feedback.css'
 
-
-
 export default function SignIn() {
- 
-  
-
   return (
     <>
      <div class="wrapper">

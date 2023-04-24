@@ -52,8 +52,6 @@ const Form = () => {
       message.error("Please fill up answer")
 
     }
-   
-   
     else {
     const data = {
       full_name: full_name,

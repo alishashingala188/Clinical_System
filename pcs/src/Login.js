@@ -27,7 +27,7 @@ const Login = () => {
 
   const onLogin = async () => {
     if(email == ""){
-      message.error("Please fill up email Id")
+      message.error("Please fill up Email Id")
   }
   else if(password== ""){
     message.error("Please fill up Password ")

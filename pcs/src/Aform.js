@@ -19,6 +19,7 @@ const {id}=useParams();
 //console.log(id)
   const addApoointmenthandler = async (e) => {
     e.preventDefault();
+    
     if(a_reason === ""){
       message.error("Please enter appointment reason.")
     }
@@ -28,9 +29,7 @@ const {id}=useParams();
     }
     else if(time === "" ){
       message.error("Please enter time")
-
     }
-   
     else{
     const data = {
       did:doctors.id,

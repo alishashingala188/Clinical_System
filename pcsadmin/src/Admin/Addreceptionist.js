@@ -29,10 +29,9 @@ const AddDoctor = ({ history }) => {
     }
     else if(contact_no.match(10)){
       message.error("Contact no must be 10 char.")
-
     }
    
-    else if(email === "" || email.search( /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/) ){
+    else if(email === "" || email.search(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/) ){
       message.error("Please Email Id must be strig,digit and @ include ")
     }
     else {

@@ -31,7 +31,7 @@ const Dprofile = () => {
     const [bill, setBill] = useState([]);
     const [admin, setAdmin] = useState([]);
     const [name, setName] = useState(admin.full_name)
-
+    const [amount, setAmount] = useState(bill.totle)
     useEffect(() => {
         getAllBill();
         getAllAdmin();
@@ -100,7 +100,7 @@ const Dprofile = () => {
         const options = {
             key: document.domain === 'localhost' ? 'rzp_test_QTuO1fvgzMpvEy' : 'PRODUCTION_KEY',
             currency: data.currency,
-            amount: data.amount.toString(),
+            amount: amount,
             order_id: data.id,
             name: 'Payment',
             description: 'Thank you for nothing. Please give us some money',
@@ -112,6 +112,7 @@ const Dprofile = () => {
             },
             prefill: {
                 name,
+                amount,
                 email: 'sem3a.67.tmtbca@gmail.com',
                 phone_number: '7069582962'
             }

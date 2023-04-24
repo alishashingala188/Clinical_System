@@ -47,9 +47,8 @@ const ViewPatient = () => {
                       <th>contact_no</th>
                       <th>age</th>
                       <th>sec_question</th>
-                      <th>answer</th>
-                     
-                      </tr>
+                      <th>answer</th>        
+                    </tr>
                   </thead>
                   <tbody>
                     {
@@ -73,11 +72,7 @@ const ViewPatient = () => {
             <Footer />
           </div>
         </div>
-
-
       </div>
-
-
     </>
   )
 }

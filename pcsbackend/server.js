@@ -19,7 +19,7 @@ const razorpay = new Razorpay({
 app.post('/razorpay', async (req, res) => {
 	
 	const payment_capture = 1
-	const amount = 1500
+	const amount = 6102
 	const currency = 'INR'
 
 	const options = {
@@ -28,7 +28,6 @@ app.post('/razorpay', async (req, res) => {
 		receipt: shortid.generate(),
 		payment_capture
 	}
-
 	try {
 		const response = await razorpay.orders.create(options)
 		console.log(response)
