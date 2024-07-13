@@ -45,6 +45,10 @@ app.post('/razorpay', async (req, res) => {
 app.use(cors(corOptions));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
+app.get('/', (req, res) => {
+  console.log("Wallcome Share Market Sofware.");
+  res.send("node is running")
+});
 //Router in admin
 
 const arouter = require("./routes/AdminRoute");
